@@ -1,0 +1,7 @@
+{
+  "characterName": "Aragorn",
+  "startingGold": 100,
+  "moveSpeed": 6.0,
+  "sprintMultiplier": 1.8,
+  "mouseSensitivity": 2.0
+}
