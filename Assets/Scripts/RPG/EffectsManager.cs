@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using MiddleEarth.Config;
 
 /// <summary>
 /// Visual effects manager for particles and UI feedback with object pooling
@@ -16,8 +17,6 @@ public class EffectsManager : MonoBehaviour
     
     // Object pooling for particles (60-80% GC reduction)
     private Queue<GameObject> _particlePool = new Queue<GameObject>();
-    private const int INITIAL_POOL_SIZE = 100;
-    private const int MAX_POOL_SIZE = 200;
     
     private void Awake()
     {
@@ -37,7 +36,7 @@ public class EffectsManager : MonoBehaviour
     /// </summary>
     private void InitializeParticlePool()
     {
-        for (int i = 0; i < INITIAL_POOL_SIZE; i++)
+        for (int i = 0; i < GameConstants.PARTICLE_POOL_INITIAL_SIZE; i++)
         {
             CreatePooledParticle();
         }
@@ -75,7 +74,7 @@ public class EffectsManager : MonoBehaviour
         }
         
         // Pool exhausted, create new particle if under max size
-        if (transform.childCount < MAX_POOL_SIZE)
+        if (transform.childCount < GameConstants.PARTICLE_POOL_MAX_SIZE)
         {
             GameObject particle = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             particle.transform.SetParent(transform);
@@ -99,7 +98,7 @@ public class EffectsManager : MonoBehaviour
         particle.SetActive(false);
         particle.transform.SetParent(transform);
         
-        if (_particlePool.Count < MAX_POOL_SIZE)
+        if (_particlePool.Count < GameConstants.PARTICLE_POOL_MAX_SIZE)
         {
             _particlePool.Enqueue(particle);
         }
@@ -123,19 +122,19 @@ public class EffectsManager : MonoBehaviour
     /// </summary>
     public void PlayHitEffect(Vector3 position, bool isCritical)
     {
-        int particleCount = isCritical ? 15 : 8;
+        int particleCount = isCritical ? GameConstants.HIT_PARTICLE_COUNT : 8;
         Color particleColor = isCritical ? new Color(1f, 0.3f, 0f) : new Color(1f, 0f, 0f);
         
         for (int i = 0; i < particleCount; i++)
         {
-            CreateParticle(position, particleColor, 0.5f);
+            CreateParticle(position, particleColor, GameConstants.PARTICLE_LIFETIME);
         }
     }
     
     public void PlaySpecialAbilityEffect(Vector3 position)
     {
         // Blue/purple magical particles
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < GameConstants.SPECIAL_PARTICLE_COUNT; i++)
         {
             CreateParticle(position, new Color(0.5f, 0.3f, 1f), 0.8f);
         }
@@ -144,7 +143,7 @@ public class EffectsManager : MonoBehaviour
     public void PlayLevelUpEffect(Vector3 position)
     {
         // Golden ascending particles
-        for (int i = 0; i < 30; i++)
+        for (int i = 0; i < GameConstants.LEVELUP_PARTICLE_COUNT; i++)
         {
             CreateAscendingParticle(position, new Color(1f, 0.9f, 0.3f), 1.5f);
         }
@@ -153,7 +152,7 @@ public class EffectsManager : MonoBehaviour
     public void PlayTreasureEffect(Vector3 position)
     {
         // Sparkle effect
-        for (int i = 0; i < 12; i++)
+        for (int i = 0; i < GameConstants.TREASURE_PARTICLE_COUNT; i++)
         {
             CreateParticle(position, new Color(1f, 1f, 0.5f), 0.6f);
         }
@@ -162,7 +161,7 @@ public class EffectsManager : MonoBehaviour
     public void PlayQuestCompleteEffect(Vector3 position)
     {
         // Triumphant burst
-        for (int i = 0; i < 25; i++)
+        for (int i = 0; i < GameConstants.QUEST_PARTICLE_COUNT; i++)
         {
             CreateParticle(position, new Color(0.3f, 1f, 0.3f), 1f);
         }
