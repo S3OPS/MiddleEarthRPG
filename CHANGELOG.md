@@ -2,6 +2,24 @@
 
 All notable changes and enhancements to this project.
 
+## [2.3.0] - World Expansion Edition (In Progress)
+
+### 🌍 Planned World Expansion Features
+
+Following the Critical Path Forward from THE_ONE_RING.md, v2.3 focuses on creating a richer, more dynamic game world:
+
+#### Priority 2: World Expansion Goals
+- **Dungeon System**: Multi-floor instances with bosses
+- **Dynamic Weather**: Rain, snow, fog affecting gameplay
+- **Day/Night Cycle**: Time-based events and NPC schedules
+- **Fast Travel**: Waypoints between discovered locations
+
+**Status**: Planning phase - awaiting detailed specifications  
+**Estimated Effort**: 6 weeks  
+**Documentation**: See [THE_ONE_RING.md § Priority 2: World Expansion](docs/THE_ONE_RING.md)
+
+---
+
 ## [2.2.0] - Infrastructure & Enhancement Edition (January 2026)
 
 ### 🔧 New Infrastructure Components

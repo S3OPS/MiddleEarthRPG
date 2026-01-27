@@ -6,7 +6,7 @@ This is the **master control document** for the Middle-earth Adventure RPG proje
 
 **Status:** 🟢 Active Development  
 **Last Updated:** January 27, 2026  
-**Version:** 3.0  
+**Version:** 3.1  
 **Purpose:** Unified roadmap for Optimization, Refactoring, Modularization, Auditing, and Enhancement
 
 ---
@@ -43,12 +43,13 @@ This is the **master control document** for the Middle-earth Adventure RPG proje
 ### At a Glance
 
 ```
-Current Version: v2.2 Enhanced Infrastructure Edition
+Current Version: v2.3 World Expansion Edition (In Progress)
+Next Phase: Priority 2 - World Expansion (6 weeks estimated)
 Total Code: ~5,500 lines of C# + 7,500+ lines of documentation
-Systems: 10/10 game systems + 7 new infrastructure utilities
+Systems: 10/10 game systems + 7 infrastructure utilities
 Technical Debt: ZERO critical issues remaining
 Security Vulnerabilities: ZERO (CodeQL verified)
-Completion Status: Production-ready with enterprise architecture + monitoring
+Completion Status: Production-ready, expanding with world features
 ```
 
 ### Critical Numbers
@@ -497,19 +498,19 @@ This phase focuses on expanding gameplay depth and player engagement.
 Based on the current state of the project, here's the recommended path:
 
 **Immediate (Next 1-2 weeks):**
-1. ✅ **Deploy current v2.2** - All core systems are production-ready
-2. 🎯 **Gather player feedback** - Identify what players want most
-3. 🎯 **Choose focus area** - Pick Option A, B, or C based on feedback
-4. 🎯 **Create detailed specs** - Document chosen features thoroughly
+1. ✅ **Deploy current v2.2** - All core systems are production-ready ✅ COMPLETE
+2. ✅ **Gather player feedback** - Identify what players want most ✅ COMPLETE
+3. ✅ **Choose focus area** - Priority 2: World Expansion (v2.3) ✅ SELECTED
+4. 🎯 **Create detailed specs** - Document chosen features thoroughly (IN PROGRESS)
 
-**Short-term (Weeks 3-6):**
-1. 🎯 Implement chosen feature set (Option A, B, or C)
+**Short-term (Weeks 3-6): v2.3 Development**
+1. 🎯 Implement World Expansion features (Option based on Priority 2)
 2. 🎯 Test thoroughly with multiple playtesters
 3. 🎯 Iterate based on feedback
 4. 🎯 Polish and bug fix
 
-**Medium-term (Weeks 7-12):**
-1. 🎯 Implement second feature set if desired
+**Medium-term (Weeks 7-12): v2.4+ Planning**
+1. 🎯 Implement Content & Narrative expansion (v2.4)
 2. 🎯 Add requested QoL features from feedback
 3. 🎯 Optimize based on profiling results
 4. 🎯 Prepare for beta/release
@@ -1205,8 +1206,8 @@ This project has successfully completed all requirements from the original probl
 ║           MIDDLE-EARTH RPG - PROJECT STATUS               ║
 ╠═══════════════════════════════════════════════════════════╣
 ║  Overall Health:           9.6/10 ⭐⭐⭐⭐⭐              ║
-║  Status:                   PRODUCTION-READY               ║
-║  Version:                  v2.2 Infrastructure Edition    ║
+║  Status:                   PRODUCTION-READY + EXPANDING   ║
+║  Version:                  v2.3 World Expansion (Active)  ║
 ╠═══════════════════════════════════════════════════════════╣
 ║  Optimization:             9.5/10 ✅ Excellent           ║
 ║  Refactoring:              9.5/10 ✅ Excellent           ║
@@ -1215,6 +1216,7 @@ This project has successfully completed all requirements from the original probl
 ║  Features:                10.0/10 ✅ Complete            ║
 ║  Documentation:           10.0/10 ✅ Comprehensive       ║
 ║  Infrastructure:           9.5/10 ✅ Excellent           ║
+║  World Expansion:          0.0/10 🎯 In Progress (v2.3)  ║
 ╠═══════════════════════════════════════════════════════════╣
 ║  Critical Issues:          0 (was 11) ✅                 ║
 ║  High Priority Issues:     0 (was 18) ✅                 ║
@@ -1223,7 +1225,7 @@ This project has successfully completed all requirements from the original probl
 ╠═══════════════════════════════════════════════════════════╣
 ║  Total Code Lines:         ~5,500                         ║
 ║  Game Systems:             10/10 complete                 ║
-║  Infrastructure Systems:   7 new utilities                ║
+║  Infrastructure Systems:   7 utilities                    ║
 ║  Documentation:            ~8,000+ lines                  ║
 ║  Test Readiness:           95%                            ║
 ╚═══════════════════════════════════════════════════════════╝
@@ -1322,7 +1324,7 @@ This is a living document. If you have questions, suggestions, or find issues:
 **Last Updated:** January 27, 2026  
 **Document Owner:** Development Team  
 **Status:** 🟢 Active, Living Document  
-**Version:** 3.0.0 (Infrastructure Edition)
+**Version:** 3.1.0 (World Expansion Initiated)
 
 ---
 
