@@ -122,7 +122,7 @@ public class EffectsManager : MonoBehaviour
     /// </summary>
     public void PlayHitEffect(Vector3 position, bool isCritical)
     {
-        int particleCount = isCritical ? GameConstants.HIT_PARTICLE_COUNT : 8;
+        int particleCount = isCritical ? GameConstants.HIT_PARTICLE_COUNT : GameConstants.NORMAL_HIT_PARTICLE_COUNT;
         Color particleColor = isCritical ? new Color(1f, 0.3f, 0f) : new Color(1f, 0f, 0f);
         
         for (int i = 0; i < particleCount; i++)
@@ -136,7 +136,7 @@ public class EffectsManager : MonoBehaviour
         // Blue/purple magical particles
         for (int i = 0; i < GameConstants.SPECIAL_PARTICLE_COUNT; i++)
         {
-            CreateParticle(position, new Color(0.5f, 0.3f, 1f), 0.8f);
+            CreateParticle(position, new Color(0.5f, 0.3f, 1f), GameConstants.SPECIAL_PARTICLE_LIFETIME);
         }
     }
     
@@ -145,7 +145,7 @@ public class EffectsManager : MonoBehaviour
         // Golden ascending particles
         for (int i = 0; i < GameConstants.LEVELUP_PARTICLE_COUNT; i++)
         {
-            CreateAscendingParticle(position, new Color(1f, 0.9f, 0.3f), 1.5f);
+            CreateAscendingParticle(position, new Color(1f, 0.9f, 0.3f), GameConstants.LEVELUP_PARTICLE_LIFETIME);
         }
     }
     
@@ -154,7 +154,7 @@ public class EffectsManager : MonoBehaviour
         // Sparkle effect
         for (int i = 0; i < GameConstants.TREASURE_PARTICLE_COUNT; i++)
         {
-            CreateParticle(position, new Color(1f, 1f, 0.5f), 0.6f);
+            CreateParticle(position, new Color(1f, 1f, 0.5f), GameConstants.TREASURE_PARTICLE_LIFETIME);
         }
     }
     
@@ -163,7 +163,7 @@ public class EffectsManager : MonoBehaviour
         // Triumphant burst
         for (int i = 0; i < GameConstants.QUEST_PARTICLE_COUNT; i++)
         {
-            CreateParticle(position, new Color(0.3f, 1f, 0.3f), 1f);
+            CreateParticle(position, new Color(0.3f, 1f, 0.3f), GameConstants.QUEST_PARTICLE_LIFETIME);
         }
     }
     

@@ -1,4 +1,5 @@
 using UnityEngine;
+using MiddleEarth.Config;
 
 public class Enemy : MonoBehaviour
 {
@@ -70,7 +71,7 @@ public class Enemy : MonoBehaviour
         if (Time.time >= _nextPatrolTime)
         {
             // Use squared distance for patrol point check
-            if ((transform.position - _patrolPoint).sqrMagnitude < 1f)
+            if ((transform.position - _patrolPoint).sqrMagnitude < GameConstants.PATROL_REACH_DISTANCE_SQR)
             {
                 SetNewPatrolPoint();
             }

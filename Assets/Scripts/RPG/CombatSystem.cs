@@ -73,7 +73,7 @@ public class CombatSystem : MonoBehaviour
         _comboCount++;
         
         // Calculate damage with combo bonus using constants
-        float damage = baseDamage + (_stats != null ? _stats.strength * GameConstants.CRITICAL_HIT_DAMAGE_MULTIPLIER : 0f);
+        float damage = baseDamage + (_stats != null ? _stats.strength * GameConstants.STRENGTH_DAMAGE_MULTIPLIER : 0f);
         float comboMultiplier = 1f + (_comboCount - 1) * GameConstants.COMBO_DAMAGE_BONUS;
         damage *= comboMultiplier;
         

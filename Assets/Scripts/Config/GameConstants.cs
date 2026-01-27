@@ -19,6 +19,9 @@ namespace MiddleEarth.Config
         /// <summary>Damage multiplier for critical hits (2x)</summary>
         public const float CRITICAL_HIT_DAMAGE_MULTIPLIER = 2f;
         
+        /// <summary>Strength stat contribution to base damage per point</summary>
+        public const float STRENGTH_DAMAGE_MULTIPLIER = 2f;
+        
         /// <summary>Combo damage increase per hit (20%)</summary>
         public const float COMBO_DAMAGE_BONUS = 0.2f;
         
@@ -68,7 +71,10 @@ namespace MiddleEarth.Config
         // PARTICLE VFX SETTINGS
         // ========================================
         
-        /// <summary>Particle count for hit effects</summary>
+        /// <summary>Particle count for normal (non-critical) hit effects</summary>
+        public const int NORMAL_HIT_PARTICLE_COUNT = 8;
+        
+        /// <summary>Particle count for critical hit effects</summary>
         public const int HIT_PARTICLE_COUNT = 15;
         
         /// <summary>Particle count for special ability effects</summary>
@@ -83,8 +89,20 @@ namespace MiddleEarth.Config
         /// <summary>Particle count for quest complete effect</summary>
         public const int QUEST_PARTICLE_COUNT = 8;
         
-        /// <summary>Particle lifetime in seconds</summary>
+        /// <summary>Particle lifetime for normal hit effects in seconds</summary>
         public const float PARTICLE_LIFETIME = 0.5f;
+        
+        /// <summary>Particle lifetime for special ability effects in seconds</summary>
+        public const float SPECIAL_PARTICLE_LIFETIME = 0.8f;
+        
+        /// <summary>Particle lifetime for level-up effects in seconds</summary>
+        public const float LEVELUP_PARTICLE_LIFETIME = 1.5f;
+        
+        /// <summary>Particle lifetime for treasure effects in seconds</summary>
+        public const float TREASURE_PARTICLE_LIFETIME = 0.6f;
+        
+        /// <summary>Particle lifetime for quest complete effects in seconds</summary>
+        public const float QUEST_PARTICLE_LIFETIME = 1f;
         
         /// <summary>Particle size scale</summary>
         public const float PARTICLE_SIZE = 0.1f;
