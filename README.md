@@ -90,8 +90,13 @@ pwsh -ExecutionPolicy Bypass -File ./tools/install.ps1 -AutoRun
 - `Assets/StreamingAssets/rpg_config.json` — Tunable game settings
 - `tools/install.ps1` — One-command setup
 - `docs/` — Comprehensive documentation
+  - **INDEX.md** — Complete documentation navigation guide
+  - **AUDIT_IMPLEMENTATION_SUMMARY.md** ⭐ **START HERE!** — Overview of audit work & deliverables
+  - **CODE_AUDIT.md** ⭐ **CRITICAL** — Comprehensive code quality audit (46 issues identified)
+  - **NEXT_STEPS.md** ⭐ **ACTION PLAN** — 4-week implementation roadmap with concrete fixes
   - **REPOSITORY_STRUCTURE.md** — Codebase navigation and architecture guide
   - **ENHANCEMENT_PLAN.md** — Future roadmap with code quality initiatives (optimize, refactor, modularize, audit) and 50+ enhancement ideas across 7 categories
+  - **PROBLEM_STATEMENT_MAPPING.md** — Maps problem statement to documentation
   - SETUP.md — Installation guide
   - GAME_DESIGN.md — Complete game design document
   - PLAYER_EXPERIENCE.md — Player experience walkthrough
