@@ -135,16 +135,16 @@ namespace MiddleEarth.RPG
                 }
             }
 
-            // Notify other systems about time change
-            EventBus.Instance?.Publish("TimeOfDayChanged", newPeriod);
+            // TODO: Integrate with EventBus using IGameEvent wrapper when needed
+            // EventBus.Publish(new TimeOfDayChangedEvent(newPeriod));
         }
 
         private void HandleWeatherChanged(WeatherSystem.WeatherType newWeather)
         {
             GameLogger.Log($"Weather changed to: {newWeather}", LogCategory.General);
 
-            // Notify other systems about weather change
-            EventBus.Instance?.Publish("WeatherChanged", newWeather);
+            // TODO: Integrate with EventBus using IGameEvent wrapper when needed
+            // EventBus.Publish(new WeatherChangedEvent(newWeather));
         }
 
         private void HandleDungeonStarted(DungeonSystem.Dungeon dungeon)

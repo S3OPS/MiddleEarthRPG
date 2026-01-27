@@ -14,7 +14,7 @@ namespace MiddleEarth.RPG
         [Header("Dungeon Settings")]
         [SerializeField] private int minFloors = 3;
         [SerializeField] private int maxFloors = 10;
-        [SerializeField] private float floorDiffictyMultiplier = 1.2f;
+        [SerializeField] private float floorDifficultyMultiplier = 1.2f;
 
         [Header("Room Generation")]
         [SerializeField] private int roomsPerFloor = 5;
@@ -154,7 +154,7 @@ namespace MiddleEarth.RPG
             // Generate floors
             for (int i = 0; i < floorCount; i++)
             {
-                float diffMod = 1f + (i * (floorDiffictyMultiplier - 1f));
+                float diffMod = 1f + (i * (floorDifficultyMultiplier - 1f));
                 bool hasBoss = hasBossOnFinalFloor && (i == floorCount - 1);
                 
                 DungeonFloor floor = new DungeonFloor(i, roomsPerFloor, hasBoss, diffMod);
