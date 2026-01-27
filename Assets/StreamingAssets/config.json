@@ -1,10 +1,10 @@
 {
-  "conveyorRate": 2.0,
   "extractorRate": 2.5,
-  "mouseSensitivity": 1.8,
-  "moveSpeed": 5.5,
+  "conveyorRate": 2.0,
   "refineryRate": 1.25,
-  "sprintMultiplier": 1.6,
+  "startOre": 0,
   "startIngots": 0,
-  "startOre": 0
+  "moveSpeed": 5.5,
+  "sprintMultiplier": 1.6,
+  "mouseSensitivity": 1.8
 }

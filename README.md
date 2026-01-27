@@ -34,6 +34,10 @@ Extractor → Conveyor → Refinery → Ingots (watch the HUD counters update).
 ## Build
 - File → Build Settings → Add Open Scenes → Build & Run
 
+## Build Prep Notes
+- Unity reads `ProjectSettings/ProjectVersion.txt` to select the correct editor version.
+- Formatting is controlled by `.editorconfig` so config files stay stable between builds.
+
 ## Folder Map
 - `Assets/Scripts` — Runtime gameplay code
 - `Assets/StreamingAssets/config.json` — Tunable prototype config
