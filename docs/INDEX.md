@@ -54,10 +54,17 @@ Welcome to the Middle-earth Adventure RPG documentation! This index will help yo
 
 4. **[ENHANCEMENT_PLAN.md](ENHANCEMENT_PLAN.md)** ⭐ **NEW!**
    - Comprehensive enhancement roadmap
+   - Code quality initiatives (optimize, refactor, modularize, audit)
    - 50+ enhancement ideas across 7 categories
    - Priority framework (impact × effort matrix)
    - 6-phase implementation roadmap
    - Technical recommendations and risk assessment
+
+5. **[PROBLEM_STATEMENT_MAPPING.md](PROBLEM_STATEMENT_MAPPING.md)** ⭐ **NEW!**
+   - Maps requirements to enhancement plan sections
+   - Clear mapping of all code quality initiatives
+   - Feature category cross-references
+   - Quick navigation from requirements to implementation details
 
 ### Version History
 
@@ -100,6 +107,8 @@ Welcome to the Middle-earth Adventure RPG documentation! This index will help yo
 
 | Topic | Document | Section |
 |-------|----------|---------|
+| **Requirement Mapping** | PROBLEM_STATEMENT_MAPPING.md | All sections |
+| **Code Quality** | ENHANCEMENT_PLAN.md | Code Quality Initiatives |
 | **Enhancement Ideas** | ENHANCEMENT_PLAN.md | Enhancement Categories (7 categories) |
 | **Prioritization** | ENHANCEMENT_PLAN.md | Priority Framework |
 | **Roadmap** | ENHANCEMENT_PLAN.md | Implementation Roadmap (6 phases) |
@@ -124,6 +133,9 @@ Welcome to the Middle-earth Adventure RPG documentation! This index will help yo
 
 ### "I want to add a new quest"
 → Read: **REPOSITORY_STRUCTURE.md** (Quick Reference) then modify `QuestManager.cs`
+
+### "I want to understand problem statement requirements"
+→ Read: **PROBLEM_STATEMENT_MAPPING.md** to see how each requirement is addressed
 
 ### "I want to add a new feature"
 → Read: **ENHANCEMENT_PLAN.md** for ideas, **REPOSITORY_STRUCTURE.md** for implementation guidance
@@ -161,11 +173,22 @@ Welcome to the Middle-earth Adventure RPG documentation! This index will help yo
 **Best for:** Product managers, developers, stakeholders  
 **Key sections:**
 - Current state assessment (10 systems, 100% complete)
+- Code quality initiatives (optimize, refactor, modularize, audit)
 - 7 enhancement categories with 50+ ideas
 - Priority matrix (High/Low Impact × Effort)
 - 6-phase implementation roadmap
 - Technical recommendations
 - Risk assessment and success metrics
+
+### PROBLEM_STATEMENT_MAPPING.md (NEW!)
+**Purpose:** Map requirements to implementation sections  
+**Length:** ~200 lines  
+**Best for:** Stakeholders, project managers, developers  
+**Key sections:**
+- Code quality initiatives mapping (items 1-4, 6-9)
+- Feature enhancement categories mapping (items 5.A-F)
+- Direct links to relevant enhancement plan sections
+- Comprehensive checklist of all requirements
 
 ### GAME_DESIGN.md
 **Purpose:** Complete technical design document  
@@ -267,5 +290,5 @@ For questions about the documentation:
 ---
 
 **Last Updated:** January 2026  
-**Total Documentation:** 7 major documents + README + CHANGELOG  
-**Total Pages:** ~2,500 lines of documentation
+**Total Documentation:** 8 major documents + README + CHANGELOG  
+**Total Pages:** ~2,700 lines of documentation

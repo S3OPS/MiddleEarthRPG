@@ -91,7 +91,7 @@ pwsh -ExecutionPolicy Bypass -File ./tools/install.ps1 -AutoRun
 - `tools/install.ps1` — One-command setup
 - `docs/` — Comprehensive documentation
   - **REPOSITORY_STRUCTURE.md** — Codebase navigation and architecture guide
-  - **ENHANCEMENT_PLAN.md** — Future roadmap with 50+ enhancement ideas
+  - **ENHANCEMENT_PLAN.md** — Future roadmap with code quality initiatives (optimize, refactor, modularize, audit) and 50+ enhancement ideas across 7 categories
   - SETUP.md — Installation guide
   - GAME_DESIGN.md — Complete game design document
   - PLAYER_EXPERIENCE.md — Player experience walkthrough
