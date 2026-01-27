@@ -11,10 +11,16 @@ public class Enemy : MonoBehaviour
     public float attackRange = 2f;
     public float detectionRange = 10f;
     public float attackCooldown = 2f;
+    public float moveSpeed = 2f;
+    public float fleeHealthPercent = 0.2f;
 
     private Transform _player;
     private float _lastAttackTime;
     private bool _isDead = false;
+    private bool _isFleeing = false;
+    private Vector3 _patrolPoint;
+    private Vector3 _spawnPosition;
+    private float _nextPatrolTime;
 
     private void Start()
     {
@@ -22,6 +28,8 @@ public class Enemy : MonoBehaviour
         {
             _player = RPGBootstrap.Instance.PlayerTransform;
         }
+        _spawnPosition = transform.position;
+        SetNewPatrolPoint();
     }
 
     private void Update()
@@ -29,8 +37,18 @@ public class Enemy : MonoBehaviour
         if (_isDead || _player == null) return;
 
         float distanceToPlayer = Vector3.Distance(transform.position, _player.position);
-
-        if (distanceToPlayer <= attackRange && Time.time >= _lastAttackTime + attackCooldown)
+        
+        // Flee if health is low
+        if (currentHealth <= maxHealth * fleeHealthPercent && !_isFleeing)
+        {
+            _isFleeing = true;
+        }
+        
+        if (_isFleeing)
+        {
+            FleeFromPlayer();
+        }
+        else if (distanceToPlayer <= attackRange && Time.time >= _lastAttackTime + attackCooldown)
         {
             AttackPlayer();
         }
@@ -38,21 +56,65 @@ public class Enemy : MonoBehaviour
         {
             FollowPlayer();
         }
+        else
+        {
+            Patrol();
+        }
+    }
+    
+    private void Patrol()
+    {
+        if (Time.time >= _nextPatrolTime)
+        {
+            if (Vector3.Distance(transform.position, _patrolPoint) < 1f)
+            {
+                SetNewPatrolPoint();
+            }
+            
+            Vector3 direction = (_patrolPoint - transform.position).normalized;
+            direction.y = 0;
+            transform.position += direction * (moveSpeed * 0.5f) * Time.deltaTime;
+            
+            if (direction != Vector3.zero)
+            {
+                transform.LookAt(new Vector3(_patrolPoint.x, transform.position.y, _patrolPoint.z));
+            }
+        }
+    }
+    
+    private void SetNewPatrolPoint()
+    {
+        Vector2 randomCircle = Random.insideUnitCircle * 5f;
+        _patrolPoint = _spawnPosition + new Vector3(randomCircle.x, 0, randomCircle.y);
+        _nextPatrolTime = Time.time + Random.Range(2f, 5f);
+    }
+    
+    private void FleeFromPlayer()
+    {
+        Vector3 direction = (transform.position - _player.position).normalized;
+        direction.y = 0;
+        transform.position += direction * moveSpeed * 1.5f * Time.deltaTime;
+        transform.LookAt(new Vector3(transform.position.x + direction.x, transform.position.y, transform.position.z + direction.z));
     }
 
     private void FollowPlayer()
     {
         Vector3 direction = (_player.position - transform.position).normalized;
         direction.y = 0;
-        transform.position += direction * 2f * Time.deltaTime;
+        transform.position += direction * moveSpeed * Time.deltaTime;
         transform.LookAt(new Vector3(_player.position.x, transform.position.y, _player.position.z));
     }
 
     private void AttackPlayer()
     {
         _lastAttackTime = Time.time;
-        // This would trigger player damage in a full implementation
         Debug.Log($"{enemyName} attacks the player for {damageAmount} damage!");
+        
+        // Play attack sound
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySound("hit", 0.4f);
+        }
     }
 
     public void TakeDamage(float damage)
@@ -60,9 +122,25 @@ public class Enemy : MonoBehaviour
         if (_isDead) return;
 
         currentHealth -= damage;
+        
+        // Visual feedback
+        StartCoroutine(FlashRed());
+        
         if (currentHealth <= 0)
         {
             Die();
+        }
+    }
+    
+    private System.Collections.IEnumerator FlashRed()
+    {
+        var renderer = GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            Color originalColor = renderer.material.color;
+            renderer.material.color = Color.red;
+            yield return new WaitForSeconds(0.1f);
+            renderer.material.color = originalColor;
         }
     }
 
@@ -70,6 +148,17 @@ public class Enemy : MonoBehaviour
     {
         _isDead = true;
         Debug.Log($"{enemyName} has been defeated!");
+        
+        // Play death effects
+        if (EffectsManager.Instance != null)
+        {
+            EffectsManager.Instance.PlayHitEffect(transform.position, false);
+        }
+        
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayEnemyDeathSound();
+        }
         
         // Notify quest system via singleton
         if (RPGBootstrap.Instance != null)

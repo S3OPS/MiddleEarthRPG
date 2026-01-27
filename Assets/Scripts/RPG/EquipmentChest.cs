@@ -1,10 +1,11 @@
 using UnityEngine;
 
-public class TreasureChest : MonoBehaviour
+/// <summary>
+/// Treasure chest that contains equipment items
+/// </summary>
+public class EquipmentChest : MonoBehaviour
 {
-    public string itemName = "Ancient Sword";
-    public ItemType itemType = ItemType.Weapon;
-    public int itemValue = 100;
+    public Equipment equipment;
     public int goldAmount = 50;
     public bool isOpened = false;
 
@@ -21,12 +22,12 @@ public class TreasureChest : MonoBehaviour
         isOpened = true;
         if (RPGBootstrap.Instance != null)
         {
-            RPGBootstrap.Instance.OnChestOpened(itemName, itemType, itemValue, goldAmount);
+            RPGBootstrap.Instance.OnEquipmentChestOpened(equipment, goldAmount);
         }
 
         // Visual feedback
         GetComponent<Renderer>().material.color = new Color(0.8f, 0.8f, 0.3f);
-        Debug.Log($"Opened chest! Found {itemName} and {goldAmount} gold!");
+        Debug.Log($"Opened chest! Found {equipment.name} and {goldAmount} gold!");
         
         // Effects
         if (EffectsManager.Instance != null)

@@ -10,7 +10,10 @@ public class RPGBootstrap : MonoBehaviour
     private CharacterStats _playerStats;
     private InventorySystem _inventory;
     private QuestManager _questManager;
+    private EquipmentSystem _equipmentSystem;
+    private CombatSystem _combatSystem;
     private Text _hud;
+    private Canvas _hudCanvas;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     private static void AutoBoot()
@@ -33,15 +36,33 @@ public class RPGBootstrap : MonoBehaviour
         _playerStats.characterName = _config.characterName;
         _inventory = new InventorySystem();
         _inventory.gold = _config.startingGold;
+        _equipmentSystem = new EquipmentSystem();
+        _equipmentSystem.Initialize(_playerStats);
     }
 
     private void Start()
     {
         SetupScene();
+        SetupManagers();
         SetupWorld();
         SetupPlayer();
         SetupQuestSystem();
         SetupUi();
+    }
+    
+    private void SetupManagers()
+    {
+        // Audio Manager
+        var audioObj = new GameObject("AudioManager");
+        audioObj.AddComponent<AudioManager>();
+        
+        // Effects Manager
+        var effectsObj = new GameObject("EffectsManager");
+        effectsObj.AddComponent<EffectsManager>();
+        
+        // Achievement System
+        var achievementObj = new GameObject("AchievementSystem");
+        achievementObj.AddComponent<AchievementSystem>();
     }
 
     private void SetupScene()
@@ -91,27 +112,38 @@ public class RPGBootstrap : MonoBehaviour
         CreateNPC("Gimli", new Vector3(10f, 1.2f, 5f), new Vector3(0.9f, 1.5f, 0.9f), 
             new Color(0.7f, 0.5f, 0.3f), "And my axe!", "fellowship");
 
-        // Add enemies - Orcs
+        // Add enemies - Orcs in Rohan
         CreateEnemy("Orc Scout", new Vector3(25f, 1f, 5f), new Vector3(0.8f, 1.8f, 0.8f), 
             new Color(0.3f, 0.4f, 0.3f));
         CreateEnemy("Orc Scout", new Vector3(22f, 1f, -3f), new Vector3(0.8f, 1.8f, 0.8f), 
             new Color(0.3f, 0.4f, 0.3f));
         CreateEnemy("Orc Scout", new Vector3(18f, 1f, 3f), new Vector3(0.8f, 1.8f, 0.8f), 
             new Color(0.3f, 0.4f, 0.3f));
+        CreateEnemy("Orc Scout", new Vector3(28f, 1f, -5f), new Vector3(0.8f, 1.8f, 0.8f), 
+            new Color(0.3f, 0.4f, 0.3f));
+        CreateEnemy("Orc Scout", new Vector3(20f, 1f, 8f), new Vector3(0.8f, 1.8f, 0.8f), 
+            new Color(0.3f, 0.4f, 0.3f));
 
         // Add more enemies in Mordor
-        CreateEnemy("Dark Servant", new Vector3(-2f, 1f, 38f), new Vector3(0.9f, 2f, 0.9f), 
-            new Color(0.2f, 0.2f, 0.3f));
-        CreateEnemy("Dark Servant", new Vector3(3f, 1f, 40f), new Vector3(0.9f, 2f, 0.9f), 
-            new Color(0.2f, 0.2f, 0.3f));
+        for (int i = 0; i < 12; i++)
+        {
+            float x = Random.Range(-8f, 8f);
+            float z = Random.Range(32f, 42f);
+            CreateEnemy("Dark Servant", new Vector3(x, 1f, z), new Vector3(0.9f, 2f, 0.9f), 
+                new Color(0.2f, 0.2f, 0.3f));
+        }
 
-        // Add treasure chests
-        CreateTreasureChest("Lembas Bread", new Vector3(-20f, 0.5f, -20f), 
+        // Add treasure chests with equipment
+        CreateEquipmentChest(EquipmentFactory.CreateOrcsword(), new Vector3(-20f, 0.5f, -20f), 
             new Vector3(1f, 0.8f, 1f), new Color(0.7f, 0.6f, 0.3f));
-        CreateTreasureChest("Elven Sword", new Vector3(12f, 0.5f, -8f), 
+        CreateEquipmentChest(EquipmentFactory.CreateElvenBlade(), new Vector3(12f, 0.5f, -8f), 
             new Vector3(1f, 0.8f, 1f), new Color(0.8f, 0.8f, 0.9f));
-        CreateTreasureChest("Ancient Artifact", new Vector3(-5f, 0.5f, 32f), 
-            new Vector3(1f, 0.8f, 1f), new Color(0.9f, 0.7f, 0.2f));
+        CreateEquipmentChest(EquipmentFactory.CreateElvenCloak(), new Vector3(-5f, 0.5f, 32f), 
+            new Vector3(1f, 0.8f, 1f), new Color(0.5f, 0.8f, 0.5f));
+        CreateEquipmentChest(EquipmentFactory.CreateMithrilCoat(), new Vector3(5f, 0.5f, 35f), 
+            new Vector3(1f, 0.8f, 1f), new Color(0.9f, 0.9f, 1f));
+        CreateEquipmentChest(EquipmentFactory.CreateAnduril(), new Vector3(-25f, 0.5f, -28f), 
+            new Vector3(1f, 0.8f, 1f), new Color(1f, 0.9f, 0.3f));
     }
 
     private void CreateLocation(string name, Vector3 position, Vector3 scale, Color color, string questId, string objectiveId)
@@ -230,6 +262,28 @@ public class RPGBootstrap : MonoBehaviour
             collider.isTrigger = true;
         }
     }
+    
+    private void CreateEquipmentChest(Equipment equipment, Vector3 position, Vector3 scale, Color color)
+    {
+        var chest = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        chest.name = "Chest_" + equipment.name;
+        chest.tag = "EquipmentChest";
+        chest.transform.position = position;
+        chest.transform.localScale = scale;
+        var renderer = chest.GetComponent<Renderer>();
+        renderer.material.color = color;
+
+        var equipChest = chest.AddComponent<EquipmentChest>();
+        equipChest.equipment = equipment;
+        equipChest.goldAmount = 50;
+
+        // Make trigger
+        var collider = chest.GetComponent<Collider>();
+        if (collider != null)
+        {
+            collider.isTrigger = true;
+        }
+    }
 
     private void SetupPlayer()
     {
@@ -248,6 +302,10 @@ public class RPGBootstrap : MonoBehaviour
         var controller = player.AddComponent<FirstPersonController>();
         controller.MoveSpeed = _config.moveSpeed;
         controller.SprintMultiplier = _config.sprintMultiplier;
+        
+        // Add combat system
+        _combatSystem = player.AddComponent<CombatSystem>();
+        _combatSystem.Initialize(_playerStats);
 
         var cameraRoot = new GameObject("CameraRoot");
         cameraRoot.transform.SetParent(player.transform);
@@ -270,9 +328,11 @@ public class RPGBootstrap : MonoBehaviour
         _questManager = questObj.AddComponent<QuestManager>();
         _questManager.Initialize(_playerStats, _inventory);
 
-        // Activate starting quest
+        // Activate starting quests
         _questManager.ActivateQuest("shire_burden");
         _questManager.ActivateQuest("fellowship");
+        _questManager.ActivateQuest("master_arms");
+        _questManager.ActivateQuest("treasure_seeker");
     }
 
     private void SetupUi()
@@ -282,6 +342,7 @@ public class RPGBootstrap : MonoBehaviour
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
         canvasObj.AddComponent<CanvasScaler>();
         canvasObj.AddComponent<GraphicRaycaster>();
+        _hudCanvas = canvas;
 
         var textObj = new GameObject("StatusText");
         textObj.transform.SetParent(canvasObj.transform);
@@ -296,9 +357,14 @@ public class RPGBootstrap : MonoBehaviour
         rect.anchorMax = new Vector2(0f, 1f);
         rect.pivot = new Vector2(0f, 1f);
         rect.anchoredPosition = new Vector2(16f, -16f);
-        rect.sizeDelta = new Vector2(600f, 400f);
+        rect.sizeDelta = new Vector2(700f, 500f);
 
         _hud = text;
+        
+        // Setup minimap
+        var minimapObj = new GameObject("MinimapSystem");
+        var minimap = minimapObj.AddComponent<MinimapSystem>();
+        minimap.Initialize(PlayerTransform, canvas);
     }
 
     private void Update()
@@ -318,7 +384,19 @@ public class RPGBootstrap : MonoBehaviour
         hudText += $"Health: {_playerStats.currentHealth:0}/{_playerStats.maxHealth:0}  ";
         hudText += $"Stamina: {_playerStats.currentStamina:0}/{_playerStats.maxStamina:0}\n";
         hudText += $"XP: {_playerStats.experience}/{_playerStats.experienceToNextLevel}  ";
-        hudText += $"Gold: {_inventory.gold}\n\n";
+        hudText += $"Gold: {_inventory.gold}\n";
+        
+        // Equipment display
+        var weapon = _equipmentSystem.WeaponSlot;
+        var armor = _equipmentSystem.ArmorSlot;
+        hudText += $"Weapon: {(weapon != null ? weapon.name : "None")}  ";
+        hudText += $"Armor: {(armor != null ? armor.name : "None")}\n\n";
+
+        // Combat info
+        if (_combatSystem != null && _combatSystem.ComboCount > 0)
+        {
+            hudText += $"<color=yellow>COMBO x{_combatSystem.ComboCount}!</color>\n";
+        }
 
         hudText += "<b>Active Quests:</b>\n";
         var activeQuests = _questManager.GetActiveQuests();
@@ -341,15 +419,23 @@ public class RPGBootstrap : MonoBehaviour
                 }
             }
         }
+        
+        // Achievements
+        if (AchievementSystem.Instance != null)
+        {
+            hudText += $"\n<b>Achievements:</b> {AchievementSystem.Instance.GetUnlockedCount()}/{AchievementSystem.Instance.GetTotalCount()} ({AchievementSystem.Instance.GetCompletionPercentage():0}%)\n";
+        }
 
         hudText += "\n<b>Controls:</b> WASD Move | Mouse Look | Shift Sprint | Space Jump\n";
-        hudText += "<b>Interact:</b> Walk into NPCs, Chests, and Locations to interact";
+        hudText += "<b>Combat:</b> Left Click Attack | Right Click Special Ability\n";
+        hudText += "<b>Interact:</b> Walk into NPCs, Chests, and Locations";
 
         _hud.text = hudText;
     }
 
     public void OnEnemyDefeated(string enemyName)
     {
+        int damage = 20; // Base damage for tracking
         _playerStats.GainExperience(50);
         _inventory.AddGold(25);
 
@@ -360,6 +446,18 @@ public class RPGBootstrap : MonoBehaviour
         else if (enemyName.Contains("Dark"))
         {
             _questManager.UpdateQuestProgress("path_mordor", "defeat_darkness", 1);
+        }
+        
+        // Track for achievements
+        if (AchievementSystem.Instance != null)
+        {
+            AchievementSystem.Instance.OnEnemyDefeated(damage);
+        }
+        
+        // Track combo achievements
+        if (_combatSystem != null && AchievementSystem.Instance != null)
+        {
+            AchievementSystem.Instance.OnComboAchieved(_combatSystem.ComboCount);
         }
     }
 
@@ -396,6 +494,21 @@ public class RPGBootstrap : MonoBehaviour
         {
             _questManager.UpdateQuestProgress("path_mordor", "find_ring", 1);
         }
+    }
+    
+    public void OnEquipmentChestOpened(Equipment equipment, int goldAmount)
+    {
+        // Auto-equip if the slot is empty or item is better
+        bool equipped = _equipmentSystem.EquipItem(equipment);
+        _inventory.AddGold(goldAmount);
+        
+        if (!equipped)
+        {
+            // Add to inventory if couldn't equip
+            _inventory.AddItem(equipment);
+        }
+        
+        Debug.Log($"Found {equipment.name}! Rarity: {equipment.rarity}");
     }
 
     public void OnLocationDiscovered(string locationName, string questId, string objectiveId)

@@ -66,6 +66,44 @@ public class QuestManager : MonoBehaviour
         quest4.AddObjective(new QuestObjective("talk_legolas", "Speak with Legolas", ObjectiveType.TalkToNPC, 1));
         quest4.AddObjective(new QuestObjective("talk_gimli", "Speak with Gimli", ObjectiveType.TalkToNPC, 1));
         _allQuests.Add(quest4);
+        
+        // Quest 5: Master of Arms
+        var quest5 = new Quest(
+            "master_arms",
+            "Master of Arms",
+            "Prove your worth as a warrior by mastering combat and collecting legendary equipment.",
+            300,
+            500
+        );
+        quest5.AddObjective(new QuestObjective("equip_weapon", "Equip a legendary weapon", ObjectiveType.CollectItem, 1));
+        quest5.AddObjective(new QuestObjective("combo_10", "Achieve a 10-hit combo", ObjectiveType.DefeatEnemy, 1));
+        quest5.AddObjective(new QuestObjective("defeat_15", "Defeat 15 enemies total", ObjectiveType.DefeatEnemy, 15));
+        _allQuests.Add(quest5);
+        
+        // Quest 6: Treasure Seeker
+        var quest6 = new Quest(
+            "treasure_seeker",
+            "Treasure Seeker",
+            "The lands are filled with hidden treasures. Find them all and grow rich beyond measure.",
+            250,
+            400
+        );
+        quest6.AddObjective(new QuestObjective("find_chests", "Open 5 treasure chests", ObjectiveType.CollectItem, 5));
+        quest6.AddObjective(new QuestObjective("collect_gold", "Collect 500 gold", ObjectiveType.CollectItem, 1));
+        _allQuests.Add(quest6);
+        
+        // Quest 7: Legend of Middle-earth
+        var quest7 = new Quest(
+            "legend",
+            "Legend of Middle-earth",
+            "Become a true legend by reaching the pinnacle of power and completing all challenges.",
+            1000,
+            2000
+        );
+        quest7.AddObjective(new QuestObjective("reach_level_10", "Reach level 10", ObjectiveType.ExploreLocation, 1));
+        quest7.AddObjective(new QuestObjective("all_locations", "Discover all locations", ObjectiveType.ExploreLocation, 3));
+        quest7.AddObjective(new QuestObjective("defeat_25", "Defeat 25 enemies", ObjectiveType.DefeatEnemy, 25));
+        _allQuests.Add(quest7);
     }
 
     public void ActivateQuest(string questId)
@@ -99,6 +137,19 @@ public class QuestManager : MonoBehaviour
         foreach (var item in quest.itemRewards)
         {
             _inventory.AddItem(item);
+        }
+        
+        Debug.Log($"✅ Quest Complete: {quest.questName}!");
+        
+        // Effects and achievements
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayQuestCompleteSound();
+        }
+        
+        if (AchievementSystem.Instance != null)
+        {
+            AchievementSystem.Instance.OnQuestCompleted(quest.questId);
         }
     }
 

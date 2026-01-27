@@ -67,6 +67,103 @@ An immersive 3D action-RPG set in a fantasy world inspired by J.R.R. Tolkien's M
 - Find the Ring of Power
 - Rewards: 500 Gold, 1000 XP
 
+#### Master of Arms
+*Difficulty: Medium*
+- Equip a legendary weapon
+- Achieve a 10-hit combo
+- Defeat 15 enemies total
+- Rewards: 300 Gold, 500 XP
+
+#### Treasure Seeker
+*Difficulty: Easy*
+- Open 5 treasure chests
+- Collect 500 gold
+- Rewards: 250 Gold, 400 XP
+
+#### Legend of Middle-earth
+*Difficulty: Very Hard*
+- Reach level 10
+- Discover all locations
+- Defeat 25 enemies
+- Rewards: 1000 Gold, 2000 XP
+
+## Enhanced Systems (v2.0)
+
+### 5. Combat System
+**CombatSystem.cs** - Active mouse-based combat
+- **Attack Types**:
+  - Basic Attack (Left-Click): Raycast-based targeting, 3 unit range
+  - Special Ability (Right-Click): AOE attack in 4-unit radius, costs 30 stamina
+- **Combo System**: 
+  - Builds with consecutive hits
+  - +20% damage per combo level
+  - 1.5 second combo window
+- **Critical Hits**:
+  - 15% base chance
+  - +1% per agility point
+  - Deals 2x damage
+- **Damage Calculation**: Base damage + (Strength × 2) + Combo multiplier
+- **Cooldowns**: 0.5s attack cooldown, 5s special ability cooldown
+
+### 6. Equipment System
+**EquipmentSystem.cs** - Equippable gear with stats
+- **Equipment Slots**: Weapon, Armor, Accessory
+- **Rarity Tiers**: 
+  - Common (white)
+  - Uncommon (green)
+  - Rare (blue)
+  - Epic (purple)
+  - Legendary (orange)
+- **Stat Bonuses**: Attack, Defense, Health, Stamina
+- **Legendary Items**:
+  - Andúril: +25 ATK, +20 HP (Legendary Weapon)
+  - Mithril Coat: +30 DEF, +50 HP (Legendary Armor)
+  - Elven Blade: +15 ATK, +10 STA (Rare Weapon)
+  - Elven Cloak: +15 DEF, +20 STA (Epic Armor)
+  - Ring of Power: +20 ATK, +20 DEF, +100 HP, +50 STA (Legendary Accessory)
+
+### 7. Achievement System
+**AchievementSystem.cs** - Track player accomplishments
+- **12 Total Achievements**:
+  - Combat: First Blood, Orc Slayer, Legendary Warrior
+  - Treasure: Treasure Hunter, Dragon's Hoard
+  - Exploration: Explorer, Fellowship Complete, Quest Master
+  - Progression: Maximum Power, Combo Master
+  - Mastery: Heavy Hitter, Fully Equipped
+- **Features**:
+  - Automatic unlock detection
+  - Visual and audio feedback
+  - Progress tracking
+  - Completion percentage
+
+### 8. Audio System
+**AudioManager.cs** - Procedural sound effects
+- **Procedural Generation**: Sounds created at runtime using sine waves
+- **Sound Types**:
+  - Combat: Swing, Hit, Critical, Special Ability
+  - Progression: Level Up, Quest Complete
+  - Interaction: Treasure Open, Footstep, Enemy Death
+- **Audio Pooling**: 10 audio sources for overlapping sounds
+- **Volume Control**: Master, Music, and SFX volumes
+
+### 9. Visual Effects System
+**EffectsManager.cs** - Particle effects and feedback
+- **Particle Types**:
+  - Hit Effects: 8 particles (normal), 15 particles (critical)
+  - Special Ability: 20 blue/purple magical particles
+  - Level Up: 30 golden ascending particles
+  - Treasure: 12 sparkle particles
+  - Quest Complete: 25 green burst particles
+- **Floating Numbers**: Damage/healing numbers with fade animation
+- **Particle Physics**: Gravity, air resistance, fade-out
+
+### 10. Minimap System
+**MinimapSystem.cs** - Navigation aid
+- **Display**: 200x200 pixel minimap in top-right corner
+- **Camera**: Orthographic top-down view at 50 units height
+- **Features**: Real-time rendering, follows player, adjustable zoom
+- **UI**: Dark background, labeled "MAP"
+
 ## World Design
 
 ### Locations
@@ -224,16 +321,31 @@ The system is designed for easy expansion:
 
 ## Future Enhancement Opportunities
 
-1. **Combat System**: Active combat with attacks and skills
-2. **Equipment System**: Equippable weapons and armor
-3. **Dialogue System**: Branching conversations
-4. **Save/Load**: Persistent game state
-5. **Sound Effects**: Audio feedback for all actions
-6. **Particle Effects**: Visual effects for combat and magic
-7. **Day/Night Cycle**: Dynamic lighting
-8. **Weather System**: Rain, fog, varying conditions
-9. **Crafting**: Combine items to create new ones
-10. **Mounts**: Horse riding for faster travel
+The game has been significantly enhanced with the following systems now implemented:
+
+### ✅ Implemented Enhancements
+
+1. **Combat System**: ✅ Active combat with mouse-based attacks, combos, critical hits, and special abilities
+2. **Equipment System**: ✅ Equippable weapons and armor with stat bonuses and rarity tiers
+3. **Achievement System**: ✅ 12 achievements tracking player accomplishments
+4. **Sound Effects**: ✅ Procedural audio feedback for all game actions
+5. **Particle Effects**: ✅ Visual effects for combat, treasures, and level-ups
+6. **Enhanced AI**: ✅ Enemy patrol, chase, and flee behaviors
+7. **Minimap**: ✅ Top-down navigation map
+8. **More Content**: ✅ 7 quests (was 4), 17+ enemies (was 5), 5 equipment chests
+
+### 🚧 Future Opportunities
+
+1. **Save/Load**: Persistent game state across sessions
+2. **Dialogue System**: Branching conversations with NPCs
+3. **Day/Night Cycle**: Dynamic lighting and time of day
+4. **Weather System**: Rain, fog, varying atmospheric conditions
+5. **Crafting**: Combine items to create new equipment
+6. **Mounts**: Horse riding for faster travel across Middle-earth
+7. **Skill Tree**: Choose abilities and specializations
+8. **Boss Battles**: Unique enemies with special mechanics
+9. **Trading**: Buy and sell items with NPCs
+10. **Pause Menu**: Settings and options screen
 
 ## Credits
 

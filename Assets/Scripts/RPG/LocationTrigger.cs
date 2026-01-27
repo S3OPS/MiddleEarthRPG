@@ -18,6 +18,17 @@ public class LocationTrigger : MonoBehaviour
             {
                 RPGBootstrap.Instance.OnLocationDiscovered(locationName, questId, objectiveId);
             }
+            
+            // Effects
+            if (EffectsManager.Instance != null)
+            {
+                EffectsManager.Instance.PlayQuestCompleteEffect(transform.position);
+            }
+            
+            if (AchievementSystem.Instance != null)
+            {
+                AchievementSystem.Instance.OnLocationDiscovered();
+            }
         }
     }
 }

@@ -57,5 +57,18 @@ public class CharacterStats
         strength += 2;
         wisdom += 2;
         agility += 2;
+        
+        Debug.Log($"🎉 LEVEL UP! You are now level {level}!");
+        
+        // Visual and audio feedback
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayLevelUpSound();
+        }
+        
+        if (AchievementSystem.Instance != null)
+        {
+            AchievementSystem.Instance.OnLevelUp(level);
+        }
     }
 }

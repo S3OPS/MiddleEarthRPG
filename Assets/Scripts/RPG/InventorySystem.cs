@@ -76,6 +76,11 @@ public class InventorySystem
     public void AddGold(int amount)
     {
         gold += amount;
+        
+        if (AchievementSystem.Instance != null)
+        {
+            AchievementSystem.Instance.OnGoldChanged(gold);
+        }
     }
 
     public bool RemoveGold(int amount)
