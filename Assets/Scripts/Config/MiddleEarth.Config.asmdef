@@ -1,0 +1,14 @@
+{
+    "name": "MiddleEarth.Config",
+    "rootNamespace": "MiddleEarth.Config",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
