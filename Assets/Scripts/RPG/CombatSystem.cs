@@ -1,4 +1,5 @@
 using UnityEngine;
+using MiddleEarth.Config;
 
 /// <summary>
 /// Active combat system with mouse-based attacks, combos, and special abilities
@@ -60,13 +61,20 @@ public class CombatSystem : MonoBehaviour
     
     private void PerformAttack()
     {
+        // Null safety check
+        if (_mainCamera == null)
+        {
+            Debug.LogWarning("CombatSystem: Main camera reference is null");
+            return;
+        }
+        
         _lastAttackTime = Time.time;
         _lastComboTime = Time.time;
         _comboCount++;
         
-        // Calculate damage with combo bonus
-        float damage = baseDamage + (_stats != null ? _stats.strength * 2f : 0f);
-        float comboMultiplier = 1f + (_comboCount - 1) * 0.2f; // 20% per combo
+        // Calculate damage with combo bonus using constants
+        float damage = baseDamage + (_stats != null ? _stats.strength * GameConstants.STRENGTH_DAMAGE_MULTIPLIER : 0f);
+        float comboMultiplier = 1f + (_comboCount - 1) * GameConstants.COMBO_DAMAGE_BONUS;
         damage *= comboMultiplier;
         
         // Raycast to find target
@@ -78,10 +86,10 @@ public class CombatSystem : MonoBehaviour
             Enemy enemy = hit.collider.GetComponent<Enemy>();
             if (enemy != null)
             {
-                bool isCritical = Random.value < 0.15f + (_stats != null ? _stats.agility * 0.01f : 0f);
+                bool isCritical = Random.value < GameConstants.CRITICAL_HIT_BASE_CHANCE + (_stats != null ? _stats.agility * 0.01f : 0f);
                 if (isCritical)
                 {
-                    damage *= 2f;
+                    damage *= GameConstants.CRITICAL_HIT_DAMAGE_MULTIPLIER;
                 }
                 
                 enemy.TakeDamage(damage);
@@ -123,8 +131,11 @@ public class CombatSystem : MonoBehaviour
         _lastSpecialTime = Time.time;
         _stats.UseStamina(specialAbilityStaminaCost);
         
-        // AOE attack in front of player
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position + transform.forward * 2f, 4f);
+        // AOE attack in front of player using constants
+        Collider[] hitColliders = Physics.OverlapSphere(
+            transform.position + transform.forward * 2f, 
+            GameConstants.SPECIAL_AOE_RADIUS
+        );
         int enemiesHit = 0;
         
         foreach (var collider in hitColliders)

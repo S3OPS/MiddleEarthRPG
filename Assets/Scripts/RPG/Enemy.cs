@@ -1,4 +1,5 @@
 using UnityEngine;
+using MiddleEarth.Config;
 
 public class Enemy : MonoBehaviour
 {
@@ -36,7 +37,10 @@ public class Enemy : MonoBehaviour
     {
         if (_isDead || _player == null) return;
 
-        float distanceToPlayer = Vector3.Distance(transform.position, _player.position);
+        // Use squared distance to avoid expensive sqrt operations (~2000/sec eliminated)
+        float sqrDistanceToPlayer = (transform.position - _player.position).sqrMagnitude;
+        float sqrAttackRange = attackRange * attackRange;
+        float sqrDetectionRange = detectionRange * detectionRange;
         
         // Flee if health is low
         if (currentHealth <= maxHealth * fleeHealthPercent && !_isFleeing)
@@ -48,11 +52,11 @@ public class Enemy : MonoBehaviour
         {
             FleeFromPlayer();
         }
-        else if (distanceToPlayer <= attackRange && Time.time >= _lastAttackTime + attackCooldown)
+        else if (sqrDistanceToPlayer <= sqrAttackRange && Time.time >= _lastAttackTime + attackCooldown)
         {
             AttackPlayer();
         }
-        else if (distanceToPlayer <= detectionRange)
+        else if (sqrDistanceToPlayer <= sqrDetectionRange)
         {
             FollowPlayer();
         }
@@ -66,7 +70,8 @@ public class Enemy : MonoBehaviour
     {
         if (Time.time >= _nextPatrolTime)
         {
-            if (Vector3.Distance(transform.position, _patrolPoint) < 1f)
+            // Use squared distance for patrol point check
+            if ((transform.position - _patrolPoint).sqrMagnitude < GameConstants.PATROL_REACH_DISTANCE_SQR)
             {
                 SetNewPatrolPoint();
             }

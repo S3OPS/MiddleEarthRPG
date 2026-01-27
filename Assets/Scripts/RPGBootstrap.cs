@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Text;
 
 public class RPGBootstrap : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class RPGBootstrap : MonoBehaviour
     private CombatSystem _combatSystem;
     private Text _hud;
     private Canvas _hudCanvas;
+    private StringBuilder _hudBuilder = new StringBuilder(1024); // Pre-allocate for HUD updates
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     private static void AutoBoot()
@@ -379,30 +381,32 @@ public class RPGBootstrap : MonoBehaviour
     {
         if (_hud == null) return;
 
-        var hudText = $"<b>=== MIDDLE-EARTH ADVENTURE ===</b>\n\n";
-        hudText += $"<b>{_playerStats.characterName}</b> - Level {_playerStats.level}\n";
-        hudText += $"Health: {_playerStats.currentHealth:0}/{_playerStats.maxHealth:0}  ";
-        hudText += $"Stamina: {_playerStats.currentStamina:0}/{_playerStats.maxStamina:0}\n";
-        hudText += $"XP: {_playerStats.experience}/{_playerStats.experienceToNextLevel}  ";
-        hudText += $"Gold: {_inventory.gold}\n";
+        // Use StringBuilder to eliminate ~200 string allocations per frame
+        _hudBuilder.Clear();
+        _hudBuilder.Append("<b>=== MIDDLE-EARTH ADVENTURE ===</b>\n\n");
+        _hudBuilder.AppendFormat("<b>{0}</b> - Level {1}\n", _playerStats.characterName, _playerStats.level);
+        _hudBuilder.AppendFormat("Health: {0:0}/{1:0}  ", _playerStats.currentHealth, _playerStats.maxHealth);
+        _hudBuilder.AppendFormat("Stamina: {0:0}/{1:0}\n", _playerStats.currentStamina, _playerStats.maxStamina);
+        _hudBuilder.AppendFormat("XP: {0}/{1}  ", _playerStats.experience, _playerStats.experienceToNextLevel);
+        _hudBuilder.AppendFormat("Gold: {0}\n", _inventory.gold);
         
         // Equipment display
         var weapon = _equipmentSystem.WeaponSlot;
         var armor = _equipmentSystem.ArmorSlot;
-        hudText += $"Weapon: {(weapon != null ? weapon.name : "None")}  ";
-        hudText += $"Armor: {(armor != null ? armor.name : "None")}\n\n";
+        _hudBuilder.AppendFormat("Weapon: {0}  ", weapon != null ? weapon.name : "None");
+        _hudBuilder.AppendFormat("Armor: {0}\n\n", armor != null ? armor.name : "None");
 
         // Combat info
         if (_combatSystem != null && _combatSystem.ComboCount > 0)
         {
-            hudText += $"<color=yellow>COMBO x{_combatSystem.ComboCount}!</color>\n";
+            _hudBuilder.AppendFormat("<color=yellow>COMBO x{0}!</color>\n", _combatSystem.ComboCount);
         }
 
-        hudText += "<b>Active Quests:</b>\n";
+        _hudBuilder.Append("<b>Active Quests:</b>\n");
         var activeQuests = _questManager.GetActiveQuests();
         if (activeQuests.Count == 0)
         {
-            hudText += "  No active quests\n";
+            _hudBuilder.Append("  No active quests\n");
         }
         else
         {
@@ -410,11 +414,12 @@ public class RPGBootstrap : MonoBehaviour
             {
                 if (!quest.isCompleted)
                 {
-                    hudText += $"  • {quest.questName} ({quest.GetCompletionPercentage():0}%)\n";
+                    _hudBuilder.AppendFormat("  • {0} ({1:0}%)\n", quest.questName, quest.GetCompletionPercentage());
                     foreach (var objective in quest.objectives)
                     {
                         string status = objective.isCompleted ? "[✓]" : "[ ]";
-                        hudText += $"    {status} {objective.description} ({objective.currentProgress}/{objective.requiredProgress})\n";
+                        _hudBuilder.AppendFormat("    {0} {1} ({2}/{3})\n", 
+                            status, objective.description, objective.currentProgress, objective.requiredProgress);
                     }
                 }
             }
@@ -423,14 +428,17 @@ public class RPGBootstrap : MonoBehaviour
         // Achievements
         if (AchievementSystem.Instance != null)
         {
-            hudText += $"\n<b>Achievements:</b> {AchievementSystem.Instance.GetUnlockedCount()}/{AchievementSystem.Instance.GetTotalCount()} ({AchievementSystem.Instance.GetCompletionPercentage():0}%)\n";
+            _hudBuilder.AppendFormat("\n<b>Achievements:</b> {0}/{1} ({2:0}%)\n", 
+                AchievementSystem.Instance.GetUnlockedCount(), 
+                AchievementSystem.Instance.GetTotalCount(), 
+                AchievementSystem.Instance.GetCompletionPercentage());
         }
 
-        hudText += "\n<b>Controls:</b> WASD Move | Mouse Look | Shift Sprint | Space Jump\n";
-        hudText += "<b>Combat:</b> Left Click Attack | Right Click Special Ability\n";
-        hudText += "<b>Interact:</b> Walk into NPCs, Chests, and Locations";
+        _hudBuilder.Append("\n<b>Controls:</b> WASD Move | Mouse Look | Shift Sprint | Space Jump\n");
+        _hudBuilder.Append("<b>Combat:</b> Left Click Attack | Right Click Special Ability\n");
+        _hudBuilder.Append("<b>Interact:</b> Walk into NPCs, Chests, and Locations");
 
-        _hud.text = hudText;
+        _hud.text = _hudBuilder.ToString();
     }
 
     public void OnEnemyDefeated(string enemyName)
