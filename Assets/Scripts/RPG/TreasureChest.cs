@@ -19,10 +19,9 @@ public class TreasureChest : MonoBehaviour
     private void OpenChest()
     {
         isOpened = true;
-        var bootstrap = FindObjectOfType<RPGBootstrap>();
-        if (bootstrap != null)
+        if (RPGBootstrap.Instance != null)
         {
-            bootstrap.OnChestOpened(itemName, itemType, itemValue, goldAmount);
+            RPGBootstrap.Instance.OnChestOpened(itemName, itemType, itemValue, goldAmount);
         }
 
         // Visual feedback

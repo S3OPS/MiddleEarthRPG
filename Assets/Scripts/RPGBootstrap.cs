@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 public class RPGBootstrap : MonoBehaviour
 {
+    public static RPGBootstrap Instance { get; private set; }
+    public Transform PlayerTransform { get; private set; }
+
     private RPGConfig _config;
     private CharacterStats _playerStats;
     private InventorySystem _inventory;
@@ -18,6 +21,13 @@ public class RPGBootstrap : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
         _config = RPGConfig.Load();
         _playerStats = new CharacterStats();
         _playerStats.characterName = _config.characterName;
@@ -226,6 +236,7 @@ public class RPGBootstrap : MonoBehaviour
         var player = new GameObject("Player");
         player.tag = "Player";
         player.transform.position = new Vector3(0f, 1.6f, -15f);
+        PlayerTransform = player.transform;
 
         var capsule = player.AddComponent<CapsuleCollider>();
         capsule.height = 1.8f;

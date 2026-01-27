@@ -14,10 +14,9 @@ public class LocationTrigger : MonoBehaviour
             hasVisited = true;
             Debug.Log($"Discovered: {locationName}");
 
-            var bootstrap = FindObjectOfType<RPGBootstrap>();
-            if (bootstrap != null && !string.IsNullOrEmpty(questId) && !string.IsNullOrEmpty(objectiveId))
+            if (RPGBootstrap.Instance != null && !string.IsNullOrEmpty(questId) && !string.IsNullOrEmpty(objectiveId))
             {
-                bootstrap.OnLocationDiscovered(locationName, questId, objectiveId);
+                RPGBootstrap.Instance.OnLocationDiscovered(locationName, questId, objectiveId);
             }
         }
     }

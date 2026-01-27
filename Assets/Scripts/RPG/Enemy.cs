@@ -18,7 +18,10 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        _player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        if (RPGBootstrap.Instance != null)
+        {
+            _player = RPGBootstrap.Instance.PlayerTransform;
+        }
     }
 
     private void Update()
@@ -68,11 +71,10 @@ public class Enemy : MonoBehaviour
         _isDead = true;
         Debug.Log($"{enemyName} has been defeated!");
         
-        // Notify quest system
-        var bootstrap = FindObjectOfType<RPGBootstrap>();
-        if (bootstrap != null)
+        // Notify quest system via singleton
+        if (RPGBootstrap.Instance != null)
         {
-            bootstrap.OnEnemyDefeated(enemyName);
+            RPGBootstrap.Instance.OnEnemyDefeated(enemyName);
         }
 
         Destroy(gameObject, 1f);

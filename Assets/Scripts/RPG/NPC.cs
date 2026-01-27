@@ -21,10 +21,9 @@ public class NPC : MonoBehaviour
         hasSpokenTo = true;
         Debug.Log($"{npcName}: {greeting}");
 
-        var bootstrap = FindObjectOfType<RPGBootstrap>();
-        if (bootstrap != null)
+        if (RPGBootstrap.Instance != null)
         {
-            bootstrap.OnNPCInteraction(npcName, questId);
+            RPGBootstrap.Instance.OnNPCInteraction(npcName, questId);
         }
     }
 }
