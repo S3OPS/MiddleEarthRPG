@@ -2,9 +2,14 @@
 
 Playable 3D moon-mining factory automation prototype inspired by **The Crust**. The scene auto-builds itself at runtime for the fastest start.
 
-## One-command local install (Windows PowerShell)
+## One-command local install (PowerShell)
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\tools\install.ps1 -AutoRun
+```
+
+On macOS/Linux with PowerShell 7+ installed:
+```powershell
+pwsh -ExecutionPolicy Bypass -File ./tools/install.ps1 -AutoRun
 ```
 
 ## Controls

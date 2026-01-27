@@ -7,6 +7,11 @@ Open PowerShell inside the repo and run:
 powershell -ExecutionPolicy Bypass -File .\tools\install.ps1 -AutoRun
 ```
 
+On macOS/Linux with PowerShell 7+ installed:
+```powershell
+pwsh -ExecutionPolicy Bypass -File ./tools/install.ps1 -AutoRun
+```
+
 ## What It Does
 - Creates a local config in `%LOCALAPPDATA%\LunarCrust`
 - Copies the prototype config

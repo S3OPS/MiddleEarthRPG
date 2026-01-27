@@ -8,7 +8,18 @@ $scriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 $projectRoot = Resolve-Path (Join-Path $scriptRoot "..")
 $streamingConfig = Join-Path $projectRoot "Assets\StreamingAssets\config.json"
 
-$userRoot = Join-Path $env:LOCALAPPDATA "LunarCrust"
+$localAppData = $env:LOCALAPPDATA
+if ([string]::IsNullOrWhiteSpace($localAppData)) {
+  $localAppData = if ($env:XDG_DATA_HOME) {
+    $env:XDG_DATA_HOME
+  } elseif ($env:HOME) {
+    Join-Path $env:HOME ".local/share"
+  } else {
+    $projectRoot
+  }
+}
+
+$userRoot = Join-Path $localAppData "LunarCrust"
 $configTarget = Join-Path $userRoot "config.json"
 $runScript = Join-Path $userRoot "run.ps1"
 
