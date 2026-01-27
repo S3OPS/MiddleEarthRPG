@@ -185,5 +185,47 @@ namespace MiddleEarth.Config
         
         /// <summary>Squared distance check for patrol reach (eliminates sqrt)</summary>
         public const float PATROL_REACH_DISTANCE_SQR = 1f; // 1 unit squared
+        
+        
+        // ========================================
+        // INVENTORY AND LOOT SETTINGS
+        // ========================================
+        
+        /// <summary>Starting gold for new characters</summary>
+        public const int STARTING_GOLD = 100;
+        
+        /// <summary>Base gold reward per enemy defeated</summary>
+        public const int ENEMY_GOLD_REWARD = 25;
+        
+        /// <summary>Base XP reward per enemy defeated</summary>
+        public const int ENEMY_XP_REWARD = 50;
+        
+        /// <summary>XP reward for discovering a location</summary>
+        public const int LOCATION_DISCOVERY_XP = 25;
+        
+        /// <summary>Default treasure chest gold amount</summary>
+        public const int TREASURE_CHEST_GOLD = 50;
+        
+        
+        // ========================================
+        // NPC AND INTERACTION SETTINGS
+        // ========================================
+        
+        /// <summary>Interaction trigger range in units</summary>
+        public const float INTERACTION_RANGE = 2f;
+        
+        
+        // ========================================
+        // SAVE FILE SETTINGS
+        // ========================================
+        
+        /// <summary>Save file version for compatibility checks</summary>
+        public const int SAVE_FILE_VERSION = 1;
+        
+        /// <summary>Maximum allowed save file size in bytes (1MB)</summary>
+        public const int MAX_SAVE_FILE_SIZE = 1048576;
+        
+        /// <summary>Salt for checksum generation (security)</summary>
+        public const string CHECKSUM_SALT = "MiddleEarthRPG2026";
     }
 }
