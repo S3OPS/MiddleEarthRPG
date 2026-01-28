@@ -277,11 +277,59 @@ Almost there! Just a couple more clicks:
 - Empty your Recycle Bin (Windows) or Trash (macOS)
 - Try installing Unity on a different drive if you have one
 
+### "All compiler errors must be fixed before you can enter play mode"
+
+This is the most common issue for new users! It means Unity found problems in the code that must be resolved before you can play.
+
+**Most likely cause:** You're using a different Unity version than the project requires.
+
+**Step-by-step fix:**
+
+1. **Check which Unity version you have installed**
+   - Open Unity Hub
+   - Click **Installs** in the left sidebar
+   - Note the version number (e.g., 2022.3.5f1)
+
+2. **Install the correct version (2022.3.0f1)**
+   - This project was made with Unity **2022.3.0f1**
+   - In Unity Hub → Installs → Click **Install Editor**
+   - Look for **2022.3.0f1** in the list and install it
+   - If you can't find exactly 2022.3.0f1, any **2022.3.x** version should work
+
+3. **Re-open the project with the correct version**
+   - In Unity Hub → Projects
+   - Click the dropdown arrow next to the project's Unity version
+   - Select **2022.3.0f1** (or your 2022.3.x version)
+   - Wait for Unity to reimport the project
+
+**If you still get errors after using the correct Unity version:**
+
+1. **Clear the Library folder** (this forces Unity to rebuild everything)
+   - Close Unity completely
+   - Open the project folder in File Explorer (Windows) or Finder (macOS)
+   - Delete the folder named `Library`
+   - Open the project again in Unity Hub
+   - Wait for Unity to reimport all files (this may take 5-15 minutes)
+
+2. **Check for missing packages**
+   - In Unity, go to **Window → Package Manager**
+   - Look for any packages with warning icons
+   - Click **Update** or **Install** for any missing packages
+
+3. **Refresh the project**
+   - In Unity, go to **Assets → Reimport All**
+   - Wait for the reimport to complete
+
+**Still having problems?**
+- Make sure you downloaded the complete project (all folders: Assets, ProjectSettings, etc.)
+- Try downloading the project again from GitHub using "Download ZIP"
+- If on Windows, avoid special characters in the project path (like #, %, &, etc.)
+
 ### I see errors in red text in Unity
 
 **What to do:**
 - Click on the red text at the bottom of Unity to see the error details
-- Often you can ignore warnings and still play the game
+- Often you can ignore warnings (yellow text) and still play the game
 - If it says "Script error" or "NullReferenceException", try closing and reopening the project
 
 ---
