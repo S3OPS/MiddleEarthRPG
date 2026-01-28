@@ -600,13 +600,13 @@ MiddleEarthRPG-Godot/
 
 **1. Signal-Based Communication** (Better than Unity's events)
 ```gdscript
-# In player.gd
+# In player.gd (Godot 4.x syntax)
 signal health_changed(new_health, max_health)
 signal player_died()
 
 func take_damage(amount):
     health -= amount
-    health_changed.emit(health, max_health)
+    health_changed.emit(health, max_health)  # Godot 4.x uses .emit()
     if health <= 0:
         player_died.emit()
 ```
@@ -658,7 +658,7 @@ class_name ItemResource
 **4. Built-in Features**
 - Navigation3D: Pathfinding included
 - AnimationTree: State machines built-in
-- VisualShader: Node-based shaders (like Unity's Shader Graph but better)
+- VisualShader: Node-based shader editor, similar to Unity's Shader Graph
 
 **5. Faster Builds**
 - Godot export: 10-30 seconds
@@ -680,7 +680,7 @@ When building from scratch, use this checklist to ensure feature parity:
 **Systems:**
 - [ ] Inventory management
 - [ ] Equipment (weapons, armor, accessories)
-- [ ] Quest system (7+ quests)
+- [ ] Quest system (matching Unity version's 7 main quests)
 - [ ] Achievement tracking
 - [ ] Save/load functionality
 
@@ -712,7 +712,8 @@ When building from scratch, use this checklist to ensure feature parity:
 
 **Step 1: Set Up Godot (5 minutes)**
 ```bash
-# Download Godot 4.3+ from https://godotengine.org/download
+# Download Godot 4.x (4.2 or later recommended) from https://godotengine.org/download
+# Note: These examples use Godot 4.x syntax
 # Extract and run - no installation needed!
 # Create new project: "MiddleEarthRPG-Godot"
 ```
@@ -755,12 +756,12 @@ func _physics_process(delta):
 
 **Step 3: Reference Unity Project for Game Balance**
 ```gdscript
-# constants.gd (values from Unity's rpg_config.json)
+# constants.gd (extract values from Unity's Assets/StreamingAssets/rpg_config.json)
 const PLAYER_MAX_HEALTH = 100
 const PLAYER_MAX_STAMINA = 100
 const BASE_ATTACK_DAMAGE = 10
 const LEVEL_UP_XP_MULTIPLIER = 1.5
-# ... copy all balance values from Unity
+# ... copy all balance values from the Unity project's config
 ```
 
 **Step 4: Build Iteratively**
