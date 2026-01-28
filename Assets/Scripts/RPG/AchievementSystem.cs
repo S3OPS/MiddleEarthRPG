@@ -79,6 +79,16 @@ public class AchievementSystem : MonoBehaviour
         
         _achievements.Add(new Achievement("heavy_hitter", "Heavy Hitter", "Deal 10,000 total damage"));
         _achievements.Add(new Achievement("fully_equipped", "Fully Equipped", "Equip legendary items in all slots"));
+        
+        // Phase 5 (v2.4) Content & Narrative Achievements
+        _achievements.Add(new Achievement("boss_slayer", "Boss Slayer", "Defeat your first boss"));
+        _achievements.Add(new Achievement("boss_hunter", "Boss Hunter", "Defeat all dungeon bosses"));
+        _achievements.Add(new Achievement("lore_keeper", "Lore Keeper", "Discover 10 lore books"));
+        _achievements.Add(new Achievement("lore_master", "Lore Master", "Discover all lore books"));
+        _achievements.Add(new Achievement("diplomat", "Diplomat", "Reach Trusted Friend status with any NPC"));
+        _achievements.Add(new Achievement("story_teller", "Story Teller", "Complete all branching quest paths"));
+        _achievements.Add(new Achievement("balrog_slayer", "Balrog Slayer", "Defeat the Balrog world boss"));
+        _achievements.Add(new Achievement("master_conversationalist", "Master Conversationalist", "Complete 20 dialogue conversations"));
     }
     
     public void OnEnemyDefeated(int damage)
@@ -160,6 +170,49 @@ public class AchievementSystem : MonoBehaviour
     public int GetUnlockedCount()
     {
         return _achievements.FindAll(a => a.isUnlocked).Count;
+    }
+    
+    // Phase 5 (v2.4) Achievement Methods
+    public void OnBossDefeated(string bossId)
+    {
+        CheckAchievement("boss_slayer", true);
+        
+        if (bossId == "balrog")
+        {
+            CheckAchievement("balrog_slayer", true);
+        }
+        
+        // Check if all dungeon bosses are defeated (would need tracking)
+        // CheckAchievement("boss_hunter", allDungeonBossesDefeated);
+    }
+    
+    public void OnLoreDiscovered(string bookId)
+    {
+        if (LoreBookSystem.Instance != null)
+        {
+            int discovered = LoreBookSystem.Instance.GetDiscoveredCount();
+            CheckAchievement("lore_keeper", discovered >= 10);
+            CheckAchievement("lore_master", discovered >= LoreBookSystem.Instance.GetTotalBooks());
+        }
+    }
+    
+    public void OnDialogueCompleted(string npcId)
+    {
+        // Would need dialogue completion tracking
+        // CheckAchievement("master_conversationalist", dialogueCount >= 20);
+        
+        // Check NPC relationship level
+        if (DialogueSystem.Instance != null)
+        {
+            int relationshipLevel = DialogueSystem.Instance.GetRelationshipLevel(npcId);
+            CheckAchievement("diplomat", relationshipLevel >= 50);
+        }
+    }
+    
+    public void OnBranchingQuestCompleted(string questId)
+    {
+        // Would need quest path tracking
+        // CheckAchievement("story_teller", allBranchesCompleted);
     }
     
     public int GetTotalCount()
