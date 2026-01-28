@@ -19,7 +19,7 @@ if ([string]::IsNullOrWhiteSpace($localAppData)) {
   }
 }
 
-$userRoot = Join-Path $localAppData "LunarCrust"
+$userRoot = Join-Path $localAppData "MiddleEarthRPG"
 $configTarget = Join-Path $userRoot "config.json"
 $runScript = Join-Path $userRoot "run.ps1"
 
