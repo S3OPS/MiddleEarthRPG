@@ -12,7 +12,7 @@ An immersive 3D RPG game set in a Lord of the Rings inspired fantasy world. Emba
 - ✨ Enhancement & Upgrade roadmap
 
 **Project Health Score: 9.9/10** ⬆️ | **Production-ready with enterprise architecture**  
-**Current:** v2.6 UI/UX Polish Edition (COMPLETE) | **Next:** v3.0 Release Preparation 🚀
+**Current:** v3.0 Release Preparation (IN PROGRESS) | **Next:** v3.0 Public Beta 🚀
 
 ---
 
@@ -37,7 +37,14 @@ pwsh -ExecutionPolicy Bypass -File ./tools/install.ps1 -AutoRun
 
 ## Game Features
 
-### 🎨 UI/UX Polish (v2.6) - COMPLETE!
+### 🚀 Release Preparation (v3.0) - IN PROGRESS!
+- **Performance Monitor**: ✅ Real-time FPS, frame time, memory tracking (F3 key)
+- **Release Checklist**: ✅ 6-category validation system with progress tracking (F4 key)
+- **Beta Feedback System**: ✅ In-game bug reporting and feedback collection (F5 key)
+- **Final Polish**: 🎯 Bug fixes and optimization pass
+- **Marketing Assets**: 🎯 Screenshots and promotional materials
+
+### ✅ UI/UX Polish (v2.6) - COMPLETE!
 - **Quest Journal**: ✅ Tabbed quest tracking with Active/Completed/All views (J key)
 - **Character Sheet**: ✅ Detailed stats, equipment, and bonuses display (C key)
 - **World Map**: ✅ Interactive map with waypoints and fast travel (M key)
@@ -147,6 +154,52 @@ pwsh -ExecutionPolicy Bypass -File ./tools/install.ps1 -AutoRun
   - IMPLEMENTATION_SUMMARY.md — What was built and statistics
 
 ## New Features Highlights
+
+### v3.0 Release Preparation 🚀 (IN PROGRESS - January 28, 2026)
+
+**Phase 8 Release Tools Implemented:**
+
+**Performance Monitor UI:**
+- ✅ **Real-Time FPS Tracking**: Live FPS counter with 60-frame history
+- ✅ **Frame Time Monitoring**: Millisecond-precision frame timing
+- ✅ **FPS Graph**: Visual 60-frame history with reference line
+- ✅ **Memory Tracking**: Managed memory usage in MB
+- ✅ **Object Count**: Active GameObject tracking
+- ✅ **System Information**: GPU, CPU, and RAM specifications display
+- ✅ **Color-Coded Indicators**: Green (60+ FPS), Yellow (30-60 FPS), Red (<30 FPS)
+- ✅ **Quick Access**: Press F3 key to toggle monitor
+
+**Release Checklist Manager:**
+- ✅ **6-Category Validation**: Core Systems, World & Content, UI Systems, Technical, Documentation, Release Prep
+- ✅ **Progress Tracking**: Overall completion percentage with visual progress bar
+- ✅ **26 Validation Items**: Comprehensive pre-release checklist
+- ✅ **Auto-Validation**: Automatic status checking for implemented systems
+- ✅ **Export Functionality**: Generate checklist report to console
+- ✅ **Visual Progress Bar**: Color-coded (Green: 100%, Yellow: 70%+, Red: <70%)
+- ✅ **Quick Access**: Press F4 key to toggle checklist
+
+**Beta Feedback System:**
+- ✅ **Multiple Feedback Types**: Bug reports, Suggestions, Praise
+- ✅ **5-Star Rating**: Rate overall experience (1-5 stars)
+- ✅ **Text Feedback**: Multi-line feedback text input (1000 char limit)
+- ✅ **Feedback History**: View all submitted feedback with scroll support
+- ✅ **System Info Capture**: Auto-capture Unity version and platform
+- ✅ **Export Reports**: Export all feedback to console
+- ✅ **Icon Categorization**: Visual icons for each feedback type (🐛, 💡, 👍)
+- ✅ **Notification Integration**: Confirmation notifications on submission
+- ✅ **Quick Access**: Press F5 key to toggle feedback form
+
+**Technical Details:**
+- ~970 lines of new C# code for release tools
+- 3 major new systems (Performance Monitor, Release Checklist, Beta Feedback)
+- Total project now ~14,000 lines of C# code
+- Complete keyboard shortcut system (F3, F4, F5 keys)
+
+**Status**: Phase 8 in progress (65%) - Core release tools complete  
+**Next**: Final polish, marketing assets, v3.0 beta preparation  
+**Documentation**: See [THE_ONE_RING.md](docs/THE_ONE_RING.md) for complete roadmap
+
+---
 
 ### v2.6 UI/UX Polish 🎨 (COMPLETE - January 28, 2026)
 
