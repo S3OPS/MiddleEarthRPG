@@ -7,7 +7,11 @@ public class Bootstrap : MonoBehaviour
     private PrototypeConfig _config;
     private FactorySim _factorySim;
 
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+    // NOTE: AutoBoot disabled to prevent conflict with RPGBootstrap.
+    // This project uses the RPG game (RPGBootstrap.cs), not the factory simulation.
+    // To re-enable the factory simulation, uncomment the attribute below and
+    // comment out the [RuntimeInitializeOnLoadMethod] in RPGBootstrap.cs.
+    // [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     private static void AutoBoot()
     {
         var bootstrap = new GameObject("Bootstrap");

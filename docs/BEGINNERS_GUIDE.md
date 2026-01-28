@@ -221,12 +221,14 @@ Almost there! Just a couple more clicks:
    - In the Unity Editor, look at the bottom panel called **"Project"**
    - Navigate to `Assets/Scenes` (double-click folders to open them)
    - Double-click on **"Main"** (or **"Main.unity"**)
+   - **Note:** The scene will appear empty in the Hierarchy - this is normal! The game world is created at runtime.
 
 2. **Press Play!**
    - Look at the top-center of the Unity Editor
    - You'll see a **Play button** (▶️ triangle icon)
    - Click it!
    - The game will start in the center panel called "Game"
+   - **After pressing Play**, you'll see the world appear with terrain, characters, NPCs, and enemies
 
 3. **To stop playing**
    - Click the Play button again (the same button you used to start)
@@ -237,7 +239,20 @@ Almost there! Just a couple more clicks:
 
 ### I only see an empty blue/gray scene (no game content)
 
-**What it looks like:** The Game view shows just a skybox with no terrain, characters, or objects. The Hierarchy panel only shows "Main Camera" and "Directional Light" in a scene called "SampleScene" or another default scene.
+**What it looks like:** The Game view shows just a skybox with no terrain, characters, or objects. 
+
+**Understanding how this project works:**
+The Main.unity scene is **intentionally empty**. This project uses a "runtime bootstrap" system - the entire game world is created automatically when you press Play. This is normal and by design!
+
+**Before pressing Play:** The Hierarchy panel will be empty or show minimal objects - this is expected!
+
+**After pressing Play:** You should see the full Middle-earth world with:
+- Terrain (The Shire, Rohan, Mordor)
+- Characters (Gandalf, Legolas, Gimli)
+- Enemies (Orcs, Dark Servants)
+- Player with camera
+
+**If you see a different scene (like "SampleScene"):**
 
 **What it means:** You're viewing the wrong scene. The actual game is in the "Main" scene.
 
@@ -245,12 +260,16 @@ Almost there! Just a couple more clicks:
 1. In the Unity Editor, look at the bottom panel called **"Project"**
 2. Navigate to `Assets` → `Scenes` (double-click folders to open them)
 3. Double-click on **"Main"** (or **"Main.unity"**)
-4. The Hierarchy panel (left side) should now show many objects like "World Builder", "Player", "GameManager", etc.
-5. Now press the **Play button** (▶️) at the top center
+4. Now press the **Play button** (▶️) at the top center
 
 If you still see an empty scene after opening Main.unity, try:
 - Make sure the file exists: look for `Main.unity` in `Assets/Scenes`
 - Close Unity, delete the `Library` folder in the project, and reopen the project
+
+If pressing Play doesn't show any content:
+1. Check the Console window (Window → General → Console) for any red error messages
+2. Make sure all scripts compiled successfully (no "Compiler Errors" at the bottom of Unity)
+3. Try: Assets → Reimport All (this rebuilds all scripts)
 
 ### "Unity version mismatch" or similar warning
 

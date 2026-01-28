@@ -131,9 +131,10 @@ pwsh -ExecutionPolicy Bypass -File ./tools/install.ps1 -AutoRun
 - Add the project folder
 - Open the project in Unity
 - **⚠️ Open the Main scene**: Navigate to `Assets/Scenes` in the Project panel and double-click **Main.unity**
-  - If you see an empty scene with only "Main Camera" and "Directional Light", you're in the wrong scene!
-  - The correct scene will have objects like "World Builder", "Player", etc.
+  - **Note:** The Main scene will appear empty in the Hierarchy panel - this is by design!
+  - The game world is built automatically at runtime when you press Play
 - Press **Play** (▶️ button at top center)
+  - After pressing Play, you'll see the full Middle-earth world with terrain, characters, and enemies
 
 ## Build
 - File → Build Settings → Add Open Scenes → Build & Run
