@@ -2,6 +2,70 @@
 
 All notable changes and enhancements to this project.
 
+## [2.3.0] - World Expansion Edition (In Progress - January 27, 2026)
+
+### 🌍 World Expansion Features - IMPLEMENTED
+
+Following the Critical Path Forward from THE_ONE_RING.md, v2.3 introduces major world systems:
+
+#### ✅ Core Systems Implemented
+
+**DayNightCycle.cs** - Dynamic Time System
+- Full 24-hour day/night cycle with configurable speed
+- Realistic sun/moon lighting with gradient colors and intensity curves
+- Four time periods: Night, Dawn, Day, Dusk
+- Event system for time-based gameplay (other systems can react to time changes)
+- Public API for time queries and manipulation
+- Smooth lighting transitions and skybox color changes
+
+**WeatherSystem.cs** - Dynamic Weather
+- Five weather types: Clear, Rain, Snow, Fog, Storm
+- Particle system integration for visual effects
+- Weather affects player movement speed (rain 5% slower, snow 15% slower)
+- Fog reduces visibility range
+- Automatic weather transitions with configurable intervals
+- Audio integration for ambient weather sounds
+- Event system for weather changes
+
+**FastTravelSystem.cs** - Waypoint Travel
+- Discovery-based waypoint system (must visit locations first)
+- 6 pre-configured Middle-earth waypoints across 3 regions
+- Combat restriction (cannot fast travel during combat)
+- Regional organization (The Shire, Rohan, Mordor)
+- Event system for travel start/completion
+- Public API for waypoint management and queries
+- 2-second travel delay for UI/animation hooks
+
+**DungeonSystem.cs** - Procedural Dungeons
+- Multi-floor dungeon generation (3-10 floors based on difficulty)
+- Multiple room types: Combat, Boss, Treasure, Rest
+- Progressive difficulty scaling per floor (1.2x multiplier)
+- Boss encounters on final floors with enhanced stats
+- Reward system scaling with dungeon difficulty
+- Five dungeon themes: Cave, Crypt, Fortress, Mine, Tower
+- Floor completion tracking and progression system
+
+**WorldExpansionManager.cs** - System Integration
+- Central coordinator for all v2.3 features
+- Cross-system event integration (time affects weather probability)
+- Environmental difficulty modifiers (night +20%, weather +10-15%, dungeon scaling)
+- Automatic system lifecycle management
+- Dungeon mode pauses time and weather
+- Singleton pattern for global access
+
+**Status**: Core implementation complete ✅  
+**Progress**: ~60% complete (core systems done, UI/polish remaining)  
+**Documentation**: See [THE_ONE_RING.md § Priority 2: World Expansion](docs/THE_ONE_RING.md)
+
+#### 🎯 Remaining Work
+- [ ] UI for fast travel map
+- [ ] Visual dungeon generation and room layout
+- [ ] NPC schedule integration with time system
+- [ ] Weather particle effects setup
+- [ ] Player testing and balance tweaks
+
+---
+
 ## [2.2.0] - Infrastructure & Enhancement Edition (January 2026)
 
 ### 🔧 New Infrastructure Components
