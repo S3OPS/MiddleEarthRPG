@@ -1,6 +1,6 @@
 # Optimization Implementation Summary
 
-**Project:** Middle-earth Adventure RPG (lunar-crust-proto)  
+**Project:** Middle-earth Adventure RPG (MiddleEarthRPG)  
 **Implementation Date:** January 2026  
 **Version:** 2.1.0 - Performance & Quality Edition  
 **Status:** ✅ Complete

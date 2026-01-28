@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-This comprehensive audit examines the lunar-crust-proto codebase across four dimensions: **Optimization**, **Refactoring**, **Modularization**, and **Security**. The audit identifies specific issues, rates their severity, and provides actionable recommendations with implementation priorities.
+This comprehensive audit examines the MiddleEarthRPG codebase across four dimensions: **Optimization**, **Refactoring**, **Modularization**, and **Security**. The audit identifies specific issues, rates their severity, and provides actionable recommendations with implementation priorities.
 
 ### Key Findings
 

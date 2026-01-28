@@ -14,7 +14,7 @@ This repository contains a complete, production-ready 3D RPG game built in Unity
 ## Directory Structure
 
 ```
-lunar-crust-proto/
+MiddleEarthRPG/
 │
 ├── Assets/
 │   ├── Scripts/
@@ -551,4 +551,4 @@ See **docs/ENHANCEMENT_PLAN.md** for comprehensive roadmap including:
 
 **Document Maintained By:** Development Team  
 **Last Updated:** January 2026  
-**Repository:** https://github.com/S3OPS/lunar-crust-proto
+**Repository:** https://github.com/S3OPS/MiddleEarthRPG
