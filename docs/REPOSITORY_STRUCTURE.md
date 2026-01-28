@@ -44,10 +44,6 @@ lunar-crust-proto/
 │   │   │   ├── RPGConfig.cs               # Config data structure
 │   │   │   └── ConfigLoader.cs            # JSON config loader
 │   │   │
-│   │   ├── Factory/                # Legacy system (1 script)
-│   │   │   └── FactorySim.cs              # Lunar Crust extraction (legacy)
-│   │   │
-│   │   ├── Bootstrap.cs            # Original bootstrap (legacy)
 │   │   └── RPGBootstrap.cs         # Main game initialization
 │   │
 │   └── StreamingAssets/

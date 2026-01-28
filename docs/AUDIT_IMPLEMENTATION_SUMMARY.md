@@ -270,8 +270,7 @@ docs/
 Assets/Scripts/Config/
 ├── GameConstants.cs           # 50+ game balance constants
 ├── ColorPalette.cs            # 25+ color definitions
-├── RPGConfig.cs               # Existing config structure
-└── PrototypeConfig.cs         # Existing prototype config
+└── RPGConfig.cs               # Existing config structure
 ```
 
 ---

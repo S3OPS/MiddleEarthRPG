@@ -1,7 +1,7 @@
 # Middle-earth Adventure RPG - Implementation Summary
 
 ## Project Overview
-Successfully transformed the Lunar Crust moon-mining prototype into a complete RPG game with a Lord of the Rings inspired fantasy world.
+A complete RPG game with a Lord of the Rings inspired fantasy world.
 
 ## What Was Built
 
