@@ -332,6 +332,76 @@ This is the most common issue for new users! It means Unity found problems in th
 - Often you can ignore warnings (yellow text) and still play the game
 - If it says "Script error" or "NullReferenceException", try closing and reopening the project
 
+### "The layout could not be fully loaded"
+
+**What it looks like:**
+```
+The layout "C:/Users/.../Unity/Editor-5.x/Preferences/Layouts/current/default-2022.dwlt" 
+could not be fully loaded, this can happen when the layout contains EditorWindows 
+not available in this project.
+```
+
+**What it means:** Your Unity Editor had a saved window layout from a previous project that uses different windows than this project. This is just a warning - it won't prevent you from playing the game.
+
+**What to do:**
+- This warning is **harmless** and you can usually **ignore it**
+- Unity will automatically use a default layout instead
+- To get rid of the warning permanently:
+  1. In Unity, go to **Window → Layouts → Default**
+  2. This resets your editor layout to the standard arrangement
+  3. The warning won't appear next time you open the project
+
+### "error CS0006: Metadata file could not be found" (com.unity.collab-proxy)
+
+**What it looks like:**
+```
+error CS0006: Metadata file 'Library/PackageCache/com.unity.collab-proxy@.../Lib/Editor/PlasticSCM/log4netPlastic.dll' could not be found
+error CS0006: Metadata file 'Library/PackageCache/com.unity.collab-proxy@.../Unity.Plastic.Antlr3.Runtime.dll' could not be found
+error CS0006: Metadata file 'Library/PackageCache/com.unity.collab-proxy@.../Unity.Plastic.Newtonsoft.Json.dll' could not be found
+```
+
+**What it means:** The Unity Collaborate/Plastic SCM package files are corrupted or incomplete. This is a known Unity issue that can happen when the package cache becomes corrupted.
+
+**Step-by-step fix:**
+
+1. **Close Unity completely**
+   - Make sure the Unity Editor is fully closed
+
+2. **Delete the Library folder**
+   - Open the project folder in File Explorer (Windows) or Finder (macOS)
+   - Find and delete the folder named `Library`
+   - This is safe to delete - Unity will rebuild it
+
+3. **Delete the package cache** (if the above doesn't work)
+   - Close Unity completely
+   - Navigate to your global Unity package cache (note: these are hidden folders):
+     - **Windows:** 
+       1. Press **Windows key + R** to open the Run dialog
+       2. Type `%LOCALAPPDATA%\Unity\cache\packages` and press Enter
+       3. This opens the packages folder directly
+     - **macOS:** 
+       1. Open **Finder**
+       2. Click **Go** in the menu bar, then hold **Option** key and click **Library**
+       3. Navigate to `Unity/cache/packages`
+       4. Full path: `/Users/YourUsername/Library/Unity/cache/packages` (replace "YourUsername" with your actual username)
+   - Delete the `com.unity.collab-proxy` folder (or delete the entire `packages` folder to be thorough)
+   - Open your project again in Unity Hub
+
+4. **If errors persist, manually refresh packages**
+   - In Unity, go to **Window → Package Manager**
+   - Find **Version Control** (formerly Collaborate) in the list
+   - Click the **menu button with three vertical dots** next to the package and select **Remove**
+   - After removal, restart Unity
+   - If you need Version Control, you can reinstall it from Package Manager
+
+5. **Alternative: Update the package**
+   - Open your project's `Packages/manifest.json` file
+   - Find the line with `"com.unity.collab-proxy"`
+   - Update the version number to a newer version (check Unity Package Manager for latest)
+   - Save the file and let Unity reimport
+
+**Note:** The `com.unity.collab-proxy` package is for Unity's cloud collaboration features. If you're not using cloud collaboration, removing this package won't affect your ability to play the game.
+
 ---
 
 ## Game Controls
