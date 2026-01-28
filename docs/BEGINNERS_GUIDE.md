@@ -14,6 +14,7 @@ Welcome! This guide will walk you through every step to get this game running on
 7. [Step 5: Play the Game](#step-5-play-the-game)
 8. [Troubleshooting](#troubleshooting)
 9. [Game Controls](#game-controls)
+10. [Building the Game (Creating a Standalone Executable)](#building-the-game-creating-a-standalone-executable)
 
 ---
 
@@ -472,6 +473,146 @@ These are developer and testing tools - you don't need these to play the game:
 | **Beta Manager** | F8 key |
 | **Release Manager** | F9 key |
 | **Support Tools** | F10 key |
+
+---
+
+## Building the Game (Creating a Standalone Executable)
+
+So far, we've been playing the game *inside* the Unity Editor. But what if you want to create a standalone game that you (or your friends) can play **without** having Unity installed? That's called "building" the game!
+
+### What Does "File → Build Settings → Add Open Scenes → Build & Run" Mean?
+
+You might see this instruction: **File → Build Settings → Add Open Scenes → Build & Run**
+
+Let's break this down step-by-step in simple terms:
+
+---
+
+#### Step 1: "File →" (Open the File Menu)
+
+**What it means:** Click on the word "File" at the very top-left of the Unity window.
+
+**Think of it like:** Opening the File menu in Microsoft Word or any other program. It's where you find options to save, open, and export your work.
+
+**How to do it:**
+1. Look at the top of the Unity Editor window
+2. You'll see a menu bar with words like: File, Edit, Assets, GameObject, Component...
+3. Click on **"File"**
+4. A dropdown menu will appear with many options
+
+---
+
+#### Step 2: "→ Build Settings" (Open Build Settings Window)
+
+**What it means:** In the File menu, click on "Build Settings..." to open a special window for creating your game.
+
+**Think of it like:** When you write a document in Word, "Build Settings" is like choosing "Export to PDF" or "Save As" - it's where you decide how to package your work.
+
+**How to do it:**
+1. After clicking "File", look for **"Build Settings..."** in the dropdown menu
+2. Click on it
+3. A new window will pop up called "Build Settings"
+
+**What you'll see:** The Build Settings window shows:
+- **Scenes In Build** - A list at the top (might be empty)
+- **Platform** - Options like Windows, Mac, Linux, Android, iOS, etc.
+- **Build** and **Build And Run** buttons at the bottom
+
+---
+
+#### Step 3: "→ Add Open Scenes" (Add Your Game Scene to the Build)
+
+**What it means:** Tell Unity which scene(s) to include when building the game.
+
+**Why is this important?** Unity projects can have many different scenes (like different levels or menus in a game). You need to tell Unity which scenes should be part of your final game. If you don't add any scenes, your built game will have nothing to show!
+
+**Think of it like:** If you're creating a photo album, you need to tell the printer which photos to include. "Add Open Scenes" says "include the photo (scene) I'm currently looking at."
+
+**How to do it:**
+1. Make sure you have the **Main** scene open (you should have done this earlier - double-click Main.unity in Assets/Scenes)
+2. In the Build Settings window, look at the top section called **"Scenes In Build"**
+3. If it's empty or doesn't show your scene, click the **"Add Open Scenes"** button
+4. You should now see `Scenes/Main` (with a checkmark) in the list
+
+**Note:** The checkbox next to each scene means "include this scene in the build." Make sure your Main scene is checked!
+
+---
+
+#### Step 4: "→ Build & Run" (Create and Launch the Game!)
+
+**What it means:** This final step creates the actual game files and immediately runs the game so you can test it.
+
+**Think of it like:** Pressing "Print" on a document - it takes your work and creates the final product. "Build & Run" is like pressing Print AND automatically opening the printed document.
+
+**The difference between "Build" and "Build And Run":**
+- **Build** - Creates the game files but doesn't run them
+- **Build And Run** - Creates the game files AND immediately starts the game
+
+**How to do it:**
+1. First, make sure the correct **Platform** is selected on the left side
+   - For Windows: Select "Windows, Mac, Linux" and make sure "Target Platform" says "Windows"
+   - For Mac: Select "Windows, Mac, Linux" and make sure "Target Platform" says "macOS"
+2. Click the **"Build And Run"** button at the bottom-right
+3. A window will pop up asking WHERE to save your game
+   - Choose a folder (like your Desktop or a new folder called "My Game Build")
+   - Give your game a name (like "MiddleEarthAdventure")
+   - Click **Save**
+4. **Wait** - Unity is now creating all the game files. This can take 5-20 minutes depending on your computer (first builds take longer)
+5. When it's done, the game will automatically start!
+
+---
+
+### Summary: The Whole Process in Plain English
+
+Here's the complete flow:
+
+```
+📁 File             → Opens the main menu
+   ↓
+⚙️ Build Settings   → Opens the "export" options window
+   ↓
+➕ Add Open Scenes  → Tells Unity "include my current scene in the game"
+   ↓
+▶️ Build & Run      → Creates the actual game files and plays it!
+```
+
+**In even simpler terms:** You're telling Unity to "package up my game scene and create an actual game file I can share with others, then run it so I can test it."
+
+---
+
+### What Do You Get After Building?
+
+After the build completes, you'll have a folder containing:
+
+**On Windows:**
+- `YourGameName.exe` - This is the actual game! Double-click to play
+- `YourGameName_Data` folder - Contains all the game's data files
+- `MonoBleedingEdge` folder - Contains required game engine files
+- `UnityCrashHandler64.exe` - Helps report crashes (optional)
+
+**On Mac:**
+- `YourGameName.app` - The actual game application
+
+**You can share this entire folder** with friends, and they can play your game without having Unity installed!
+
+---
+
+### Common Build Issues
+
+**"No scenes have been added to the build"**
+- You forgot to click "Add Open Scenes"
+- Make sure Main.unity is open before clicking Add Open Scenes
+
+**Build takes forever or seems stuck**
+- Large games take time to build (5-20 minutes is normal, first builds take longer)
+- Make sure you have enough disk space (at least 2-3 GB free)
+
+**Game runs but shows nothing / black screen**
+- Make sure the Main scene was added to Build Settings with a checkmark
+- Make sure the Main scene is listed as index 0 (the first scene in the list)
+
+**"Development Build" watermark on screen**
+- In Build Settings, uncheck "Development Build" if you don't want this
 
 ---
 

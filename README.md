@@ -139,6 +139,8 @@ pwsh -ExecutionPolicy Bypass -File ./tools/install.ps1 -AutoRun
 ## Build
 - File → Build Settings → Add Open Scenes → Build & Run
 
+**New to building?** 👉 See **[Building the Game Explained](docs/BEGINNERS_GUIDE.md#building-the-game-creating-a-standalone-executable)** for a detailed step-by-step guide!
+
 ## Build Prep Notes
 - Unity reads `ProjectSettings/ProjectVersion.txt` to select the correct editor version.
 - Formatting is controlled by `.editorconfig` so config files stay stable between builds.
