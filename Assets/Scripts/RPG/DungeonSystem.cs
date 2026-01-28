@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using MiddleEarth.Core;
 using MiddleEarth.Config;
+using static MiddleEarth.Core.GameLogger;
 
 namespace MiddleEarth.RPG
 {

@@ -224,4 +224,22 @@ public class AudioManager : MonoBehaviour
     {
         sfxVolume = Mathf.Clamp01(volume);
     }
+    
+    private void OnDestroy()
+    {
+        // Clean up procedurally generated AudioClips to prevent memory leaks
+        foreach (var kvp in _audioClips)
+        {
+            if (kvp.Value != null)
+            {
+                Destroy(kvp.Value);
+            }
+        }
+        _audioClips.Clear();
+        
+        if (Instance == this)
+        {
+            Instance = null;
+        }
+    }
 }

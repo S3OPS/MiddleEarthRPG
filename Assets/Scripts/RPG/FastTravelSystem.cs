@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using MiddleEarth.Core;
+using static MiddleEarth.Core.GameLogger;
 
 namespace MiddleEarth.RPG
 {

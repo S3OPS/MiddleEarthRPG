@@ -224,4 +224,15 @@ public class AchievementSystem : MonoBehaviour
     {
         return (float)GetUnlockedCount() / GetTotalCount() * 100f;
     }
+    
+    private void OnDestroy()
+    {
+        // Clear collections to prevent memory leaks
+        _achievements.Clear();
+        
+        if (Instance == this)
+        {
+            Instance = null;
+        }
+    }
 }

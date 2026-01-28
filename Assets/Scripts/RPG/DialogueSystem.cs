@@ -244,6 +244,20 @@ public class DialogueSystem : MonoBehaviour
         if (points >= -25) return "Distrustful";
         return "Hostile";
     }
+    
+    private void OnDestroy()
+    {
+        // Clear collections to prevent memory leaks
+        _npcRelationships.Clear();
+        _dialogueTrees.Clear();
+        _currentDialogue = null;
+        _onChoiceSelected = null;
+        
+        if (Instance == this)
+        {
+            Instance = null;
+        }
+    }
 }
 
 [System.Serializable]

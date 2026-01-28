@@ -167,4 +167,13 @@ public class QuestManager : MonoBehaviour
     {
         return _allQuests.Find(q => q.questId == questId);
     }
+    
+    private void OnDestroy()
+    {
+        // Clear collections to prevent memory leaks
+        _allQuests.Clear();
+        _activeQuests.Clear();
+        _playerStats = null;
+        _inventory = null;
+    }
 }

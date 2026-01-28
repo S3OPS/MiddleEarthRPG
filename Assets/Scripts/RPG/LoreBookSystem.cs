@@ -278,6 +278,18 @@ public class LoreBookSystem : MonoBehaviour
             Debug.Log("This book has not been discovered yet.");
         }
     }
+    
+    private void OnDestroy()
+    {
+        // Clear collections to prevent memory leaks
+        _allBooks.Clear();
+        _discoveredBooks.Clear();
+        
+        if (Instance == this)
+        {
+            Instance = null;
+        }
+    }
 }
 
 [System.Serializable]

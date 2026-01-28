@@ -253,6 +253,30 @@ public class EffectsManager : MonoBehaviour
         var floater = numberObj.AddComponent<FloatingText>();
         floater.Initialize(1.2f);
     }
+    
+    private void OnDestroy()
+    {
+        // Clean up particle pool to prevent memory leaks
+        while (_particlePool.Count > 0)
+        {
+            GameObject particle = _particlePool.Dequeue();
+            if (particle != null)
+            {
+                Destroy(particle);
+            }
+        }
+        
+        // Clean up world canvas
+        if (_worldCanvas != null)
+        {
+            Destroy(_worldCanvas.gameObject);
+        }
+        
+        if (Instance == this)
+        {
+            Instance = null;
+        }
+    }
 }
 
 /// <summary>

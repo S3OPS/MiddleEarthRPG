@@ -367,4 +367,19 @@ public class ContentHUD : MonoBehaviour
         }
     }
     #endregion
+    
+    private void OnDestroy()
+    {
+        // Clear references to prevent memory leaks
+        _currentDialogueNode = null;
+        _currentBook = null;
+        _currentBoss = null;
+        _activeQuests.Clear();
+        _hudBuilder.Clear();
+        
+        if (Instance == this)
+        {
+            Instance = null;
+        }
+    }
 }

@@ -119,4 +119,24 @@ public class MinimapSystem : MonoBehaviour
             _minimapCamera.orthographicSize = Mathf.Clamp(orthographicSize, 10f, 50f);
         }
     }
+    
+    private void OnDestroy()
+    {
+        // Release the RenderTexture to prevent memory leaks
+        if (_minimapTexture != null)
+        {
+            if (_minimapCamera != null)
+            {
+                _minimapCamera.targetTexture = null;
+            }
+            _minimapTexture.Release();
+            Destroy(_minimapTexture);
+            _minimapTexture = null;
+        }
+        
+        if (Instance == this)
+        {
+            Instance = null;
+        }
+    }
 }

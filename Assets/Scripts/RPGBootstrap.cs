@@ -524,4 +524,19 @@ public class RPGBootstrap : MonoBehaviour
         _playerStats.GainExperience(25);
         _questManager.UpdateQuestProgress(questId, objectiveId, 1);
     }
+    
+    private void OnDestroy()
+    {
+        // Clean up StringBuilder to prevent memory leaks
+        if (_hudBuilder != null)
+        {
+            _hudBuilder.Clear();
+        }
+        
+        // Clear singleton reference
+        if (Instance == this)
+        {
+            Instance = null;
+        }
+    }
 }
