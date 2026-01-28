@@ -24,6 +24,14 @@ Welcome to the Middle-earth Adventure RPG documentation! This index will help yo
 
 **Start here if you're new to the project:**
 
+0. **[BEGINNERS_GUIDE.md](BEGINNERS_GUIDE.md)** 🆕 **COMPLETE BEGINNER? START HERE!**
+   - Step-by-step installation for people who have never done this before
+   - How to download and install Unity Hub
+   - How to install Unity Editor
+   - How to open the project and play the game
+   - Troubleshooting common problems
+   - Full game controls reference
+
 1. **[README.md](../README.md)** - Project overview, features, and quick start
    - Game features and controls
    - One-command installation
@@ -167,6 +175,9 @@ Welcome to the Middle-earth Adventure RPG documentation! This index will help yo
 
 ### "I want to understand what the game is about"
 → Read: **README.md** then **PLAYER_EXPERIENCE.md**
+
+### "I've never installed anything like this before"
+→ Read: **BEGINNERS_GUIDE.md** - Complete step-by-step guide for absolute beginners
 
 ### "I want to play the game"
 → Read: **SETUP.md** (Installation & Gameplay Guide)

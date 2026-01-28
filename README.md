@@ -2,6 +2,14 @@
 
 An immersive 3D RPG game set in a Lord of the Rings inspired fantasy world. Embark on epic quests, battle fearsome enemies, and explore the legendary lands of Middle-earth. The scene auto-builds itself at runtime for the fastest start.
 
+## 🆕 New to Computers? Start Here!
+
+**Never installed anything like this before?** No problem! We have a complete step-by-step guide:
+
+👉 **[Complete Beginner's Guide](docs/BEGINNERS_GUIDE.md)** — Explains everything from downloading Unity to playing the game
+
+---
+
 ## 💍 The One Ring - Master Roadmap
 
 **For developers and contributors:** See **[docs/THE_ONE_RING.md](docs/THE_ONE_RING.md)** for the complete master roadmap that unifies:
@@ -154,6 +162,7 @@ pwsh -ExecutionPolicy Bypass -File ./tools/install.ps1 -AutoRun
 - `Assets/StreamingAssets/rpg_config.json` — Tunable game settings
 - `tools/install.ps1` — One-command setup
 - `docs/` — Comprehensive documentation
+  - **BEGINNERS_GUIDE.md** 🆕 **NEW TO COMPUTERS?** — Complete step-by-step installation for absolute beginners
   - **THE_ONE_RING.md** 💍 **START HERE!** — Master roadmap & status dashboard unifying all initiatives
   - **INDEX.md** — Complete documentation navigation guide
   - **CODE_AUDIT.md** ⭐ **CRITICAL** — Comprehensive code quality audit (10 issues remaining, 36 resolved)
