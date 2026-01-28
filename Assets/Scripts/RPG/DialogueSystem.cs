@@ -155,6 +155,12 @@ public class DialogueSystem : MonoBehaviour
         {
             Debug.Log($"[{_currentDialogue.npcName}]: {node.text}");
             
+            // Show in HUD if available
+            if (ContentHUD.Instance != null)
+            {
+                ContentHUD.Instance.ShowDialogue(node, _currentDialogue.npcName);
+            }
+            
             if (node.choices.Count > 0)
             {
                 Debug.Log("Choices:");
@@ -212,6 +218,13 @@ public class DialogueSystem : MonoBehaviour
     private void EndDialogue()
     {
         Debug.Log("[Conversation ended]");
+        
+        // Hide HUD dialogue box
+        if (ContentHUD.Instance != null)
+        {
+            ContentHUD.Instance.HideDialogue();
+        }
+        
         _currentDialogue = null;
     }
 
