@@ -30,7 +30,7 @@ Copy-Item $streamingConfig $configTarget -Force
 Write-Host "Launching Lunar Crust Prototype..."
 `$unityHub = "${env:ProgramFiles}\Unity Hub\Unity Hub.exe"
 if (Test-Path `$unityHub) {
-  Start-Process -FilePath `$unityHub -ArgumentList "--", "-projectPath", "`"$projectRoot`""
+  Start-Process -FilePath `$unityHub -ArgumentList "--", "-projectPath", '$projectRoot'
 } else {
   Write-Host "Unity Hub not found. Open the project manually in Unity Hub: $projectRoot"
 }
