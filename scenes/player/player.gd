@@ -92,7 +92,7 @@ func _handle_movement(delta: float) -> void:
 	if is_sprinting:
 		move_speed = Constants.get_sprint_speed()
 		# Drain stamina while sprinting
-		stats.use_stamina(5.0 * delta)
+		stats.use_stamina(Constants.SPRINT_STAMINA_DRAIN_RATE * delta)
 		stamina_regen_timer = Constants.STAMINA_REGEN_DELAY
 	else:
 		move_speed = Constants.PLAYER_WALK_SPEED
@@ -151,8 +151,7 @@ func _perform_attack() -> void:
 	if attack_raycast and attack_raycast.is_colliding():
 		var target = attack_raycast.get_collider()
 		if target and target.has_method("take_damage"):
-			var base_damage = 10.0
-			var damage = Constants.calculate_damage(base_damage, stats.strength)
+			var damage = Constants.calculate_damage(Constants.PLAYER_BASE_ATTACK_DAMAGE, stats.strength)
 			var is_critical = Constants.is_critical_hit()
 			
 			if is_critical:
@@ -187,7 +186,7 @@ func _perform_special_attack() -> void:
 	for result in results:
 		var target = result.collider
 		if target and target.has_method("take_damage"):
-			var damage = Constants.calculate_damage(30.0, stats.strength)
+			var damage = Constants.calculate_damage(Constants.PLAYER_SPECIAL_ATTACK_DAMAGE, stats.strength)
 			target.take_damage(damage)
 			EventBus.damage_dealt.emit(target, damage, false)
 

@@ -60,6 +60,21 @@ const ENEMY_ATTACK_COOLDOWN: float = 2.0
 ## Enemy wander interval in seconds
 const ENEMY_WANDER_INTERVAL: float = 3.0
 
+## Enemy flee speed multiplier
+const ENEMY_FLEE_SPEED_MULTIPLIER: float = 1.5
+
+## Enemy patrol speed multiplier
+const ENEMY_PATROL_SPEED_MULTIPLIER: float = 0.5
+
+## Enemy flee distance
+const ENEMY_FLEE_DISTANCE: float = 10.0
+
+## Enemy waypoint arrival threshold
+const ENEMY_WAYPOINT_ARRIVAL_THRESHOLD: float = 1.0
+
+## Enemy death fade duration
+const ENEMY_DEATH_FADE_DURATION: float = 0.5
+
 
 # ========================================
 # PLAYER SETTINGS
@@ -82,6 +97,15 @@ const STAMINA_REGEN_RATE: float = 10.0
 
 ## Stamina regeneration delay after use (seconds)
 const STAMINA_REGEN_DELAY: float = 2.0
+
+## Stamina drain rate while sprinting
+const SPRINT_STAMINA_DRAIN_RATE: float = 5.0
+
+## Player base attack damage
+const PLAYER_BASE_ATTACK_DAMAGE: float = 10.0
+
+## Player special attack base damage
+const PLAYER_SPECIAL_ATTACK_DAMAGE: float = 30.0
 
 
 # ========================================
@@ -109,7 +133,7 @@ const LEVELUP_STAT_INCREASE: int = 2
 const NORMAL_HIT_PARTICLE_COUNT: int = 8
 
 ## Particle count for critical hit effects
-const HIT_PARTICLE_COUNT: int = 15
+const CRITICAL_HIT_PARTICLE_COUNT: int = 15
 
 ## Particle count for special ability effects
 const SPECIAL_PARTICLE_COUNT: int = 30

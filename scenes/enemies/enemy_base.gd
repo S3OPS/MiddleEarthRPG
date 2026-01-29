@@ -94,9 +94,9 @@ func _physics_process(delta: float) -> void:
 		
 		var speed = Constants.ENEMY_MOVE_SPEED
 		if current_state == State.FLEE:
-			speed *= 1.5  # Move faster when fleeing
+			speed *= Constants.ENEMY_FLEE_SPEED_MULTIPLIER
 		elif current_state == State.PATROL:
-			speed *= 0.5  # Move slower when patrolling
+			speed *= Constants.ENEMY_PATROL_SPEED_MULTIPLIER
 		
 		velocity = direction * speed
 		
@@ -113,7 +113,7 @@ func _patrol(delta: float) -> void:
 	
 	if patrol_timer >= next_patrol_time:
 		# Check if reached patrol point
-		if global_position.distance_squared_to(patrol_target) < 1.0:
+		if global_position.distance_squared_to(patrol_target) < Constants.ENEMY_WAYPOINT_ARRIVAL_THRESHOLD:
 			_set_new_patrol_point()
 		else:
 			# Update navigation target
@@ -123,9 +123,12 @@ func _patrol(delta: float) -> void:
 
 func _set_new_patrol_point() -> void:
 	# Generate random point around spawn position
-	var random_offset = Vector2(randf_range(-5.0, 5.0), randf_range(-5.0, 5.0))
+	var random_offset = Vector2(
+		randf_range(-Constants.ENEMY_WANDER_DISTANCE, Constants.ENEMY_WANDER_DISTANCE),
+		randf_range(-Constants.ENEMY_WANDER_DISTANCE, Constants.ENEMY_WANDER_DISTANCE)
+	)
 	patrol_target = spawn_position + Vector3(random_offset.x, 0, random_offset.y)
-	next_patrol_time = randf_range(2.0, 5.0)
+	next_patrol_time = randf_range(Constants.ENEMY_WANDER_INTERVAL - 1.0, Constants.ENEMY_WANDER_INTERVAL + 2.0)
 	patrol_timer = 0.0
 	
 	if nav_agent:
@@ -165,7 +168,7 @@ func _flee_from_player() -> void:
 	if nav_agent and player:
 		# Set target in opposite direction from player
 		var flee_direction = (global_position - player.global_position).normalized()
-		var flee_target = global_position + flee_direction * 10.0
+		var flee_target = global_position + flee_direction * Constants.ENEMY_FLEE_DISTANCE
 		nav_agent.target_position = flee_target
 
 
@@ -210,5 +213,5 @@ func _die() -> void:
 	
 	# Death animation (fade out)
 	var tween = create_tween()
-	tween.tween_property(self, "scale", Vector3.ZERO, 0.5)
+	tween.tween_property(self, "scale", Vector3.ZERO, Constants.ENEMY_DEATH_FADE_DURATION)
 	tween.tween_callback(queue_free)
