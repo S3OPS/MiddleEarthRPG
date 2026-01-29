@@ -4,11 +4,11 @@ An immersive 3D RPG game set in a Lord of the Rings inspired fantasy world. Emba
 
 **🎮 Built with Godot Engine** — This project has been migrated from Unity to Godot 4.x for a truly free and open-source experience.
 
-## 🆕 New to Game Development? Start Here!
+## 🆕 New to This Game? Start Here!
 
 **Never used Godot before?** No problem! We have a complete step-by-step guide:
 
-👉 **[Complete Beginner's Guide](docs/BEGINNERS_GUIDE.md)** — Explains everything from downloading Godot to playing the game
+👉 **[Getting Started Guide](docs/GETTING_STARTED.md)** — Complete installation, setup, and gameplay guide
 
 ## 📚 Why Godot?
 
@@ -32,7 +32,7 @@ We've successfully migrated this project from Unity to Godot Engine. Learn more 
 5. Click "Import & Edit"
 6. Press **F5** or click "Run Project" to start the game
 
-**Detailed installation instructions:** See [docs/SETUP.md](docs/SETUP.md)
+**Complete installation guide:** See [docs/GETTING_STARTED.md](docs/GETTING_STARTED.md)
 
 ## 🎮 Controls
 - **WASD**: Move your character
@@ -105,8 +105,7 @@ MiddleEarthRPG/
 
 ## 📖 Documentation
 
-- **[SETUP.md](docs/SETUP.md)** — Quick installation guide for Godot
-- **[BEGINNERS_GUIDE.md](docs/BEGINNERS_GUIDE.md)** — Complete beginner's guide to game development
+- **[GETTING_STARTED.md](docs/GETTING_STARTED.md)** — Complete installation, setup, and gameplay guide
 - **[GAME_DESIGN.md](docs/GAME_DESIGN.md)** — Complete game design document
 - **[ALTERNATIVE_ENGINES.md](docs/ALTERNATIVE_ENGINES.md)** — Story of our migration from Unity to Godot
 - **[REPOSITORY_STRUCTURE.md](docs/REPOSITORY_STRUCTURE.md)** — Codebase navigation guide
