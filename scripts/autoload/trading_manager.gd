@@ -1,41 +1,56 @@
 extends Node
 
 ## TradingManager
-## Manages player-to-player trading
+## Manages player-to-player trading system
+## Handles trade offers, item/gold exchange, and trade lifecycle
 
 signal trade_offer_created(trade_id: String, sender_id: String, receiver_id: String)
 signal trade_accepted(trade_id: String)
 signal trade_declined(trade_id: String)
 signal trade_cancelled(trade_id: String)
 
-var active_trades: Dictionary = {}  # trade_id -> TradeOfferResource
-var player_trades: Array[String] = []  # Active trades for current player
+# Dictionary of active trades: trade_id -> TradeOfferResource
+var active_trades: Dictionary = {}
+# Array of trade IDs for current player
+var player_trades: Array[String] = []
+
 
 func _ready() -> void:
-	print("💰 TradingManager initialized")
+	if OS.is_debug_build():
+		print("💰 TradingManager initialized")
 
+
+## Create a new trade offer
+## @param receiver_id: The ID of the player to receive the trade offer
+## @return: The unique trade ID
 func create_trade_offer(receiver_id: String) -> String:
-	"""Create a new trade offer"""
-	var sender_id = "current_player"  # TODO: Get from actual player system
+	var sender_id: String = "current_player"  # Future: Get from actual player system
 	
-	var trade = TradeOfferResource.new(sender_id, receiver_id)
+	var trade: TradeOfferResource = TradeOfferResource.new(sender_id, receiver_id)
 	active_trades[trade.trade_id] = trade
 	player_trades.append(trade.trade_id)
 	
 	trade_offer_created.emit(trade.trade_id, sender_id, receiver_id)
-	print("Trade offer created: ", trade.trade_id)
+	if OS.is_debug_build():
+		print("TradingManager: Trade offer created - %s" % trade.trade_id)
 	return trade.trade_id
 
+## Add an item to a trade offer
+## @param trade_id: The ID of the trade to modify
+## @param item_id: The ID of the item to add
+## @param quantity: The quantity of items to add
+## @param is_sender: true if adding to sender's side, false for receiver's side
+## @return: true if item was added successfully, false otherwise
 func add_item_to_trade(trade_id: String, item_id: String, quantity: int, is_sender: bool) -> bool:
-	"""Add an item to a trade offer"""
 	if trade_id not in active_trades:
 		return false
 	
-	var trade = active_trades[trade_id]
+	var trade: TradeOfferResource = active_trades[trade_id]
 	
-	# Check if item exists in inventory
+	# Verify item exists in inventory
 	if not InventoryManager.has_item(item_id, quantity):
-		print("Not enough items in inventory")
+		if OS.is_debug_build():
+			print("TradingManager: Not enough items in inventory")
 		return false
 	
 	if is_sender:
@@ -43,19 +58,26 @@ func add_item_to_trade(trade_id: String, item_id: String, quantity: int, is_send
 	else:
 		trade.add_receiver_item(item_id, quantity)
 	
-	print("Added ", quantity, "x ", item_id, " to trade")
+	if OS.is_debug_build():
+		print("TradingManager: Added %dx %s to trade" % [quantity, item_id])
 	return true
 
+
+## Add gold to a trade offer
+## @param trade_id: The ID of the trade to modify
+## @param gold_amount: The amount of gold to add
+## @param is_sender: true if adding to sender's side, false for receiver's side
+## @return: true if gold was added successfully, false otherwise
 func add_gold_to_trade(trade_id: String, gold_amount: int, is_sender: bool) -> bool:
-	"""Add gold to a trade offer"""
 	if trade_id not in active_trades:
 		return false
 	
-	var trade = active_trades[trade_id]
+	var trade: TradeOfferResource = active_trades[trade_id]
 	
-	# Check if player has enough gold
-	if GameManager.player_gold < gold_amount:
-		print("Not enough gold")
+	# Verify player has enough gold
+	if GameManager.gold < gold_amount:
+		if OS.is_debug_build():
+			print("TradingManager: Not enough gold")
 		return false
 	
 	if is_sender:
@@ -63,90 +85,110 @@ func add_gold_to_trade(trade_id: String, gold_amount: int, is_sender: bool) -> b
 	else:
 		trade.receiver_gold = gold_amount
 	
-	print("Added ", gold_amount, " gold to trade")
+	if OS.is_debug_build():
+		print("TradingManager: Added %d gold to trade" % gold_amount)
 	return true
 
+## Accept a trade offer and execute the transaction
+## @param trade_id: The ID of the trade to accept
+## @return: true if trade was accepted successfully, false otherwise
 func accept_trade(trade_id: String) -> bool:
-	"""Accept a trade offer"""
 	if trade_id not in active_trades:
 		return false
 	
-	var trade = active_trades[trade_id]
+	var trade: TradeOfferResource = active_trades[trade_id]
 	
 	# Check if trade has expired
 	if trade.is_expired():
 		cancel_trade(trade_id)
-		print("Trade has expired")
+		if OS.is_debug_build():
+			print("TradingManager: Trade has expired")
 		return false
 	
-	# Execute trade
+	# Execute the trade transaction
 	if not _execute_trade(trade):
-		print("Trade execution failed")
+		if OS.is_debug_build():
+			print("TradingManager: Trade execution failed")
 		return false
 	
 	trade.status = "accepted"
 	trade_accepted.emit(trade_id)
 	
-	# Clean up
+	# Clean up completed trade
 	active_trades.erase(trade_id)
 	player_trades.erase(trade_id)
 	
-	print("Trade accepted and completed")
+	if OS.is_debug_build():
+		print("TradingManager: Trade accepted and completed")
 	return true
 
+
+## Decline a trade offer
+## @param trade_id: The ID of the trade to decline
+## @return: true if trade was declined successfully, false otherwise
 func decline_trade(trade_id: String) -> bool:
-	"""Decline a trade offer"""
 	if trade_id not in active_trades:
 		return false
 	
-	var trade = active_trades[trade_id]
+	var trade: TradeOfferResource = active_trades[trade_id]
 	trade.status = "declined"
 	
 	trade_declined.emit(trade_id)
 	
-	# Clean up
+	# Clean up declined trade
 	active_trades.erase(trade_id)
 	player_trades.erase(trade_id)
 	
-	print("Trade declined")
+	if OS.is_debug_build():
+		print("TradingManager: Trade declined")
 	return true
 
+
+## Cancel a trade offer
+## @param trade_id: The ID of the trade to cancel
+## @return: true if trade was cancelled successfully, false otherwise
 func cancel_trade(trade_id: String) -> bool:
-	"""Cancel a trade offer"""
 	if trade_id not in active_trades:
 		return false
 	
-	var trade = active_trades[trade_id]
+	var trade: TradeOfferResource = active_trades[trade_id]
 	trade.status = "cancelled"
 	
 	trade_cancelled.emit(trade_id)
 	
-	# Clean up
+	# Clean up cancelled trade
 	active_trades.erase(trade_id)
 	player_trades.erase(trade_id)
 	
-	print("Trade cancelled")
+	if OS.is_debug_build():
+		print("TradingManager: Trade cancelled")
 	return true
 
+
+## Execute the trade transaction (private helper)
+## @param trade: The trade resource to execute
+## @return: true if execution was successful, false otherwise
 func _execute_trade(trade: TradeOfferResource) -> bool:
-	"""Execute the trade transaction"""
-	# Remove items from sender
+	# Remove items from sender's inventory
 	for item_id in trade.sender_items:
-		var quantity = trade.sender_items[item_id]
+		var quantity: int = trade.sender_items[item_id]
 		if not InventoryManager.has_item(item_id, quantity):
 			return false
 		InventoryManager.remove_item(item_id, quantity)
 	
 	# Remove gold from sender
 	if trade.sender_gold > 0:
-		GameManager.add_gold(-trade.sender_gold)
+		if not GameManager.remove_gold(trade.sender_gold):
+			return false
 	
 	# Add items to sender from receiver
 	for item_id in trade.receiver_items:
-		var quantity = trade.receiver_items[item_id]
-		var item = get_node("/root/Main/GameInitializer").get_item(item_id)
-		if item:
-			InventoryManager.add_item(item, quantity)
+		var quantity: int = trade.receiver_items[item_id]
+		var game_initializer: Node = get_node_or_null("/root/Main/GameInitializer")
+		if game_initializer and game_initializer.has_method("get_item"):
+			var item = game_initializer.get_item(item_id)
+			if item:
+				InventoryManager.add_item(item, quantity)
 	
 	# Add gold to sender from receiver
 	if trade.receiver_gold > 0:
@@ -154,20 +196,26 @@ func _execute_trade(trade: TradeOfferResource) -> bool:
 	
 	return true
 
+
+## Get all active trades for the current player
+## @return: Array of TradeOfferResource objects
 func get_active_trades() -> Array[TradeOfferResource]:
-	"""Get all active trades"""
 	var trades: Array[TradeOfferResource] = []
 	for trade_id in player_trades:
 		if trade_id in active_trades:
 			trades.append(active_trades[trade_id])
 	return trades
 
+
+## Save trading data for persistence
+## @return: Dictionary containing trading data
 func save_data() -> Dictionary:
-	"""Save trading data"""
 	return {
 		"player_trades": player_trades
 	}
 
+
+## Load trading data from save
+## @param data: Dictionary containing trading data
 func load_data(data: Dictionary) -> void:
-	"""Load trading data"""
 	player_trades = data.get("player_trades", [])
