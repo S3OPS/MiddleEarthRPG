@@ -246,7 +246,7 @@ Phase 4 is complete. The next phases expand world content, deepen systems, and p
 2. **Phase 6: Advanced Systems** - Crafting, factions, trading, combat specializations
 3. **Phase 7: Live Ops & Polish** - Seasonal events, balance tuning, accessibility
 
-**Estimated Time:** 9-12 weeks of focused development
+**Estimated Time:** ~12 weeks of focused development
 **Details:** See `docs/PHASE_5_6_7_ROADMAP.md`
 
 ---
@@ -260,7 +260,7 @@ Phase 4 is complete. The next phases expand world content, deepen systems, and p
 ✅ **Phase 3:** Advanced Features - Complete  
 ✅ **Phase 4:** Content & Polish - Complete
 
-**Completion:** ~92% of planned features  
+**Completion:** ~90% of planned features  
 **Status:** Production-ready core gameplay with all RPG systems functional  
 **Next Milestone:** Phase 5 - World Expansion
 

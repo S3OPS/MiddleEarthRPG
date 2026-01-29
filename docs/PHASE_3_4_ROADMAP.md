@@ -411,7 +411,7 @@ All Phase 3 features have been successfully implemented and integrated.
 - `phase-7-live-ops` - Seasonal events, balance, polish
 
 ### Review Checkpoints:
-- After completing Phase 3 UI
-- After completing Phase 3 entirely
-- Midway through Phase 4
+- After completing Phase 5 planning
+- Midway through Phase 5 implementation
+- After completing Phase 6 systems
 - Before v1.0 release

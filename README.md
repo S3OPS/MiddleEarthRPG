@@ -163,7 +163,7 @@ The following documents describe the original Unity implementation, kept for ref
 
 ## 🔄 Migration Status
 
-This project was originally built in Unity and has been successfully migrated to Godot 4.x. The migration is following an 8-week roadmap:
+This project was originally built in Unity and has been successfully migrated to Godot 4.x. The migration followed an 8-week roadmap (Phases 1-4), now extended with Phases 5-7:
 
 - ✅ **Phase 1 (Weeks 1-2): Foundation** — Complete
   - Godot project structure, player movement, basic combat, character stats

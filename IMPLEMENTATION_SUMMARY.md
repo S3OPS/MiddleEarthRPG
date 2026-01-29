@@ -243,7 +243,7 @@ scripts/
 | Boss Encounters | ✅ | ✅ Complete |
 | Achievements | ✅ | ✅ Complete |
 
-**Current Parity**: ~92% (Phase 4 content & polish complete)
+**Current Parity**: ~90% (Phase 4 content & polish complete)
 
 ---
 
