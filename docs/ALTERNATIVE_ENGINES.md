@@ -511,18 +511,18 @@ If you've decided to use Godot Engine for this project, **building from scratch 
 
 Here's a practical 8-week plan to rebuild this RPG in Godot:
 
-#### **Week 1-2: Foundation**
-- [ ] Install Godot 4.x
-- [ ] Set up project structure (scenes/, scripts/, assets/)
-- [ ] Create player CharacterBody3D with movement and camera
-- [ ] Implement basic terrain/environment
+#### **Week 1-2: Foundation** ✅ COMPLETE
+- [x] Install Godot 4.x
+- [x] Set up project structure (scenes/, scripts/, assets/)
+- [x] Create player CharacterBody3D with movement and camera
+- [x] Implement basic terrain/environment
 - **Godot Advantage**: Movement controller is simpler than Unity's
 - **Reference**: Use Unity version to match movement speed and feel
 
-#### **Week 3-4: Core Systems**
-- [ ] Combat system with Area3D for hit detection
-- [ ] Health, stamina, and experience tracking
-- [ ] Basic enemy AI using NavigationAgent3D
+#### **Week 3-4: Core Systems** 🎯 IN PROGRESS
+- [x] Combat system with Area3D for hit detection
+- [x] Health, stamina, and experience tracking
+- [x] Basic enemy AI using NavigationAgent3D
 - [ ] Inventory system using Godot's Dictionary/Array
 - **Godot Advantage**: Built-in Navigation3D is excellent
 - **Reference**: Copy combat balance values from Unity's config
