@@ -10,6 +10,9 @@ var sample_regions_script = preload("res://scripts/data/sample_regions.gd")
 var sample_waypoints_script = preload("res://scripts/data/sample_waypoints.gd")
 var sample_factions_script = preload("res://scripts/data/sample_factions.gd")
 var sample_regional_quests_script = preload("res://scripts/data/sample_regional_quests.gd")
+var sample_recipes_script = preload("res://scripts/data/sample_recipes.gd")
+var sample_specializations_script = preload("res://scripts/data/sample_specializations.gd")
+var sample_companions_script = preload("res://scripts/data/sample_companions.gd")
 
 var item_database: Dictionary = {}
 var dialogue_database: Dictionary = {}
@@ -57,6 +60,24 @@ func _ready() -> void:
 	for quest in regional_quests:
 		QuestManager.register_quest(quest)
 	print("✅ Registered %d regional quests" % regional_quests.size())
+	
+	# Register Phase 6 recipes
+	var recipes = sample_recipes_script.create_sample_recipes()
+	for recipe in recipes:
+		CraftingManager.register_recipe(recipe)
+	print("✅ Registered %d crafting recipes" % recipes.size())
+	
+	# Register Phase 6 specializations
+	var specializations = sample_specializations_script.create_sample_specializations()
+	for spec in specializations:
+		SpecializationManager.register_specialization(spec)
+	print("✅ Registered %d specializations" % specializations.size())
+	
+	# Register Phase 6 companions
+	var companions = sample_companions_script.create_sample_companions()
+	for companion in companions:
+		CompanionManager.register_companion(companion)
+	print("✅ Registered %d companions" % companions.size())
 	
 	# Give player some starting items for testing
 	_give_starting_items()

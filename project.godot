@@ -27,6 +27,9 @@ DialogueManager="*res://scripts/autoload/dialogue_manager.gd"
 RegionManager="*res://scripts/autoload/region_manager.gd"
 FastTravelManager="*res://scripts/autoload/fast_travel_manager.gd"
 FactionManager="*res://scripts/autoload/faction_manager.gd"
+CraftingManager="*res://scripts/autoload/crafting_manager.gd"
+SpecializationManager="*res://scripts/autoload/specialization_manager.gd"
+CompanionManager="*res://scripts/autoload/companion_manager.gd"
 Constants="*res://scripts/utilities/constants.gd"
 
 [display]
