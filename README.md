@@ -35,17 +35,21 @@ We've successfully migrated this project from Unity to Godot Engine. Learn more 
 **Complete installation guide:** See [docs/GETTING_STARTED.md](docs/GETTING_STARTED.md)
 
 ## 🎮 Controls
+
+### Currently Functional
 - **WASD**: Move your character
 - **Mouse**: Look around
 - **Shift**: Sprint (drains stamina)
 - **Space**: Jump
 - **Left Mouse Button**: Attack
 - **Right Mouse Button**: Special ability (AOE attack, costs 30 stamina)
-- **I**: Toggle inventory (coming soon)
-- **C**: Toggle character sheet (coming soon)
-- **J**: Toggle quest journal (coming soon)
-- **M**: Toggle map (coming soon)
 - **ESC**: Toggle mouse capture / Pause menu
+
+### Coming in Phase 3
+- **I**: Toggle inventory (scripts ready, UI pending)
+- **C**: Toggle character sheet (planned)
+- **J**: Toggle quest journal (scripts ready, UI pending)
+- **M**: Toggle map (planned)
 
 ## 🎯 Game Features
 
@@ -57,7 +61,7 @@ We've successfully migrated this project from Unity to Godot Engine. Learn more 
 - **Character Stats**: Health, stamina, experience, and level progression
 - **Level-Up System**: Automatic character progression
 - **Save/Load System**: 5 save slots with auto-save
-- **Event System**: Signal-based communication for game events
+- **Event System**: Signal-based communication with 41 game events
 - **Game Constants**: All balance values from original design
 
 ### 🎯 Coming Soon (Phase 3 - In Progress)
@@ -65,7 +69,8 @@ We've successfully migrated this project from Unity to Godot Engine. Learn more 
 - **Inventory System**: Collect and manage items and equipment ✅
 - **Equipment System**: Legendary weapons and armor with stat bonuses ✅
 - **Dialogue System**: Branching conversations with NPCs ✅
-- **Complete UI**: Quest journal ✅, Inventory panel ✅, Dialogue panel ✅
+- **UI Scripts**: Quest journal, Inventory panel, Dialogue panel (scripts complete, scene files pending)
+- **Integration**: Connecting UI systems to game world (in progress)
 - Loot drops from enemies (in progress)
 - NPC characters (in progress)
 - Treasure chests (in progress)
@@ -92,21 +97,49 @@ MiddleEarthRPG/
 ├── project.godot           # Godot project configuration
 ├── scenes/
 │   ├── main.tscn          # Main game scene
-│   ├── player/            # Player character scenes
-│   ├── enemies/           # Enemy types (coming soon)
-│   ├── world/             # World elements
-│   ├── ui/                # UI screens (coming soon)
-│   └── systems/           # Game systems
+│   ├── player/            # Player character (player.tscn, player.gd)
+│   │   ├── player.tscn    # Player scene
+│   │   └── player.gd      # Player controller script
+│   ├── enemies/           # Enemy types
+│   │   ├── orc.tscn       # Orc enemy scene
+│   │   └── enemy_base.gd  # Base enemy AI script
+│   └── ui/                # UI screens
+│       ├── hud.tscn       # HUD (health, stamina, XP bars)
+│       ├── hud.gd         # HUD controller
+│       ├── quest_journal.gd      # Quest UI script (scene pending)
+│       ├── inventory_panel.gd    # Inventory UI script (scene pending)
+│       └── dialogue_panel.gd     # Dialogue UI script (scene pending)
 ├── scripts/
-│   ├── autoload/          # Singleton scripts (GameManager, EventBus, SaveManager)
-│   ├── resources/         # Custom resources (CharacterStats)
-│   └── utilities/         # Utilities (Constants)
-├── assets/                # Game assets (models, textures, audio)
-├── docs/                  # Documentation
-└── [Legacy Unity Files]   # Original Unity implementation kept for reference
-    ├── Assets/            # Unity C# scripts (reference only)
-    ├── ProjectSettings/   # Unity settings (reference only)
-    └── tools/             # Unity build tools (deprecated)
+│   ├── autoload/          # Singleton scripts (6 managers)
+│   │   ├── game_manager.gd       # Core game state
+│   │   ├── event_bus.gd          # Event system (50+ signals)
+│   │   ├── save_manager.gd       # Save/load system
+│   │   ├── quest_manager.gd      # Quest tracking
+│   │   ├── inventory_manager.gd  # Inventory management
+│   │   └── dialogue_manager.gd   # Dialogue system
+│   ├── components/        # Reusable components
+│   │   ├── player_movement_component.gd
+│   │   ├── player_combat_component.gd
+│   │   ├── health_component.gd
+│   │   └── enemy_ai_component.gd
+│   ├── resources/         # Custom resources (4 types)
+│   │   ├── character_stats.gd
+│   │   ├── quest_resource.gd
+│   │   ├── inventory_item.gd
+│   │   └── dialogue_resource.gd
+│   ├── data/              # Game data
+│   │   ├── sample_quests.gd      # 5 sample quests
+│   │   ├── sample_items.gd       # 15+ sample items
+│   │   └── sample_dialogues.gd   # 5 sample dialogues
+│   ├── utilities/         # Utility classes
+│   │   ├── constants.gd          # Game balance values (30+)
+│   │   ├── object_pool.gd        # Object pooling
+│   │   └── performance_monitor.gd
+│   └── game_initializer.gd       # Auto-loads sample data
+├── docs/                  # Documentation (20+ files)
+└── Assets/                # Legacy Unity files (reference only)
+    ├── Scripts/           # Unity C# scripts (archived)
+    └── ProjectSettings/   # Unity settings (archived)
 ```
 
 ## 📖 Documentation
@@ -130,13 +163,17 @@ This project was originally built in Unity and has been successfully migrated to
   - Godot project structure, player movement, basic combat, character stats
 - ✅ **Phase 2 (Weeks 3-4): Core Systems** — Complete
   - Enemy AI with state machine, combat system, HUD, navigation
-- 🎯 **Phase 3 (Weeks 5-6): Advanced Features** — In Progress (65% complete)
+- 🎯 **Phase 3 (Weeks 5-6): Advanced Features** — In Progress (70% complete)
   - Quest system ✅, Dialogue system ✅, Inventory system ✅, Equipment system ✅
-  - Sample data ✅, UI panels (scripts complete, scenes pending)
+  - Sample data ✅ (5 quests, 15+ items, 5 dialogues)
+  - Backend managers complete ✅ (QuestManager, InventoryManager, DialogueManager)
+  - UI scripts complete ✅ (quest_journal.gd, inventory_panel.gd, dialogue_panel.gd)
+  - UI scene files pending (quest_journal.tscn, inventory_panel.tscn, dialogue_panel.tscn)
+  - Integration and polish pending
 - 📅 **Phase 4 (Weeks 7-8): Content & Polish** — Planned
   - Dungeons, bosses, quests, UI polish, performance optimization
 
-**Current Version:** Godot Alpha v0.3 (Phase 3 in progress)  
+**Current Version:** Godot Alpha v0.3 (Phase 3: 70% complete)  
 **Original Unity Version:** v3.1 (archived in legacy files)
 
 ## 🤝 Contributing
