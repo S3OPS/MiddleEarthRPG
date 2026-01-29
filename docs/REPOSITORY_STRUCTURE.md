@@ -2,10 +2,10 @@
 
 ## ⚠️ DOCUMENT STATUS
 
-**This document describes both the current Godot implementation and the archived Unity version.**
+**This document describes the current Godot implementation.**
 
 **Current Version:** Godot 4.3+ (Active Development)  
-**Legacy Version:** Unity v2.0.0 (Archived in `Assets/` folder)
+**Legacy Version:** Unity v2.0.0 (Fully migrated to Godot)
 
 ---
 
@@ -51,247 +51,32 @@ MiddleEarthRPG/
 │   ├── ALTERNATIVE_ENGINES.md # Migration story
 │   ├── GAME_DESIGN.md        # Game design document
 │   ├── REPOSITORY_STRUCTURE.md # This file
-│   └── [Archived Unity docs...]
-│
-└── [Unity Legacy Files]       # See "Archived Unity Structure" below
-    ├── Assets/               # Unity C# scripts (reference)
-    ├── ProjectSettings/      # Unity project settings (reference)
-    └── tools/                # Unity build tools (deprecated)
+│   └── [Additional documentation...]
 ```
 
 ---
 
-## Archived Unity Structure
+## Core Systems
 
-The original Unity implementation (v2.0.0) is preserved in the repository for reference:
+The game has been fully migrated to Godot Engine. For detailed information about the current Godot implementation, see:
 
-```
-Assets/                        # ARCHIVED - Unity C# Scripts
-│   ├── Scripts/
-│   │   ├── RPG/                    # Core RPG systems (16 scripts)
-│   │   │   ├── CharacterStats.cs          # Character progression & stats
-│   │   │   ├── CombatSystem.cs            # Active combat with combos & crits
-│   │   │   ├── EquipmentSystem.cs         # Equipment & stat bonuses
-│   │   │   ├── InventorySystem.cs         # Items & gold management
-│   │   │   ├── Quest.cs                   # Quest data structure
-│   │   │   ├── QuestManager.cs            # Quest management & tracking
-│   │   │   ├── AchievementSystem.cs       # Achievement tracking
-│   │   │   ├── AudioManager.cs            # Procedural sound generation
-│   │   │   ├── EffectsManager.cs          # Particle effects & visuals
-│   │   │   ├── MinimapSystem.cs           # Top-down minimap
-│   │   │   ├── Enemy.cs                   # Enemy AI & behavior
-│   │   │   ├── NPC.cs                     # NPC interactions
-│   │   │   ├── LocationTrigger.cs         # Location discovery
-│   │   │   ├── TreasureChest.cs           # Loot chests
-│   │   │   ├── EquipmentChest.cs          # Equipment loot
-│   │   │   └── RPGSystemsDemo.cs          # Demo/testing script
-│   │   │
-│   │   ├── Player/                 # Player controls (2 scripts)
-│   │   │   ├── PlayerController.cs        # WASD movement, sprint, jump
-│   │   │   └── CameraLook.cs              # Mouse look camera
-│   │   │
-│   │   ├── Config/                 # Configuration (2 scripts)
-│   │   │   ├── RPGConfig.cs               # Config data structure
-│   │   │   └── ConfigLoader.cs            # JSON config loader
-│   │   │
-│   │   └── RPGBootstrap.cs         # Main game initialization
-│   │
-│   └── StreamingAssets/
-│       └── rpg_config.json         # Tunable game parameters
-│
-├── ProjectSettings/                # Unity project configuration
-│   ├── ProjectVersion.txt          # Unity version (2022.3 LTS)
-│   └── ...                         # Other Unity settings
-│
-├── docs/                           # Comprehensive documentation
-│   ├── GETTING_STARTED.md           # Installation & setup guide
-│   ├── ENHANCEMENT_PLAN.md         # Detailed enhancement roadmap
-│   ├── REPOSITORY_STRUCTURE.md     # This file
-│   ├── GAME_DESIGN.md              # Complete game design document
-│   ├── IMPLEMENTATION_SUMMARY.md   # Implementation details
-│   └── PLAYER_EXPERIENCE.md        # Player walkthrough
-│
-├── README.md                       # Main project README
-├── CHANGELOG.md                    # Version history & changes
-├── .gitignore                      # Git ignore rules
-└── .editorconfig                   # Code formatting config
-```
+- **scripts/autoload/** - Core managers and systems (GameManager, EventBus, SaveManager, etc.)
+- **scripts/resources/** - Custom resource definitions (CharacterStats, QuestResource, etc.)
+- **scripts/components/** - Reusable components for game entities
+- **scripts/data/** - Sample game data (quests, items, dialogues)
+- **scripts/utilities/** - Utility classes (Constants, ObjectPool, etc.)
+- **scenes/** - Godot scene files for the game world, player, UI, enemies, etc.
+
+For a complete guide to the Godot implementation, see the main [README.md](../README.md) and [GETTING_STARTED.md](GETTING_STARTED.md).
 
 ---
 
-## Core Systems Overview
+## Legacy Unity Implementation
 
-### 1. RPG Systems (`Assets/Scripts/RPG/`)
-
-The heart of the game, containing all RPG mechanics:
-
-#### Character & Progression
-- **CharacterStats.cs** (~200 LOC)
-  - Health, Stamina, Strength, Wisdom, Agility
-  - Experience and leveling (XP scaling: 1.5x per level)
-  - Level-up bonuses: +20 HP, +10 Stamina, +2 all stats
-  - Damage, healing, stamina management
-
-#### Combat
-- **CombatSystem.cs** (~350 LOC)
-  - Left-click: Basic attack (3 unit range)
-  - Right-click: AOE special (4 unit radius, 30 stamina cost)
-  - Combo system: +20% damage per combo hit
-  - Critical hits: 15% base + agility bonus, 2x damage
-  - Cooldowns: 0.5s attack, 5s special
-
-- **Enemy.cs** (~300 LOC)
-  - Patrol behavior (random wandering)
-  - Chase behavior (10 unit detection range)
-  - Flee behavior (below 20% health)
-  - Attack behavior (5 unit range)
-  - Quest progress integration
-
-#### Items & Equipment
-- **InventorySystem.cs** (~250 LOC)
-  - 5 item types: QuestItem, Weapon, Armor, Potion, Treasure
-  - Gold currency system
-  - Item stacking and management
-  - Add/remove/check operations
-
-- **EquipmentSystem.cs** (~300 LOC)
-  - 3 slots: Weapon, Armor, Accessory
-  - 5 rarity tiers: Common → Uncommon → Rare → Epic → Legendary
-  - Stat bonuses: Attack, Defense, Health, Stamina
-  - Auto-equip for empty slots
-
-- **TreasureChest.cs** (~100 LOC)
-  - Collision-based opening
-  - Gold + item rewards
-  - Visual feedback (color change)
-
-- **EquipmentChest.cs** (~150 LOC)
-  - Equipment-specific loot
-  - Achievement integration
-  - Legendary item drops
-
-#### Quests
-- **Quest.cs** (~150 LOC)
-  - Multi-objective quest structure
-  - 4 objective types: Collect, Defeat, Explore, Talk
-  - Progress tracking and completion %
-  - Reward system (gold, XP, items)
-
-- **QuestManager.cs** (~400 LOC)
-  - 7 LOTR-themed quests
-  - Quest state management
-  - Objective updates from game events
-  - Completion and reward distribution
-
-#### Achievements
-- **AchievementSystem.cs** (~350 LOC)
-  - 12 achievements across categories:
-    - Combat: First Blood, Orc Slayer, Legendary Warrior
-    - Treasure: Treasure Hunter, Dragon's Hoard
-    - Exploration: Explorer, Fellowship Complete, Quest Master
-    - Progression: Maximum Power, Combo Master
-    - Mastery: Heavy Hitter, Fully Equipped
-  - Unlock detection and tracking
-  - Audio/visual feedback on unlock
-
-#### Audio & Effects
-- **AudioManager.cs** (~400 LOC)
-  - Procedural sound generation (sine waves)
-  - 10 audio sources (pooling)
-  - Sound types: Combat, Progression, Interaction
-  - Volume controls (master, music, SFX)
-
-- **EffectsManager.cs** (~350 LOC)
-  - Particle effects: Hit, special, level-up, treasure, quest
-  - Floating damage numbers
-  - Particle physics simulation
-  - Visual feedback for all game events
-
-#### UI & Navigation
-- **MinimapSystem.cs** (~150 LOC)
-  - 200x200 top-down minimap
-  - Orthographic camera at 50 units height
-  - Real-time player tracking
-  - RenderTexture-based rendering
-
-#### World Interaction
-- **NPC.cs** (~100 LOC)
-  - 3 NPCs: Gandalf, Legolas, Gimli
-  - Trigger-based dialogue
-  - Quest activation on interaction
-
-- **LocationTrigger.cs** (~100 LOC)
-  - 3 locations: The Shire, Plains of Rohan, Lands of Mordor
-  - Discovery XP rewards
-  - Quest objective completion
-  - One-time visit tracking
-
----
-
-### 2. Player Systems (`Assets/Scripts/Player/`)
-
-First-person player controls:
-
-- **PlayerController.cs**
-  - WASD movement
-  - Shift sprint (1.8x speed multiplier)
-  - Space jump
-  - Ground detection
-  - Configurable speeds from rpg_config.json
-
-- **CameraLook.cs**
-  - Mouse-based camera rotation
-  - Configurable sensitivity
-  - Vertical angle clamping (-90° to 90°)
-
----
-
-### 3. Configuration (`Assets/Scripts/Config/`)
-
-JSON-based configuration system:
-
-- **RPGConfig.cs**
-  - Data structure for config parameters
-  - Character name, starting gold
-  - Movement speeds, mouse sensitivity
-
-- **ConfigLoader.cs**
-  - Loads rpg_config.json from StreamingAssets
-  - Default values fallback
-  - Error handling
-
-- **rpg_config.json**
-  ```json
-  {
-    "characterName": "Aragorn",
-    "startingGold": 100,
-    "moveSpeed": 6.0,
-    "sprintMultiplier": 1.8,
-    "mouseSensitivity": 2.0
-  }
-  ```
-
----
-
-### 4. Bootstrap System
-
-- **RPGBootstrap.cs** (Main entry point)
-  - [RuntimeInitializeOnLoadMethod] auto-loading
-  - Singleton pattern for performance
-  - World generation (terrain, lighting, fog)
-  - System initialization order:
-    1. Character stats
-    2. Inventory
-    3. Quest manager
-    4. Achievement system
-    5. Audio manager
-    6. Effects manager
-    7. Combat system
-    8. Equipment system
-    9. Minimap
-  - Player spawning and setup
-  - HUD rendering (OnGUI)
-  - NPC, enemy, treasure, location creation
+The original Unity implementation has been fully migrated to Godot. Historical documentation about the Unity version can be found in:
+- [THE_ONE_RING.md](THE_ONE_RING.md) - Unity version roadmap and status (archived)
+- [CODE_AUDIT.md](CODE_AUDIT.md) - Unity code quality audit (archived)
+- [ENHANCEMENT_PLAN.md](ENHANCEMENT_PLAN.md) - Unity enhancement roadmap (archived)
 
 ---
 
@@ -528,23 +313,23 @@ GameObjects with attached scripts for behaviors:
 ### Common Tasks
 
 **Run the game:**
-1. Open Unity Hub
-2. Add project (Unity 2022.3 LTS)
-3. Open Main scene
-4. Press Play
+1. Install Godot 4.3+ from https://godotengine.org/
+2. Open Godot and import the project
+3. Select `project.godot`
+4. Press F5 or click "Run Project"
 
 **Modify game balance:**
-- Edit `Assets/StreamingAssets/rpg_config.json`
-- Or change constants in respective C# files
+- Edit `scripts/utilities/constants.gd`
+- All balance values are defined in this single file
 
 **Add documentation:**
 - Add markdown files to `docs/` folder
 - Link from README.md or GAME_DESIGN.md
 
 **Build for Windows:**
-- File → Build Settings
-- Platform: Windows
-- Build & Run
+- Project → Export
+- Add export preset for Windows
+- Export project
 
 ---
 
@@ -552,20 +337,17 @@ GameObjects with attached scripts for behaviors:
 
 ### Common Issues
 
-1. **Unity version mismatch**
-   - Solution: Use Unity 2022.3 LTS (specified in ProjectVersion.txt)
+1. **Godot version issues**
+   - Solution: Use Godot 4.3 or later
 
-2. **Scene appears empty**
-   - Normal! World builds at runtime via RPGBootstrap
+2. **Scene not loading**
+   - Check that scenes/ directory is intact
+   - Verify project.godot file exists
 
-3. **Config not loading**
-   - Check rpg_config.json is in StreamingAssets folder
-   - Verify JSON syntax is valid
-
-4. **Performance issues**
-   - Check enemy count (17+ can be intensive)
-   - Reduce particle counts in EffectsManager
-   - Disable minimap if needed
+3. **Performance issues**
+   - Check enemy count in scene
+   - Adjust quality settings in Godot project settings
+   - Use the performance monitor in-game
 
 ---
 

@@ -2,10 +2,11 @@
 
 ## ⚠️ ARCHIVED - Unity Version Documentation
 
-**This document describes the Unity implementation which has been archived.**
+**This document describes the Unity implementation which has been fully migrated to Godot and removed from the repository.**
 
-**Current Version:** This project has been migrated to **Godot Engine 4.3+**  
+**Current Version:** This project uses **Godot Engine 4.3+**  
 **Status:** This summary is preserved for historical reference only  
+**Note:** The Unity source files referenced below have been removed from the repository but can be accessed in git history  
 **For Current Godot Implementation:** See [IMPLEMENTATION_SUMMARY.md](../IMPLEMENTATION_SUMMARY.md) in the root directory
 
 ---

@@ -581,12 +581,7 @@ This represents a fundamental shift in the project's technology stack, moving fr
 
 #### Legacy Unity Version
 
-The Unity implementation (v3.1) is preserved in the `Assets/` folder for reference:
-- Complete Unity C# codebase
-- All Unity project settings
-- Build tools and configurations
-
-See [docs/ALTERNATIVE_ENGINES.md](docs/ALTERNATIVE_ENGINES.md) for the complete migration story.
+The Unity implementation (v3.1) has been fully migrated to Godot. See [docs/ALTERNATIVE_ENGINES.md](docs/ALTERNATIVE_ENGINES.md) for the complete migration story.
 
 ---
 

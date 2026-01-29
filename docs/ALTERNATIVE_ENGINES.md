@@ -122,13 +122,10 @@ After considering multiple engines (Unity, Unreal, Godot, and others), we chose 
 
 ## Legacy Unity Implementation
 
-The original Unity implementation (v3.1) is preserved in the repository for reference:
-- `Assets/` folder contains all Unity C# scripts
-- `ProjectSettings/` contains Unity configuration
-- `tools/` contains Unity build scripts
+The original Unity implementation (v3.1) has been fully migrated to Godot and removed from the repository. The Unity source code can be accessed in the git history if needed for reference.
 
-These files are **archived** and no longer actively developed. They serve as:
-- Reference for the Godot implementation
+The migration serves as:
+- A case study for engine migration
 - Educational material for comparing engines
 - Historical record of the project's evolution
 
@@ -828,14 +825,14 @@ func _physics_process(delta):
     move_and_slide()
 ```
 
-**Step 3: Reference Unity Project for Game Balance**
+**Step 3: Define Game Balance Constants**
 ```gdscript
-# constants.gd (extract values from Unity's Assets/StreamingAssets/rpg_config.json)
+# constants.gd (define all game balance values)
 const PLAYER_MAX_HEALTH = 100
 const PLAYER_MAX_STAMINA = 100
 const BASE_ATTACK_DAMAGE = 10
 const LEVEL_UP_XP_MULTIPLIER = 1.5
-# ... copy all balance values from the Unity project's config
+# ... define all balance values in one central location
 ```
 
 **Step 4: Build Iteratively**
@@ -980,7 +977,7 @@ If you want to try Godot as an alternative to Unity:
 
 ### Can I still use the Unity version?
 
-Yes! The Unity version (v3.1) is preserved in the `Assets/` and `ProjectSettings/` folders. However, it's no longer actively developed. We recommend using the Godot version for:
+The Unity version (v3.1) has been fully migrated to Godot. The Unity source code has been removed from the repository as it is no longer needed. However, you can access it in the git history if needed. We recommend using the Godot version for:
 - Active development and new features
 - Better performance
 - No licensing concerns

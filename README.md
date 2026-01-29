@@ -185,10 +185,7 @@ MiddleEarthRPG/
 │   │   ├── object_pool.gd        # Object pooling
 │   │   └── performance_monitor.gd
 │   └── game_initializer.gd       # Auto-loads sample data
-├── docs/                  # Documentation (20+ files)
-└── Assets/                # Legacy Unity files (reference only)
-    ├── Scripts/           # Unity C# scripts (archived)
-    └── ProjectSettings/   # Unity settings (archived)
+└── docs/                  # Documentation (20+ files)
 ```
 
 ## 📖 Documentation
@@ -250,7 +247,3 @@ This project is open source. The original Unity implementation and all assets ar
 ## 🎮 About Godot Engine
 
 Godot is a free and open-source game engine released under the MIT license. It provides a huge set of common tools, so you can focus on making your game without reinventing the wheel. Learn more at https://godotengine.org/
-
----
-
-**Note:** The `Assets/` folder and Unity-specific files are kept in the repository as reference material for the migration. The active development is now in the Godot project files (`project.godot`, `scenes/`, `scripts/`).
