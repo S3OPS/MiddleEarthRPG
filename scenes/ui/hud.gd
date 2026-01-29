@@ -1,6 +1,6 @@
 extends CanvasLayer
-## HUD overlay displaying player stats
-## Shows health, stamina, XP, and level with real-time updates
+## HUD overlay displaying player stats and performance metrics
+## Shows health, stamina, XP, level, and optional performance data
 
 @onready var health_bar: ProgressBar = $MarginContainer/VBoxContainer/HealthBar
 @onready var health_label: Label = $MarginContainer/VBoxContainer/HealthBar/Label
@@ -11,6 +11,7 @@ extends CanvasLayer
 @onready var level_label: Label = $MarginContainer/VBoxContainer/LevelLabel
 
 var player: Node = null
+var show_performance_stats: bool = false
 
 
 func _ready() -> void:
@@ -33,6 +34,54 @@ func _ready() -> void:
 		_update_all_stats()
 	else:
 		push_warning("HUD: Player not found or invalid stats")
+
+
+func _input(event: InputEvent) -> void:
+	# Toggle performance stats with F3
+	if event.is_action_pressed("ui_text_completion_query"):  # F3 by default
+		show_performance_stats = not show_performance_stats
+
+
+func _process(_delta: float) -> void:
+	# Update performance display if enabled
+	if show_performance_stats:
+		queue_redraw()
+
+
+func _draw() -> void:
+	if not show_performance_stats:
+		return
+	
+	# Draw performance overlay
+	var stats_text = _get_performance_text()
+	var font = ThemeDB.fallback_font
+	var font_size = 14
+	var position = Vector2(10, get_viewport_rect().size.y - 120)
+	
+	# Draw background
+	var text_size = font.get_multiline_string_size(stats_text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size)
+	draw_rect(Rect2(position - Vector2(5, text_size.y + 5), text_size + Vector2(10, 10)), Color(0, 0, 0, 0.7))
+	
+	# Draw text
+	draw_multiline_string(font, position, stats_text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, -1, Color.WHITE)
+
+
+## Get performance statistics text
+func _get_performance_text() -> String:
+	var fps = Engine.get_frames_per_second()
+	var memory = Performance.get_monitor(Performance.MEMORY_STATIC) / 1024.0 / 1024.0
+	var objects = Performance.get_monitor(Performance.OBJECT_COUNT)
+	var nodes = Performance.get_monitor(Performance.OBJECT_NODE_COUNT)
+	var draw_calls = Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME)
+	var physics_3d = Performance.get_monitor(Performance.PHYSICS_3D_ACTIVE_OBJECTS)
+	
+	return """Performance Stats (F3 to toggle):
+FPS: %d
+Memory: %.1f MB
+Objects: %d
+Nodes: %d
+Draw Calls: %d
+Physics Objects: %d""" % [fps, memory, objects, nodes, draw_calls, physics_3d]
 
 
 ## Validate that player and stats exist
