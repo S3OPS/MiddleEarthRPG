@@ -8,6 +8,88 @@ All notable changes and enhancements to this project.
 
 ---
 
+## [0.3.0] - Godot Alpha v0.3 (January 2026)
+
+### 🎯 Phase 3: Advanced Features - In Progress
+
+This release marks the beginning of Phase 3, adding quest, inventory, dialogue, and equipment systems to the Godot implementation.
+
+#### 🆕 New Features
+
+**Quest System**
+- QuestResource class for defining quests with objectives
+- QuestManager autoload for tracking active and completed quests
+- 4 objective types: Kill Enemies, Collect Items, Visit Location, Talk to NPC
+- Quest prerequisites and level requirements
+- Quest rewards: XP, gold, and items
+- 5 sample quests for testing
+
+**Inventory System**
+- InventoryItem resource class with item properties
+- InventoryManager autoload for managing player inventory
+- Support for stackable and non-stackable items
+- Item types: Consumable, Equipment, Quest Item, Material, Misc
+- Rarity system: Common, Uncommon, Rare, Epic, Legendary
+- Maximum inventory capacity of 100 items
+- 15+ sample items (potions, weapons, armor)
+
+**Equipment System**
+- Equipment slots: Weapon, Armor, Accessory
+- Stat bonuses from equipped items (attack, defense, health, stamina)
+- Equip/unequip functionality
+- Automatic stat application and removal
+- Legendary items with powerful bonuses
+
+**Dialogue System**
+- DialogueResource class for conversation trees
+- DialogueManager autoload for managing NPC conversations
+- Branching dialogue with player choices
+- NPC interaction tracking for quests
+- 5 sample dialogues with NPCs
+
+**UI Panels (Scripts)**
+- Quest Journal panel script
+- Inventory panel script with grid layout
+- Dialogue panel script with choice buttons
+- (Scene files to be created in next update)
+
+**Game Data**
+- Sample quests script (5 quests)
+- Sample items script (15+ items)
+- Sample dialogues script (5 dialogues)
+- Game initializer for auto-loading data
+
+#### 🔧 Technical Improvements
+
+- **EventBus expansion**: Added 10+ new signals for quest/inventory/dialogue events
+- **GameManager enhancement**: Added gold tracking and experience methods
+- **Enemy updates**: Now emit quest-tracking signals and reward gold
+- **Player updates**: Added get_stats() method for manager integration
+- **New autoload managers**: QuestManager, InventoryManager, DialogueManager
+
+#### 📊 Statistics
+
+| Metric | Value |
+|--------|-------|
+| GDScript Files | 20+ |
+| Scene Files | 4 |
+| Resource Classes | 4 |
+| Autoload Managers | 6 |
+| Total Lines of Code | 3,500+ |
+| EventBus Signals | 50+ |
+| Sample Quests | 5 |
+| Sample Items | 15+ |
+| Sample Dialogues | 5 |
+
+#### 🎯 Remaining Phase 3 Work
+- Create UI scene files (.tscn) for all panels
+- Add NPC characters with dialogue
+- Implement loot drops from enemies
+- Create treasure chests
+- Integrate all systems in main scene
+
+---
+
 ## [0.2.0] - Godot Alpha v0.2 (January 2026)
 
 ### ✅ Phase 2: Core Systems Complete
