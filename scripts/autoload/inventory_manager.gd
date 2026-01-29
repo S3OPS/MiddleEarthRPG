@@ -191,11 +191,21 @@ func _apply_equipment_bonuses(item: InventoryItem, apply: bool) -> void:
 		GameManager.player_stats.max_health += item.health_bonus * multiplier
 		if apply:
 			GameManager.player_stats.current_health += item.health_bonus
+		else:
+			GameManager.player_stats.current_health = min(
+				GameManager.player_stats.current_health,
+				GameManager.player_stats.max_health
+			)
 	
 	if item.stamina_bonus != 0:
 		GameManager.player_stats.max_stamina += item.stamina_bonus * multiplier
 		if apply:
 			GameManager.player_stats.current_stamina += item.stamina_bonus
+		else:
+			GameManager.player_stats.current_stamina = min(
+				GameManager.player_stats.current_stamina,
+				GameManager.player_stats.max_stamina
+			)
 
 ## Get all items in inventory
 func get_all_items() -> Array:
