@@ -1,8 +1,22 @@
 # Next Steps - Implementation Roadmap
 
+## ⚠️ ARCHIVED - Unity Version Documentation
+
+**This document describes the implementation roadmap for the Unity version which has been archived.**
+
+**Current Version:** This project has been migrated to **Godot Engine 4.3+**  
+**Status:** This roadmap is preserved for historical reference only  
+**Active Development:** See [ALTERNATIVE_ENGINES.md](ALTERNATIVE_ENGINES.md) for Godot migration phases
+
+---
+
+**Original Unity Implementation Roadmap Archive Follows Below**
+
+---
+
 **Created:** January 2026  
 **Version:** 1.0  
-**Status:** Ready to Execute
+**Status:** Archived (Project migrated to Godot)
 
 ---
 

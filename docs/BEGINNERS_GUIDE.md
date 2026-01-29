@@ -1,20 +1,19 @@
-# Complete Beginner's Guide to Installing Middle-earth Adventure RPG
+# Complete Beginner's Guide to Playing Middle-earth Adventure RPG
 
-Welcome! This guide will walk you through every step to get this game running on your computer. Don't worry if you've never done anything like this before - we'll explain everything.
+Welcome! This guide will walk you through every step to get this game running on your computer using Godot Engine. Don't worry if you've never done anything like this before - we'll explain everything.
 
 ---
 
 ## Table of Contents
 1. [What Is This Game?](#what-is-this-game)
 2. [What You'll Need](#what-youll-need)
-3. [Step 1: Download and Install Unity Hub](#step-1-download-and-install-unity-hub)
-4. [Step 2: Install Unity Editor](#step-2-install-unity-editor)
-5. [Step 3: Get the Game Files](#step-3-get-the-game-files)
-6. [Step 4: Open the Project in Unity](#step-4-open-the-project-in-unity)
-7. [Step 5: Play the Game](#step-5-play-the-game)
-8. [Troubleshooting](#troubleshooting)
-9. [Game Controls](#game-controls)
-10. [Building the Game (Creating a Standalone Executable)](#building-the-game-creating-a-standalone-executable)
+3. [Step 1: Download Godot Engine](#step-1-download-godot-engine)
+4. [Step 2: Get the Game Files](#step-2-get-the-game-files)
+5. [Step 3: Open the Project in Godot](#step-3-open-the-project-in-godot)
+6. [Step 4: Play the Game](#step-4-play-the-game)
+7. [Troubleshooting](#troubleshooting)
+8. [Game Controls](#game-controls)
+9. [Exporting the Game](#exporting-the-game-creating-a-standalone-executable)
 
 ---
 
@@ -22,15 +21,17 @@ Welcome! This guide will walk you through every step to get this game running on
 
 Middle-earth Adventure RPG is a 3D role-playing game inspired by The Lord of the Rings. You'll explore lands like The Shire, Rohan, and Mordor, fight enemies, complete quests, and meet characters like Gandalf, Legolas, and Gimli.
 
-This is a **Unity project**, which means it was made using a program called Unity. To play the game, you need to install Unity first.
+This is a **Godot project**, which means it was made using a free and open-source game engine called Godot. To play the game, you need to download Godot first (it's completely free, no account needed!).
 
-### 🎮 Don't Want to Use Unity?
+### 🎮 Why We Chose Godot
 
-**Looking for alternatives?** This project is built with Unity, but if you'd prefer to build games with other free engines like Godot or Unreal, check out our comprehensive guide:
+**This project was migrated from Unity to Godot!** We chose Godot because:
+- ✅ **100% Free** - No subscriptions, no royalties, ever
+- ✅ **No Account Required** - Download and start immediately
+- ✅ **Lightweight** - Much smaller download (~50 MB vs Unity's 3+ GB)
+- ✅ **Open Source** - Community-driven development
 
-👉 **[Alternative Game Engines Guide](ALTERNATIVE_ENGINES.md)** — Learn about free alternatives to Unity
-
-**Note:** This guide assumes you're using Unity. If you choose a different engine, you would need to rebuild the game from scratch in that engine.
+👉 **Learn more:** See [ALTERNATIVE_ENGINES.md](ALTERNATIVE_ENGINES.md) for the full story
 
 ---
 
@@ -41,128 +42,93 @@ Before we start, make sure you have:
 | Requirement | Details |
 |-------------|---------|
 | **Computer** | Windows 10, Windows 11, macOS, or Linux |
-| **Internet** | To download the software (about 3-5 GB total) |
-| **Disk Space** | At least 10 GB of free space |
-| **Time** | About 30-60 minutes for everything to download and install |
+| **Internet** | To download Godot (about 80 MB) and game files |
+| **Disk Space** | At least 500 MB of free space |
+| **Time** | About 5-10 minutes for everything |
 
 ---
 
-## Step 1: Download and Install Unity Hub
+## Step 1: Download Godot Engine
 
-Unity Hub is a free program that helps you manage Unity projects and editors.
+Godot Engine is a free, lightweight game engine that's super easy to install. The best part? **No account required, no installation wizard, and only about 50 MB to download!**
 
 ### For Windows:
 
 1. **Open your web browser** (Chrome, Firefox, Edge, or Safari)
    - Look for the browser icon on your desktop or taskbar and click it
    
-2. **Go to the Unity download page**
+2. **Go to the Godot download page**
    - Click in the address bar at the top of your browser
-   - Type: `https://unity.com/download`
+   - Type: `https://godotengine.org/download`
    - Press the **Enter** key on your keyboard
 
-3. **Download Unity Hub**
-   - Look for a button that says **"Download for Windows"** and click it
-   - A file will start downloading (usually goes to your "Downloads" folder)
+3. **Download Godot 4.3 (Standard version)**
+   - Look for the **"Godot Engine - Standard version"** button under "4.3 Stable"
+   - Click **"Download 64-bit"** for Windows
+   - A file will start downloading (about 80 MB - very small!)
    - Wait for the download to finish (you'll see a progress indicator)
 
-4. **Install Unity Hub**
-   - Find the downloaded file called `UnityHubSetup.exe`
+4. **Extract and Run Godot** (No installation needed!)
+   - Go to your **Downloads** folder
      - Press **Windows key + E** to open File Explorer
      - Click on **Downloads** in the left sidebar
-     - Look for `UnityHubSetup.exe`
-   - Double-click the file to run it
-   - If a window asks "Do you want to allow this app to make changes?" click **Yes**
-   - Click **I Agree** when you see the license agreement
-   - Click **Install**
-   - Wait for the installation to complete
-   - Click **Finish**
+   - Find the downloaded file (something like `Godot_v4.3-stable_win64.exe.zip`)
+   - **Right-click** on it and select **"Extract All..."**
+   - Choose where to save it (your Documents folder or Desktop is a good choice)
+   - Click **Extract**
+   - Open the extracted folder and you'll see `Godot_v4.3-stable_win64.exe`
+   - **Double-click** the `.exe` file to run Godot
+   - That's it! No installation wizard, no account needed!
+
+**Pro tip:** Create a shortcut to `Godot_v4.3-stable_win64.exe` on your Desktop for easy access later.
 
 ### For macOS:
 
 1. **Open Safari** (or your preferred browser)
    - Click the Safari icon in your Dock (the bar at the bottom of your screen)
 
-2. **Go to the Unity download page**
+2. **Go to the Godot download page**
    - Click in the address bar at the top
-   - Type: `https://unity.com/download`
+   - Type: `https://godotengine.org/download`
    - Press **Return** (Enter)
 
-3. **Download Unity Hub**
-   - Click **"Download for Mac"**
-   - Wait for the download to complete
+3. **Download Godot 4.3**
+   - Look for **"Godot Engine - Standard version"** under "4.3 Stable"
+   - Click **"Download Universal"** for macOS
+   - Wait for the download to complete (about 80 MB)
 
-4. **Install Unity Hub**
+4. **Extract and Run Godot**
    - Open **Finder** (the blue smiling face icon in your Dock)
    - Click **Downloads** in the left sidebar
-   - Find the file called `UnityHubSetup.dmg` and double-click it
-   - A window will open - drag the **Unity Hub** icon to the **Applications** folder
-   - Wait for the copy to complete
-   - You can now close the window and eject the disk image
+   - Find the file called `Godot_v4.3-stable_macos.universal.zip`
+   - **Double-click** it to extract
+   - You'll see `Godot.app` appear
+   - **Drag Godot.app** to your **Applications** folder (optional but recommended)
+   - **Double-click Godot.app** to run it
+   - If macOS says it can't verify the developer, go to **System Preferences → Security & Privacy** and click **"Open Anyway"**
 
 ### For Linux:
 
-1. **Open your web browser** and go to `https://unity.com/download`
+1. **Open your web browser** and go to `https://godotengine.org/download`
 
-2. **Download the Linux version** (AppImage format)
+2. **Download Godot 4.3**
+   - Look for **"Godot Engine - Standard version"**
+   - Click the appropriate download for your system (usually 64-bit)
 
-3. **Make it executable**
+3. **Make it executable and run**
    - Open a terminal
    - Navigate to your Downloads folder: `cd ~/Downloads`
-   - Make executable: `chmod +x UnityHub.AppImage`
-   - Run it: `./UnityHub.AppImage`
+   - Make executable: `chmod +x Godot_v4.3-stable_linux.x86_64`
+   - Run it: `./Godot_v4.3-stable_linux.x86_64`
+   - Optionally, move it to a permanent location like `/usr/local/bin` or create a desktop shortcut
+
+**Note:** Some Linux distributions may have Godot in their package managers (`apt`, `dnf`, `pacman`), but make sure you get **version 4.3 or higher** for this project.
 
 ---
 
-## Step 2: Install Unity Editor
+## Step 2: Get the Game Files
 
-The Unity Editor is the actual program that runs the game. You need a specific version: **2022.3 LTS**.
-
-### Open Unity Hub:
-
-**Windows:**
-- Click the **Start button** (Windows icon in the bottom-left corner)
-- Type `Unity Hub`
-- Click on **Unity Hub** when it appears
-
-**macOS:**
-- Click the **Launchpad** icon in your Dock (grid of squares icon)
-- Click on **Unity Hub**
-
-**Linux:**
-- Run the AppImage you downloaded, or find Unity Hub in your applications menu
-
-### Create a Unity Account (if you don't have one):
-
-1. Unity Hub will ask you to sign in
-2. Click **"Create account"** if you don't have one
-3. Fill in your email address and create a password
-4. Check your email for a verification link and click it
-5. Go back to Unity Hub and sign in with your new account
-
-### Get a Free License:
-
-1. After signing in, Unity Hub may ask about a license
-2. Choose **"Get a free personal license"**
-3. Click **Agree and get personal edition license**
-
-### Install Unity 2022.3 LTS:
-
-1. In Unity Hub, click **"Installs"** in the left sidebar
-2. Click the **"Install Editor"** button (blue button)
-3. Find **Unity 2022.3.0f1 LTS** (this is the specific version the project uses)
-   - If you can't find exactly 2022.3.0f1, any 2022.3.x version should work
-   - LTS means "Long Term Support" - it's a stable version
-4. Click **Install** next to it
-5. On the next screen, you can leave the default options selected
-6. Click **Continue** or **Install**
-7. **Wait** - this download is large (about 2-3 GB) and may take 15-30 minutes depending on your internet speed
-
----
-
-## Step 3: Get the Game Files
-
-You need to download or have the game project files on your computer.
+You need to download the game project files on your computer.
 
 ### Option A: Download from GitHub (Recommended)
 
@@ -194,339 +160,205 @@ You need to download or have the game project files on your computer.
 
 If someone gave you the project files on a USB drive or shared folder:
 1. Copy the entire folder to a location on your computer (like Documents)
-2. Make sure the folder contains folders named `Assets`, `ProjectSettings`, and `tools`
+2. Make sure the folder contains a file named `project.godot` and folders like `scenes` and `scripts`
 
 ---
 
-## Step 4: Open the Project in Unity
+## Step 3: Open the Project in Godot
 
-Now we'll connect everything together!
+Now we'll open the game in Godot!
 
-1. **Open Unity Hub** (if it's not already open)
+1. **Launch Godot Engine**
+   - **Windows:** Double-click the `Godot_v4.3-stable_win64.exe` file you extracted earlier
+   - **macOS:** Open `Godot.app` from your Applications folder (or wherever you saved it)
+   - **Linux:** Run the Godot executable you downloaded
 
-2. **Add the project**
-   - Click **"Projects"** in the left sidebar
-   - Click the **"Add"** button (it might say "Add project from disk" or just show an "Add" arrow)
-   - Navigate to where you saved/extracted the game files
-   - Select the main project folder (the one containing `Assets`, `ProjectSettings`, etc.)
-   - Click **"Add Project"** or **"Open"**
+2. **Import the project** (first time only)
+   - When Godot opens, you'll see the **Project Manager** window
+   - Click the **"Import"** button on the right side
+   - A file browser will open
+   - Navigate to where you extracted the game files
+   - Find and select the **`project.godot`** file (this is in the main project folder)
+   - Click **"Open"**
+   - The project will appear in your project list with the name "Middle-earth Adventure RPG"
 
-3. **Wait for Unity to process**
-   - The first time you open a project, Unity needs to import all the files
-   - This can take 5-15 minutes
-   - You'll see a loading bar - just wait for it to finish
+3. **Open the project**
+   - In the Project Manager, find "Middle-earth Adventure RPG" (or MiddleEarthRPG)
+   - Click on it once to select it
+   - Click the **"Edit"** button on the right side
+   - The Godot Editor will open - this may take 10-30 seconds the first time
 
-4. **The Unity Editor opens**
-   - You'll see a complex interface with many panels
-   - Don't worry! You only need to know a few things to play the game
+4. **The Godot Editor opens**
+   - You'll see an interface with several panels (Scene, Inspector, FileSystem, etc.)
+   - Don't worry! You only need to know a couple of things to play the game
 
 ---
 
-## Step 5: Play the Game
+## Step 4: Play the Game
 
-Almost there! Just a couple more clicks:
+You're almost there! Here's how to run the game:
 
-1. **Open the Main scene** (if not already open)
-   - In the Unity Editor, look at the bottom panel called **"Project"**
-   - Navigate to `Assets/Scenes` (double-click folders to open them)
-   - Double-click on **"Main"** (or **"Main.unity"**)
-   - **Note:** The scene will appear empty in the Hierarchy - this is normal! The game world is created at runtime.
+1. **Make sure the Main scene is open** (if not already)
+   - Look at the bottom panel labeled **"FileSystem"**
+   - Find the folder called **`scenes`**
+   - Double-click on **`main.tscn`** (or just **`main`**)
+   - The scene will load in the editor
+   - **Note:** The scene might look empty or minimal in the editor - this is normal! The game world is created when you run it.
 
 2. **Press Play!**
-   - Look at the top-center of the Unity Editor
-   - You'll see a **Play button** (▶️ triangle icon)
+   - Look at the **top-right corner** of the Godot Editor
+   - You'll see a **Play button** (▶️ triangle icon) - or press **F5** on your keyboard
    - Click it!
-   - The game will start in the center panel called "Game"
-   - **After pressing Play**, you'll see the world appear with terrain, characters, NPCs, and enemies
+   - The game will launch in a new window
+   - **After pressing Play**, you'll see the full Middle-earth world with terrain, characters, NPCs, and enemies
 
 3. **To stop playing**
-   - Click the Play button again (the same button you used to start)
+   - Press **F8** or click the **Stop button** (⏹️ square icon) in the Godot Editor
+   - Or simply close the game window
+
+**Pro tip:** The game runs in a separate window from the editor, so you can Alt+Tab (or Cmd+Tab on Mac) between the game and the editor!
 
 ---
 
 ## Troubleshooting
 
-### I only see an empty blue/gray scene (no game content)
+### The game window shows an empty or minimal scene
 
-**What it looks like:** The Game view shows just a skybox with no terrain, characters, or objects. 
+**What it looks like:** When you press F5 (Play), the game window shows just a skybox or very little content.
 
 **Understanding how this project works:**
-The Main.unity scene is **intentionally empty**. This project uses a "runtime bootstrap" system - the entire game world is created automatically when you press Play. This is normal and by design!
+The main.tscn scene may look **minimal in the editor**. This project uses a "runtime bootstrap" system - the entire game world is created automatically when you run the game. This is normal and by design!
 
-**Before pressing Play:** The Hierarchy panel will be empty or show minimal objects - this is expected!
+**In the Godot Editor:** The Scene panel might show minimal objects - this is expected!
 
-**After pressing Play:** You should see the full Middle-earth world with:
+**After pressing F5 (Play):** You should see the full Middle-earth world with:
 - Terrain (The Shire, Rohan, Mordor)
 - Characters (Gandalf, Legolas, Gimli)
 - Enemies (Orcs, Dark Servants)
 - Player with camera
 
-**If you see a different scene (like "SampleScene"):**
-
-**What it means:** You're viewing the wrong scene. The actual game is in the "Main" scene.
+**If you see a different scene:**
 
 **What to do:**
-1. In the Unity Editor, look at the bottom panel called **"Project"**
-2. Navigate to `Assets` → `Scenes` (double-click folders to open them)
-3. Double-click on **"Main"** (or **"Main.unity"**)
-4. Now press the **Play button** (▶️) at the top center
-
-If you still see an empty scene after opening Main.unity, try:
-- Make sure the file exists: look for `Main.unity` in `Assets/Scenes`
-- Close Unity, delete the `Library` folder in the project, and reopen the project
+1. In the Godot Editor, look at the bottom panel called **"FileSystem"**
+2. Navigate to the `scenes` folder
+3. Double-click on **`main.tscn`**
+4. Now press **F5** (or click the Play button ▶️)
 
 If pressing Play doesn't show any content:
-1. Check the Console window (Window → General → Console) for any red error messages
-2. Make sure all scripts compiled successfully (no "Compiler Errors" at the bottom of Unity)
-3. Try: Assets → Reimport All (this rebuilds all scripts)
+1. Check the **Output** panel at the bottom (View → Output) for any red error messages
+2. Make sure all scripts loaded successfully (no red errors in the Output panel)
+3. Try: Project → Reload Current Project (this reloads all scripts)
 
-### "Unity version mismatch" or similar warning
+### "Godot version mismatch" or similar warning
 
-**What it means:** The project wants a slightly different Unity version.
+**What it means:** The project was created with a slightly different Godot version.
 
 **What to do:** 
-- Usually you can just click "Continue" or "Open" and it will work fine
-- If it doesn't work, go back to Unity Hub → Installs and install version 2022.3.0f1 specifically
+- Godot is usually very good at backwards/forwards compatibility within major versions
+- If you're using Godot 4.3+, the project should work fine
+- If you see errors, try downloading Godot 4.3 specifically from the Godot website
 
-### "Missing scripts" or pink/purple objects
+### Missing scripts or errors on startup
 
 **What it means:** Some files didn't load correctly.
 
 **What to do:**
-1. Close Unity
-2. Delete the `Library` folder inside the project folder
-3. Open the project again in Unity Hub
-4. Wait for it to reimport (this may take a while)
+1. Close Godot
+2. Delete the `.godot` folder inside the project folder (this is the import cache)
+3. Open the project again in Godot
+4. Wait for it to reimport (this may take a minute)
 
 ### The game runs slowly
 
 **What to do:**
-- In Unity, go to **Edit → Project Settings → Quality**
-- Choose a lower quality level
-- Or press F7 in-game to access optimization utilities
+- In Godot, go to **Project → Project Settings → Rendering**
+- Under "Quality", try lowering some settings
+- Make sure your graphics drivers are up to date
+- Try lowering the resolution in the project settings
 
-### Unity Hub won't open
+### Godot won't open or crashes
 
-**Windows:** Try running it as administrator:
-- Right-click on Unity Hub
-- Select "Run as administrator"
+**Windows:** 
+- Make sure you extracted the ZIP file (don't run Godot from inside the ZIP)
+- Try running the Godot executable as administrator (right-click → Run as administrator)
+- Check if your antivirus is blocking it
 
-**macOS:** Check your security settings:
-- Go to System Preferences → Security & Privacy
-- Click "Open Anyway" if Unity Hub is blocked
+**macOS:** 
+- Check your security settings: System Preferences → Security & Privacy
+- Click "Open Anyway" if Godot is blocked
+- If it says "damaged and can't be opened", run this in Terminal:
+  ```
+  xattr -cr /path/to/Godot.app
+  ```
+
+**Linux:**
+- Make sure the file is executable: `chmod +x Godot_v4.3-stable_linux.x86_64`
+- Check if you need to install dependencies (usually not needed for the official build)
+
+### "Cannot open project at path" or "Project file is corrupted"
+
+**What to do:**
+1. Make sure you're selecting the `project.godot` file (not a folder)
+2. Make sure you fully extracted the ZIP file (not running from inside the ZIP)
+3. Re-download the project from GitHub
+4. Check that the download wasn't corrupted (try downloading again)
+
+### Script errors or "Parse Error"
+
+**What it means:** Godot found problems in the GDScript code.
+
+**What to do:**
+1. Check the **Output** panel (View → Output) for error details
+2. Most common cause: The project was made with Godot 4.x and you're using an older version
+   - Make sure you downloaded **Godot 4.3** or higher (not Godot 3.x)
+3. If you see red errors mentioning specific scripts, the files might be corrupted
+   - Re-download the project from GitHub
 
 ### "Not enough disk space"
 
 **What to do:**
 - Delete files you don't need from your computer
 - Empty your Recycle Bin (Windows) or Trash (macOS)
-- Try installing Unity on a different drive if you have one
+- Godot itself is only 50-80 MB, so you don't need much space
+- The project is around 200-300 MB
 
-### "All compiler errors must be fixed before you can enter play mode"
+### Game runs but I see pink/magenta textures
 
-This is the most common issue for new users! It means Unity found problems in the code that must be resolved before you can play.
-
-**Most likely cause:** You're using a different Unity version than the project requires.
-
-**Step-by-step fix:**
-
-1. **Check which Unity version you have installed**
-   - Open Unity Hub
-   - Click **Installs** in the left sidebar
-   - Note the version number (e.g., 2022.3.5f1)
-
-2. **Install the correct version (2022.3.0f1)**
-   - This project was made with Unity **2022.3.0f1**
-   - In Unity Hub → Installs → Click **Install Editor**
-   - Look for **2022.3.0f1** in the list and install it
-   - If you can't find exactly 2022.3.0f1, any **2022.3.x** version should work
-
-3. **Re-open the project with the correct version**
-   - In Unity Hub → Projects
-   - Click the dropdown arrow next to the project's Unity version
-   - Select **2022.3.0f1** (or your 2022.3.x version)
-   - Wait for Unity to reimport the project
-
-**If you still get errors after using the correct Unity version:**
-
-1. **Clear the Library folder** (this forces Unity to rebuild everything)
-   - Close Unity completely
-   - Open the project folder in File Explorer (Windows) or Finder (macOS)
-   - Delete the folder named `Library`
-   - Open the project again in Unity Hub
-   - Wait for Unity to reimport all files (this may take 5-15 minutes)
-
-2. **Check for missing packages**
-   - In Unity, go to **Window → Package Manager**
-   - Look for any packages with warning icons
-   - Click **Update** or **Install** for any missing packages
-
-3. **Refresh the project**
-   - In Unity, go to **Assets → Reimport All**
-   - Wait for the reimport to complete
-
-**Still having problems?**
-- Make sure you downloaded the complete project (all folders: Assets, ProjectSettings, etc.)
-- Try downloading the project again from GitHub using "Download ZIP"
-- If on Windows, avoid special characters in the project path (like #, %, &, etc.)
-
-### I see errors in red text in Unity
+**What it means:** Some textures or materials didn't load correctly.
 
 **What to do:**
-- Click on the red text at the bottom of Unity to see the error details
-- Often you can ignore warnings (yellow text) and still play the game
-- If it says "Script error" or "NullReferenceException", try closing and reopening the project
+1. Close Godot
+2. Delete the `.godot` folder in the project directory
+3. Reopen the project and let Godot reimport all assets
+4. If specific textures are still pink, check the Output panel for import errors
 
-### "The layout could not be fully loaded"
-
-**What it looks like:**
-```
-The layout "C:/Users/.../Unity/Editor-5.x/Preferences/Layouts/current/default-2022.dwlt" 
-could not be fully loaded, this can happen when the layout contains EditorWindows 
-not available in this project.
-```
-
-**What it means:** Your Unity Editor had a saved window layout from a previous project that uses different windows than this project. This is just a warning - it won't prevent you from playing the game.
+### Import errors or "Cannot import" messages
 
 **What to do:**
-- This warning is **harmless** and you can usually **ignore it**
-- Unity will automatically use a default layout instead
-- To get rid of the warning permanently:
-  1. In Unity, go to **Window → Layouts → Default**
-  2. This resets your editor layout to the standard arrangement
-  3. The warning won't appear next time you open the project
+1. Usually these appear during first import - just wait for Godot to finish
+2. If the project opens but you see warnings, check the Output panel
+3. Common fixes:
+   - Close Godot, delete `.godot` folder, reopen
+   - Make sure all project files were extracted properly
+   - Re-download the project if files are missing
 
-### "error CS0006: Metadata file could not be found" (com.unity.collab-proxy)
+### I can't find the play button or it's grayed out
 
-**What it looks like:**
-```
-error CS0006: Metadata file 'Library/PackageCache/com.unity.collab-proxy@.../Lib/Editor/PlasticSCM/log4netPlastic.dll' could not be found
-error CS0006: Metadata file 'Library/PackageCache/com.unity.collab-proxy@.../Unity.Plastic.Antlr3.Runtime.dll' could not be found
-error CS0006: Metadata file 'Library/PackageCache/com.unity.collab-proxy@.../Unity.Plastic.Newtonsoft.Json.dll' could not be found
-```
+**What to do:**
+- Make sure you have a scene open (like `main.tscn`)
+- The Play button (▶️) is in the top-right corner
+- If you don't have a main scene set, Godot will ask you to select one
+- Choose `scenes/main.tscn` as the main scene
+- You can also set it via Project → Project Settings → Application → Run → Main Scene
 
-**What it means:** The Unity Collaborate/Plastic SCM package files are corrupted or incomplete. This is a known Unity issue that can happen when the package cache becomes corrupted.
+### Keyboard/mouse input not working in game
 
-**Step-by-step fix:**
-
-1. **Close Unity completely**
-   - Make sure the Unity Editor is fully closed
-
-2. **Delete the Library folder**
-   - Open the project folder in File Explorer (Windows) or Finder (macOS)
-   - Find and delete the folder named `Library`
-   - This is safe to delete - Unity will rebuild it
-
-3. **Delete the package cache** (if the above doesn't work)
-   - Close Unity completely
-   - Navigate to your global Unity package cache (note: these are hidden folders):
-     - **Windows:** 
-       1. Press **Windows key + R** to open the Run dialog
-       2. Type `%LOCALAPPDATA%\Unity\cache\packages` and press Enter
-       3. This opens the packages folder directly
-     - **macOS:** 
-       1. Open **Finder**
-       2. Click **Go** in the menu bar, then hold **Option** key and click **Library**
-       3. Navigate to `Unity/cache/packages`
-       4. Full path: `/Users/YourUsername/Library/Unity/cache/packages` (replace "YourUsername" with your actual username)
-   - Delete the `com.unity.collab-proxy` folder (or delete the entire `packages` folder to be thorough)
-   - Open your project again in Unity Hub
-
-4. **If errors persist, manually refresh packages**
-   - In Unity, go to **Window → Package Manager**
-   - Find **Version Control** (formerly Collaborate) in the list
-   - Click the **menu button with three vertical dots** next to the package and select **Remove**
-   - After removal, restart Unity
-   - If you need Version Control, you can reinstall it from Package Manager
-
-5. **Alternative: Update the package**
-   - Open your project's `Packages/manifest.json` file
-   - Find the line with `"com.unity.collab-proxy"`
-   - Update the version number to a newer version (check Unity Package Manager for latest)
-   - Save the file and let Unity reimport
-
-**Note:** The `com.unity.collab-proxy` package is for Unity's cloud collaboration features. If you're not using cloud collaboration, removing this package won't affect your ability to play the game.
-
-### "TLS Allocator ALLOC_TEMP_TLS, underlying allocator ALLOC_TEMP_MAIN has unfreed allocations"
-
-**What it looks like:**
-```
-TLS Allocator ALLOC_TEMP_TLS, underlying allocator ALLOC_TEMP_MAIN has unfreed allocations, size 37
-```
-
-**What it means:** This is a Unity memory allocation warning that occurs when temporary memory isn't being properly cleaned up. This can happen during scene loading, script compilation, or when certain Unity systems don't release their temporary buffers correctly.
-
-**Why the main scene might not populate:** If this error appears along with an empty scene after pressing Play, it usually indicates that the runtime bootstrap system failed to initialize properly due to a memory or script issue.
-
-**Step-by-step fix:**
-
-1. **Restart Unity completely**
-   - Close Unity Editor
-   - Wait a few seconds
-   - Reopen the project from Unity Hub
-   - This clears temporary memory allocations
-
-2. **Clear the Library folder** (most effective)
-   - Close Unity completely
-   - Open the project folder in File Explorer (Windows) or Finder (macOS)
-   - Delete the entire `Library` folder
-   - Reopen the project in Unity Hub
-   - Wait for Unity to reimport all assets (5-15 minutes)
-
-3. **Debug with diagnostic command** (advanced)
-   - To identify the exact source of the memory leak, run Unity with the diagnostic flag:
-     - **Windows:** Open Command Prompt and run:
-       ```
-       "C:\Program Files\Unity\Hub\Editor\2022.3.0f1\Editor\Unity.exe" -projectPath "YOUR_PROJECT_PATH" -diag-temp-memory-leak-validation
-       ```
-     - **macOS:** Open Terminal and run:
-       ```
-       /Applications/Unity/Hub/Editor/2022.3.0f1/Unity.app/Contents/MacOS/Unity -projectPath "YOUR_PROJECT_PATH" -diag-temp-memory-leak-validation
-       ```
-   - Replace `YOUR_PROJECT_PATH` with the full path to your project folder
-   - Replace `2022.3.0f1` with your actual Unity version
-   - This outputs call stacks showing exactly where the leaked allocations originate
-
-4. **Check for script compilation errors**
-   - In Unity, open the Console window: **Window → General → Console**
-   - Look for any red error messages
-   - All script errors must be fixed before the runtime bootstrap can work
-   - Try: **Assets → Reimport All** to recompile all scripts
-
-5. **Ensure correct Unity version**
-   - This project requires **Unity 2022.3.x LTS**
-   - Using a significantly different Unity version can cause memory allocation issues
-   - In Unity Hub, verify you're using a 2022.3.x version
-
-6. **Check for corrupted project settings**
-   - Close Unity
-   - In your project folder, delete the `Library` folder AND the `Temp` folder
-   - Reopen the project and let Unity rebuild everything
-
-**If the main scene still doesn't populate after these steps:**
-
-1. **Verify the Main scene is loaded**
-   - Check the Hierarchy panel (left side) - it should show objects like "World Builder", "Player", etc. after pressing Play
-   - If empty, make sure you opened `Assets/Scenes/Main.unity` (not SampleScene or another scene)
-
-2. **Check that bootstrap scripts exist**
-   - In the Project panel, navigate to `Assets/Scripts/RPG`
-   - Verify that core files like `WorldBuilder.cs`, `NPCManager.cs`, and `QuestManager.cs` exist
-   - If files are missing, re-download the project from GitHub
-
-3. **Look for specific errors in Console**
-   - Click on any red error messages to see details
-   - Common issues:
-     - `NullReferenceException` - A script couldn't find a required object
-     - `MissingReferenceException` - A reference to a deleted object
-     - `TypeLoadException` - Script compilation issue
-
-4. **Try a fresh download**
-   - If nothing else works, download the project again from GitHub
-   - Extract to a new folder with a simple path (avoid special characters)
-   - Open the fresh project in Unity
-
-**Note:** The "unfreed allocations, size 37" warning by itself (without the scene failing to load) is often harmless and can be ignored. It only becomes a problem when combined with other issues like the scene not populating.
+**What to do:**
+- Make sure the game window has focus (click on it)
+- Try Alt+Tab to switch to the game window
+- On some systems, you might need to click inside the game window first
+- Check that no other programs are capturing input (like overlays or recording software)
 
 ---
 
@@ -542,166 +374,161 @@ Once the game is running, here's how to play:
 | **Jump** | Spacebar |
 | **Attack** | Left mouse button |
 | **Special ability** | Right mouse button |
-| **Interact** | Walk into NPCs, chests, or locations |
+| **Settings Menu** | ESC key |
+
+### Coming Soon
+
+These features are planned for future releases:
+
+| Feature | Planned Control |
+|---------|----------------|
 | **Quest Journal** | J key |
 | **Character Sheet** | C key |
+| **Inventory** | I key |
 | **World Map** | M key |
-| **Settings Menu** | ESC or O key |
-
-### Advanced Controls (Optional)
-
-These are developer and testing tools - you don't need these to play the game:
-
-| Action | Control |
-|--------|---------|
-| **Performance Monitor** | F3 key |
-| **Release Checklist** | F4 key |
-| **Feedback System** | F5 key |
-| **Screenshot Tool** | F6 key (F12 for quick capture) |
-| **Optimization Utils** | F7 key |
-| **Beta Manager** | F8 key |
-| **Release Manager** | F9 key |
-| **Support Tools** | F10 key |
+| **Interact with NPCs** | E key or walk into them |
 
 ---
 
-## Building the Game (Creating a Standalone Executable)
+## Exporting the Game (Creating a Standalone Executable)
 
-So far, we've been playing the game *inside* the Unity Editor. But what if you want to create a standalone game that you (or your friends) can play **without** having Unity installed? That's called "building" the game!
+So far, we've been playing the game by pressing F5 *inside* the Godot Editor. But what if you want to create a standalone game that you (or your friends) can play **without** having Godot installed? That's called "exporting" the game!
 
-### What Does "File → Build Settings → Add Open Scenes → Build & Run" Mean?
+### Simple Overview
 
-You might see this instruction: **File → Build Settings → Add Open Scenes → Build & Run**
+Exporting in Godot is much simpler than in some other engines:
 
-Let's break this down step-by-step in simple terms:
+1. **Project → Export** - Opens the export window
+2. **Add export preset** - Choose your platform (Windows, Linux, macOS)
+3. **Export Project** - Choose where to save and click Export
 
----
-
-#### Step 1: "File →" (Open the File Menu)
-
-**What it means:** Click on the word "File" at the very top-left of the Unity window.
-
-**Think of it like:** Opening the File menu in Microsoft Word or any other program. It's where you find options to save, open, and export your work.
-
-**How to do it:**
-1. Look at the top of the Unity Editor window
-2. You'll see a menu bar with words like: File, Edit, Assets, GameObject, Component...
-3. Click on **"File"**
-4. A dropdown menu will appear with many options
+That's the basic idea! Now let's go through it step-by-step.
 
 ---
 
-#### Step 2: "→ Build Settings" (Open Build Settings Window)
+### Step-by-Step Export Guide
 
-**What it means:** In the File menu, click on "Build Settings..." to open a special window for creating your game.
+#### Step 1: Install Export Templates (One-time setup)
 
-**Think of it like:** When you write a document in Word, "Build Settings" is like choosing "Export to PDF" or "Save As" - it's where you decide how to package your work.
+The first time you export, Godot needs to download "export templates" (about 500 MB).
 
-**How to do it:**
-1. After clicking "File", look for **"Build Settings..."** in the dropdown menu
-2. Click on it
-3. A new window will pop up called "Build Settings"
+1. In Godot Editor, click **Project** in the top menu
+2. Click **Export...**
+3. A window will open - if templates are missing, you'll see a message
+4. Click **"Manage Export Templates"**
+5. Click **"Download and Install"**
+6. Wait for the download to complete (about 500 MB, takes 5-10 minutes)
+7. Close the templates window
 
-**What you'll see:** The Build Settings window shows:
-- **Scenes In Build** - A list at the top (might be empty)
-- **Platform** - Options like Windows, Mac, Linux, Android, iOS, etc.
-- **Build** and **Build And Run** buttons at the bottom
-
----
-
-#### Step 3: "→ Add Open Scenes" (Add Your Game Scene to the Build)
-
-**What it means:** Tell Unity which scene(s) to include when building the game.
-
-**Why is this important?** Unity projects can have many different scenes (like different levels or menus in a game). You need to tell Unity which scenes should be part of your final game. If you don't add any scenes, your built game will have nothing to show!
-
-**Think of it like:** If you're creating a photo album, you need to tell the printer which photos to include. "Add Open Scenes" says "include the photo (scene) I'm currently looking at."
-
-**How to do it:**
-1. Make sure you have the **Main** scene open (you should have done this earlier - double-click Main.unity in Assets/Scenes)
-2. In the Build Settings window, look at the top section called **"Scenes In Build"**
-3. If it's empty or doesn't show your scene, click the **"Add Open Scenes"** button
-4. You should now see `Scenes/Main` (with a checkmark) in the list
-
-**Note:** The checkbox next to each scene means "include this scene in the build." Make sure your Main scene is checked!
+You only need to do this once! The templates work for all your Godot 4.3 projects.
 
 ---
 
-#### Step 4: "→ Build & Run" (Create and Launch the Game!)
+#### Step 2: Add an Export Preset
 
-**What it means:** This final step creates the actual game files and immediately runs the game so you can test it.
+1. In the Export window, click **"Add..."** at the top
+2. Choose your platform:
+   - **Windows Desktop** - For Windows PC (.exe file)
+   - **Linux/X11** - For Linux PC
+   - **macOS** - For Mac (requires a Mac to build properly)
+3. A preset will appear in the left sidebar
 
-**Think of it like:** Pressing "Print" on a document - it takes your work and creates the final product. "Build & Run" is like pressing Print AND automatically opening the printed document.
-
-**The difference between "Build" and "Build And Run":**
-- **Build** - Creates the game files but doesn't run them
-- **Build And Run** - Creates the game files AND immediately starts the game
-
-**How to do it:**
-1. First, make sure the correct **Platform** is selected on the left side
-   - For Windows: Select "Windows, Mac, Linux" and make sure "Target Platform" says "Windows"
-   - For Mac: Select "Windows, Mac, Linux" and make sure "Target Platform" says "macOS"
-2. Click the **"Build And Run"** button at the bottom-right
-3. A window will pop up asking WHERE to save your game
-   - Choose a folder (like your Desktop or a new folder called "My Game Build")
-   - Give your game a name (like "MiddleEarthAdventure")
-   - Click **Save**
-4. **Wait** - Unity is now creating all the game files. This can take 5-20 minutes depending on your computer (first builds take longer)
-5. When it's done, the game will automatically start!
+**Pro tip:** You can add multiple presets (Windows, Linux, Mac) to export for all platforms!
 
 ---
 
-### Summary: The Whole Process in Plain English
+#### Step 3: Configure Export Settings (Optional)
 
-Here's the complete flow:
+For most users, the default settings work fine. But here are a few options you might want to change:
 
-```
-📁 File             → Opens the main menu
-   ↓
-⚙️ Build Settings   → Opens the "export" options window
-   ↓
-➕ Add Open Scenes  → Tells Unity "include my current scene in the game"
-   ↓
-▶️ Build & Run      → Creates the actual game files and plays it!
-```
+1. Click on your preset (e.g., "Windows Desktop") in the left sidebar
+2. Look for these settings:
+   - **Texture Format** - Leave as default (usually "BPTC")
+   - **Export With Debug** - Uncheck this for a final release (makes the game smaller and faster)
+   - **Runnable (Executable)** - Make sure this is checked so you get an .exe file
 
-**In even simpler terms:** You're telling Unity to "package up my game scene and create an actual game file I can share with others, then run it so I can test it."
+Most settings can stay at default. Don't worry about getting everything perfect!
 
 ---
 
-### What Do You Get After Building?
+#### Step 4: Export the Game
 
-After the build completes, you'll have a folder containing:
+1. Make sure your preset is selected (highlighted) in the left sidebar
+2. Click the **"Export Project"** button at the bottom
+3. Choose where to save your exported game:
+   - Pick a folder (like Desktop or create a new folder called "MiddleEarthExport")
+   - Give your game a name (like `MiddleEarthAdventure.exe` for Windows)
+4. Click **"Save"**
+5. **Wait** - Godot is creating the game files (usually takes 1-5 minutes)
+6. When it's done, you'll have a standalone executable!
+
+---
+
+### What You Get After Exporting
+
+After export completes, you'll have:
 
 **On Windows:**
-- `YourGameName.exe` - This is the actual game! Double-click to play
-- `YourGameName_Data` folder - Contains all the game's data files
-- `MonoBleedingEdge` folder - Contains required game engine files
-- `UnityCrashHandler64.exe` - Helps report crashes (optional)
+- `MiddleEarthAdventure.exe` - The game executable
+- `MiddleEarthAdventure.pck` - Game data file (must stay in same folder as .exe)
 
-**On Mac:**
-- `YourGameName.app` - The actual game application
+**On Linux:**
+- `MiddleEarthAdventure.x86_64` - The game executable (or similar name)
+- `MiddleEarthAdventure.pck` - Game data file
 
-**You can share this entire folder** with friends, and they can play your game without having Unity installed!
+**On macOS:**
+- `MiddleEarthAdventure.app` - The complete game application
+- Or separate executable + .pck file depending on settings
+
+**Important:** Keep the `.exe` and `.pck` files together! Both are needed.
+
+**You can share these files** with friends, and they can play your game without having Godot installed!
 
 ---
 
-### Common Build Issues
+### Common Export Issues
 
-**"No scenes have been added to the build"**
-- You forgot to click "Add Open Scenes"
-- Make sure Main.unity is open before clicking Add Open Scenes
+**"No export template found"**
+- You need to download export templates (see Step 1 above)
+- Go to Project → Export → Manage Export Templates → Download and Install
 
-**Build takes forever or seems stuck**
-- Large games take time to build (5-20 minutes is normal, first builds take longer)
-- Make sure you have enough disk space (at least 2-3 GB free)
+**Export button is grayed out**
+- Make sure you added an export preset first (Step 2)
+- Make sure export templates are installed
 
-**Game runs but shows nothing / black screen**
-- Make sure the Main scene was added to Build Settings with a checkmark
-- Make sure the Main scene is listed as index 0 (the first scene in the list)
+**Exported game won't run**
+- Make sure both the `.exe` and `.pck` files are in the same folder
+- On Linux, make sure the file is executable: `chmod +x MiddleEarthAdventure.x86_64`
+- Check if antivirus is blocking the file
 
-**"Development Build" watermark on screen**
-- In Build Settings, uncheck "Development Build" if you don't want this
+**Exported game is huge (multiple GB)**
+- This is normal for 3D games with lots of assets
+- To reduce size: In export settings, try enabling "Optimize for File Size"
+- Make sure "Export With Debug" is unchecked in the export preset
+
+**Game runs but shows errors**
+- Check the console output (run from terminal/command prompt to see errors)
+- Common issue: Missing resources (make sure all scenes and scripts are included)
+- Try exporting with "Export With Debug" checked to get more error info
+
+**"PCK file not found" error**
+- The `.pck` file must be in the same folder as the executable
+- The `.pck` filename must match the executable name (or be named the same with .pck extension)
+
+---
+
+### Advanced: Export for Multiple Platforms
+
+Want to share your game with friends on different operating systems? You can export for multiple platforms!
+
+1. Add presets for Windows, Linux, and macOS (see Step 2)
+2. Export each one to a different folder:
+   - `Builds/Windows/MiddleEarthAdventure.exe`
+   - `Builds/Linux/MiddleEarthAdventure.x86_64`
+   - `Builds/macOS/MiddleEarthAdventure.app`
+3. Share the appropriate folder with friends based on their OS
+
+**Note:** macOS exports ideally should be built on a Mac for proper code signing and packaging.
 
 ---
 

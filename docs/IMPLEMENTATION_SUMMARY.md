@@ -1,7 +1,21 @@
 # Middle-earth Adventure RPG - Implementation Summary
 
+## ⚠️ ARCHIVED - Unity Version Documentation
+
+**This document describes the Unity implementation which has been archived.**
+
+**Current Version:** This project has been migrated to **Godot Engine 4.3+**  
+**Status:** This summary is preserved for historical reference only  
+**For Current Godot Implementation:** See [IMPLEMENTATION_SUMMARY.md](../IMPLEMENTATION_SUMMARY.md) in the root directory
+
+---
+
+**Original Unity Implementation Summary Archive Follows Below**
+
+---
+
 ## Project Overview
-A complete RPG game with a Lord of the Rings inspired fantasy world.
+A complete RPG game with a Lord of the Rings inspired fantasy world (Unity version).
 
 ## What Was Built
 

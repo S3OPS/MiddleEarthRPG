@@ -1,10 +1,24 @@
 # 💍 The One Ring - Master Roadmap & Status Dashboard
 
+## ⚠️ ARCHIVED - Unity Version Documentation
+
+**This document describes the Unity implementation (v3.1) which has been archived.**
+
+**Current Version:** This project has been migrated to **Godot Engine 4.3+**  
+**Status:** This document is preserved for historical reference only  
+**Active Development:** See [README.md](../README.md) for current Godot development status
+
+---
+
+**Original Unity Version Archive Follows Below**
+
+---
+
 **"One Ring to rule them all, One Ring to find them, One Ring to bring them all, and in the darkness bind them."**
 
-This is the **master control document** for the Middle-earth Adventure RPG project. It unifies all strategic initiatives, tracks progress, and serves as the single source of truth for the project's evolution.
+This is the **master control document** for the Middle-earth Adventure RPG **Unity version** project. It unifies all strategic initiatives, tracks progress, and serves as the single source of truth for the Unity implementation's evolution.
 
-**Status:** 🟢 Active Development  
+**Unity Status:** 🔴 Archived (Migration to Godot Complete)  
 **Last Updated:** January 28, 2026 (v3.1 Post-Launch Phase - Phase 10 🎯)  
 **Version:** 4.0  
 **Purpose:** Unified roadmap for Optimization, Refactoring, Modularization, Auditing, and Enhancement

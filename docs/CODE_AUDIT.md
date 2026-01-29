@@ -1,8 +1,22 @@
 # Middle-earth Adventure RPG - Comprehensive Code Audit
 
+## ⚠️ ARCHIVED - Unity Version Documentation
+
+**This document describes the Unity C# codebase (v2.0) which has been archived.**
+
+**Current Version:** This project has been migrated to **Godot Engine 4.3+** with GDScript  
+**Status:** This audit is preserved for historical reference only  
+**Active Development:** The Godot implementation uses different architecture and best practices
+
+---
+
+**Original Unity Code Audit Archive Follows Below**
+
+---
+
 **Audit Date:** January 2026  
 **Audit Version:** 1.0  
-**Codebase Version:** 2.0.0 (Enhanced Edition)  
+**Codebase Version:** 2.0.0 (Unity Enhanced Edition - Archived)  
 **Auditor:** Development Team
 
 ---

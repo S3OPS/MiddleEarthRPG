@@ -1,3 +1,18 @@
+# ⚠️ DEPRECATED - Unity Build Tool
+#
+# This script is for the archived Unity version of the project.
+# The project has been migrated to Godot Engine.
+#
+# For the current Godot version:
+# 1. Download Godot 4.3+ from https://godotengine.org/
+# 2. Open Godot and import this project
+# 3. Press F5 to run
+#
+# See docs/SETUP.md for detailed instructions.
+#
+# This script is preserved for reference only.
+# -----------------------------------------------------------------------------
+
 param(
     [switch]$AutoRun
 )

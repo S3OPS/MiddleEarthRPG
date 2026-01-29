@@ -1,22 +1,72 @@
 # Middle-earth Adventure RPG - Repository Structure
 
-**Last Updated:** January 2026  
-**Version:** 2.0.0 (Enhanced Edition)
+## ⚠️ DOCUMENT STATUS
+
+**This document describes both the current Godot implementation and the archived Unity version.**
+
+**Current Version:** Godot 4.3+ (Active Development)  
+**Legacy Version:** Unity v2.0.0 (Archived in `Assets/` folder)
 
 ---
 
 ## Overview
 
-This repository contains a complete, production-ready 3D RPG game built in Unity 2022.3 LTS. The game features a Lord of the Rings inspired fantasy world with comprehensive RPG systems including character progression, active combat, quests, achievements, equipment, and more.
+This repository contains a 3D RPG game inspired by Lord of the Rings, featuring character progression, active combat, quests, achievements, and equipment systems.
+
+**Current State:** The project has been migrated from Unity to Godot Engine for a truly free and open-source experience.
 
 ---
 
-## Directory Structure
+## Active Godot Project Structure
 
 ```
 MiddleEarthRPG/
 │
-├── Assets/
+├── project.godot              # Godot project configuration
+├── icon.svg                   # Project icon
+│
+├── scenes/                    # Godot scenes (.tscn files)
+│   ├── main.tscn             # Main game scene
+│   ├── player/               # Player character scenes
+│   ├── world/                # World elements
+│   ├── ui/                   # UI scenes (planned)
+│   └── systems/              # Game system scenes
+│
+├── scripts/                   # GDScript and C# scripts
+│   ├── autoload/             # Singleton autoload scripts
+│   │   ├── game_manager.gd  # Core game manager
+│   │   ├── event_bus.gd     # Global event system
+│   │   └── save_manager.gd  # Save/load system
+│   │
+│   ├── resources/            # Custom Godot resources
+│   │   └── character_stats.gd
+│   │
+│   └── utilities/
+│       └── constants.gd      # Game constants and balance values
+│
+├── assets/                    # Game assets (models, textures, audio)
+│
+├── docs/                      # Documentation
+│   ├── README.md             # This file
+│   ├── BEGINNERS_GUIDE.md    # Godot setup guide
+│   ├── SETUP.md              # Quick start
+│   ├── ALTERNATIVE_ENGINES.md # Migration story
+│   └── [Archived Unity docs...]
+│
+└── [Unity Legacy Files]       # See "Archived Unity Structure" below
+    ├── Assets/               # Unity C# scripts (reference)
+    ├── ProjectSettings/      # Unity project settings (reference)
+    └── tools/                # Unity build tools (deprecated)
+```
+
+---
+
+## Archived Unity Structure
+
+The original Unity implementation (v2.0.0) is preserved in the repository for reference:
+
+```
+Assets/                        # ARCHIVED - Unity C# Scripts
 │   ├── Scripts/
 │   │   ├── RPG/                    # Core RPG systems (16 scripts)
 │   │   │   ├── CharacterStats.cs          # Character progression & stats

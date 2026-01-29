@@ -1,8 +1,22 @@
 # Middle-earth Adventure RPG - Comprehensive Enhancement Plan
 
+## ⚠️ ARCHIVED - Unity Version Documentation
+
+**This document describes enhancement plans for the Unity version which has been archived.**
+
+**Current Version:** This project has been migrated to **Godot Engine 4.3+**  
+**Status:** This plan is preserved for historical reference only  
+**Active Development:** See [README.md](../README.md) and [ALTERNATIVE_ENGINES.md](ALTERNATIVE_ENGINES.md) for Godot roadmap
+
+---
+
+**Original Unity Enhancement Plan Archive Follows Below**
+
+---
+
 **Document Version:** 1.0  
 **Date:** January 2026  
-**Status:** Planning Phase
+**Status:** Archived (Project migrated to Godot)
 
 ---
 
