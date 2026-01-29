@@ -38,6 +38,9 @@ func start_quest(quest_id: String) -> bool:
 		return false
 	
 	# Check level requirement
+	if not GameManager.player_stats:
+		push_warning("Player stats not available for quest: " + quest_id)
+		return false
 	if GameManager.player_stats.level < quest.level_requirement:
 		push_warning("Player level too low for quest: " + quest_id)
 		return false
