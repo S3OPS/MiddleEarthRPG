@@ -4,6 +4,9 @@ extends Node
 
 const SAVE_DIR = "user://saves/"
 const SAVE_FILE_EXTENSION = ".save"
+const MAX_SAVE_SLOTS = 10  # Limit to prevent abuse
+const MAX_SAVE_FILE_SIZE = 1048576  # 1MB limit for save files
+const SAVE_VERSION = 1  # Version for backward compatibility
 
 ## Save data structure
 class SaveData:
@@ -45,6 +48,7 @@ class SaveData:
 	
 	func to_dict() -> Dictionary:
 		return {
+			"version": SAVE_VERSION,  # Add version for compatibility
 			"slot_index": slot_index,
 			"save_date": save_date,
 			"play_time": play_time,
@@ -73,33 +77,92 @@ class SaveData:
 		}
 	
 	func from_dict(data: Dictionary) -> void:
-		slot_index = data.get("slot_index", 0)
-		save_date = data.get("save_date", "")
-		play_time = data.get("play_time", 0.0)
+		# Validate version for compatibility
+		var version = data.get("version", 0)
+		if version > SAVE_VERSION:
+			push_warning("Save file version %d is newer than supported version %d" % [version, SAVE_VERSION])
+		
+		slot_index = _validate_int(data.get("slot_index", 0), 0, MAX_SAVE_SLOTS)
+		save_date = _sanitize_string(data.get("save_date", ""))
+		play_time = _validate_float(data.get("play_time", 0.0), 0.0, 1000000.0)
+		
+		# Validate and clamp position values
 		var pos = data.get("player_position", {"x": 0, "y": 0, "z": 0})
-		player_position = Vector3(pos.x, pos.y, pos.z)
+		player_position = Vector3(
+			_validate_float(pos.get("x", 0), -10000, 10000),
+			_validate_float(pos.get("y", 0), -10000, 10000),
+			_validate_float(pos.get("z", 0), -10000, 10000)
+		)
+		
 		var rot = data.get("player_rotation", {"x": 0, "y": 0, "z": 0})
-		player_rotation = Vector3(rot.x, rot.y, rot.z)
-		character_name = data.get("character_name", "Aragorn")
-		level = data.get("level", 1)
-		experience = data.get("experience", 0)
-		experience_to_next_level = data.get("experience_to_next_level", 100)
-		current_health = data.get("current_health", 100.0)
-		max_health = data.get("max_health", 100.0)
-		current_stamina = data.get("current_stamina", 100.0)
-		max_stamina = data.get("max_stamina", 100.0)
-		strength = data.get("strength", 10)
-		wisdom = data.get("wisdom", 10)
-		agility = data.get("agility", 10)
-		inventory_items = data.get("inventory_items", [])
-		equipped_items = data.get("equipped_items", {})
-		active_quests = data.get("active_quests", [])
-		completed_quests = data.get("completed_quests", [])
-		discovered_locations = data.get("discovered_locations", [])
-		opened_chests = data.get("opened_chests", [])
-		enemies_defeated = data.get("enemies_defeated", 0)
-		quests_completed = data.get("quests_completed", 0)
-		treasures_found = data.get("treasures_found", 0)
+		player_rotation = Vector3(
+			_validate_float(rot.get("x", 0), -PI, PI),
+			_validate_float(rot.get("y", 0), -PI, PI),
+			_validate_float(rot.get("z", 0), -PI, PI)
+		)
+		
+		character_name = _sanitize_string(data.get("character_name", "Aragorn"))
+		level = _validate_int(data.get("level", 1), 1, 100)
+		experience = _validate_int(data.get("experience", 0), 0, 1000000)
+		experience_to_next_level = _validate_int(data.get("experience_to_next_level", 100), 1, 1000000)
+		current_health = _validate_float(data.get("current_health", 100.0), 0.0, 10000.0)
+		max_health = _validate_float(data.get("max_health", 100.0), 1.0, 10000.0)
+		current_stamina = _validate_float(data.get("current_stamina", 100.0), 0.0, 10000.0)
+		max_stamina = _validate_float(data.get("max_stamina", 100.0), 1.0, 10000.0)
+		strength = _validate_int(data.get("strength", 10), 1, 1000)
+		wisdom = _validate_int(data.get("wisdom", 10), 1, 1000)
+		agility = _validate_int(data.get("agility", 10), 1, 1000)
+		
+		# Validate arrays (ensure they are arrays, not malicious objects)
+		inventory_items = _validate_array(data.get("inventory_items", []))
+		equipped_items = _validate_dict(data.get("equipped_items", {}))
+		active_quests = _validate_array(data.get("active_quests", []))
+		completed_quests = _validate_array(data.get("completed_quests", []))
+		discovered_locations = _validate_array(data.get("discovered_locations", []))
+		opened_chests = _validate_array(data.get("opened_chests", []))
+		
+		enemies_defeated = _validate_int(data.get("enemies_defeated", 0), 0, 1000000)
+		quests_completed = _validate_int(data.get("quests_completed", 0), 0, 10000)
+		treasures_found = _validate_int(data.get("treasures_found", 0), 0, 10000)
+	
+	
+	## Validate and clamp integer value
+	static func _validate_int(value, min_val: int, max_val: int) -> int:
+		if not (value is int or value is float):
+			return min_val
+		return clampi(int(value), min_val, max_val)
+	
+	
+	## Validate and clamp float value
+	static func _validate_float(value, min_val: float, max_val: float) -> float:
+		if not (value is float or value is int):
+			return min_val
+		return clampf(float(value), min_val, max_val)
+	
+	
+	## Sanitize string to prevent injection
+	static func _sanitize_string(value) -> String:
+		if not value is String:
+			return ""
+		# Remove potential control characters and limit length
+		var sanitized = value.strip_edges()
+		if sanitized.length() > 100:
+			sanitized = sanitized.substr(0, 100)
+		return sanitized
+	
+	
+	## Validate array type
+	static func _validate_array(value) -> Array:
+		if value is Array:
+			return value
+		return []
+	
+	
+	## Validate dictionary type
+	static func _validate_dict(value) -> Dictionary:
+		if value is Dictionary:
+			return value
+		return {}
 
 
 func _ready() -> void:
@@ -111,6 +174,12 @@ func _ready() -> void:
 
 ## Save game to specified slot
 func save_game(slot_index: int) -> bool:
+	# Validate slot index
+	if not _is_valid_slot(slot_index):
+		push_error("Invalid save slot index: %d" % slot_index)
+		EventBus.save_failed.emit("Invalid slot index")
+		return false
+	
 	var save_data = SaveData.new()
 	save_data.slot_index = slot_index
 	save_data.save_date = Time.get_datetime_string_from_system()
@@ -133,7 +202,7 @@ func save_game(slot_index: int) -> bool:
 	var file = FileAccess.open(file_path, FileAccess.WRITE)
 	
 	if file == null:
-		push_error("Failed to open save file: " + file_path)
+		push_error("Failed to open save file: %s (Error: %d)" % [file_path, FileAccess.get_open_error()])
 		EventBus.save_failed.emit("Failed to open save file")
 		return false
 	
@@ -141,23 +210,34 @@ func save_game(slot_index: int) -> bool:
 	file.store_string(json_string)
 	file.close()
 	
-	print("💾 Game saved to slot ", slot_index)
+	print("💾 Game saved to slot %d" % slot_index)
 	EventBus.game_saved.emit(slot_index)
 	return true
 
 
 ## Load game from specified slot
 func load_game(slot_index: int) -> bool:
+	# Validate slot index
+	if not _is_valid_slot(slot_index):
+		push_error("Invalid save slot index: %d" % slot_index)
+		return false
+	
 	var file_path = _get_save_path(slot_index)
 	
 	if not FileAccess.file_exists(file_path):
-		push_error("Save file does not exist: " + file_path)
+		push_error("Save file does not exist: %s" % file_path)
+		return false
+	
+	# Check file size for security
+	var file_size = FileAccess.get_file_as_bytes(file_path).size()
+	if file_size > MAX_SAVE_FILE_SIZE:
+		push_error("Save file too large (potential corruption): %d bytes" % file_size)
 		return false
 	
 	var file = FileAccess.open(file_path, FileAccess.READ)
 	
 	if file == null:
-		push_error("Failed to open save file: " + file_path)
+		push_error("Failed to open save file: %s (Error: %d)" % [file_path, FileAccess.get_open_error()])
 		return false
 	
 	var json_string = file.get_as_text()
@@ -167,7 +247,12 @@ func load_game(slot_index: int) -> bool:
 	var parse_result = json.parse(json_string)
 	
 	if parse_result != OK:
-		push_error("Failed to parse save file JSON")
+		push_error("Failed to parse save file JSON: %s" % json.get_error_message())
+		return false
+	
+	# Validate that data is a dictionary
+	if not json.data is Dictionary:
+		push_error("Invalid save file format: expected Dictionary")
 		return false
 	
 	var save_data = SaveData.new()
@@ -176,7 +261,7 @@ func load_game(slot_index: int) -> bool:
 	# Apply loaded data to game
 	_apply_save_data(save_data)
 	
-	print("💾 Game loaded from slot ", slot_index)
+	print("💾 Game loaded from slot %d" % slot_index)
 	EventBus.game_loaded.emit(slot_index)
 	return true
 
@@ -228,7 +313,14 @@ func delete_save(slot_index: int) -> bool:
 
 ## Get save file path for slot
 func _get_save_path(slot_index: int) -> String:
-	return SAVE_DIR + "slot_" + str(slot_index) + SAVE_FILE_EXTENSION
+	# Sanitize slot index to prevent directory traversal
+	var sanitized_index = clampi(slot_index, 0, MAX_SAVE_SLOTS)
+	return SAVE_DIR + "slot_%d%s" % [sanitized_index, SAVE_FILE_EXTENSION]
+
+
+## Validate slot index
+func _is_valid_slot(slot_index: int) -> bool:
+	return slot_index >= 0 and slot_index < MAX_SAVE_SLOTS
 
 
 ## Apply loaded save data to the game
