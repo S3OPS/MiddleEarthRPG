@@ -1,8 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://b7l5eajkwu0y5"]
+[gd_scene load_steps=12 format=3 uid="uid://b7l5eajkwu0y5"]
 
 [ext_resource type="PackedScene" uid="uid://cndx3jtslmx2e" path="res://scenes/player/player.tscn" id="1_k5kxq"]
 [ext_resource type="PackedScene" uid="uid://dgwrv5n2lsxl6" path="res://scenes/ui/hud.tscn" id="2_hud"]
 [ext_resource type="PackedScene" uid="uid://cyj3f7s2uwh0r" path="res://scenes/enemies/orc.tscn" id="3_enemy"]
+[ext_resource type="PackedScene" uid="uid://bk3yv5qx8h7wd" path="res://scenes/ui/quest_journal.tscn" id="4_quest_journal"]
+[ext_resource type="PackedScene" uid="uid://c7m8n9p0q1r2s" path="res://scenes/ui/inventory_panel.tscn" id="5_inventory_panel"]
+[ext_resource type="PackedScene" uid="uid://d8n9o0p1q2r3t" path="res://scenes/ui/dialogue_panel.tscn" id="6_dialogue_panel"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -66,6 +69,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1, 8)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, -10)
 
 [node name="HUD" parent="." instance=ExtResource("2_hud")]
+
+[node name="QuestJournal" parent="." instance=ExtResource("4_quest_journal")]
+
+[node name="InventoryPanel" parent="." instance=ExtResource("5_inventory_panel")]
+
+[node name="DialoguePanel" parent="." instance=ExtResource("6_dialogue_panel")]
 
 [node name="SpawnPoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
