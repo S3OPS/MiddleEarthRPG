@@ -6,6 +6,14 @@ extends Node
 var sample_quests_script = preload("res://scripts/data/sample_quests.gd")
 var sample_items_script = preload("res://scripts/data/sample_items.gd")
 var sample_dialogues_script = preload("res://scripts/data/sample_dialogues.gd")
+var sample_regions_script = preload("res://scripts/data/sample_regions.gd")
+var sample_waypoints_script = preload("res://scripts/data/sample_waypoints.gd")
+var sample_factions_script = preload("res://scripts/data/sample_factions.gd")
+var sample_regional_quests_script = preload("res://scripts/data/sample_regional_quests.gd")
+var sample_recipes_script = preload("res://scripts/data/sample_recipes.gd")
+var sample_specializations_script = preload("res://scripts/data/sample_specializations.gd")
+var sample_companions_script = preload("res://scripts/data/sample_companions.gd")
+var sample_seasonal_events_script = preload("res://scripts/data/sample_seasonal_events.gd")
 
 var item_database: Dictionary = {}
 var dialogue_database: Dictionary = {}
@@ -30,11 +38,62 @@ func _ready() -> void:
 		QuestManager.register_quest(quest)
 	print("✅ Registered %d quests" % quests.size())
 	
+	# Register Phase 5 regions
+	var regions = sample_regions_script.create_sample_regions()
+	for region in regions:
+		RegionManager.register_region(region)
+	print("✅ Registered %d regions" % regions.size())
+	
+	# Register Phase 5 waypoints
+	var waypoints = sample_waypoints_script.create_sample_waypoints()
+	for waypoint in waypoints:
+		FastTravelManager.register_waypoint(waypoint)
+	print("✅ Registered %d waypoints" % waypoints.size())
+	
+	# Register Phase 5 factions
+	var factions = sample_factions_script.create_sample_factions()
+	for faction in factions:
+		FactionManager.register_faction(faction)
+	print("✅ Registered %d factions" % factions.size())
+	
+	# Register Phase 5 regional quests
+	var regional_quests = sample_regional_quests_script.create_regional_quests()
+	for quest in regional_quests:
+		QuestManager.register_quest(quest)
+	print("✅ Registered %d regional quests" % regional_quests.size())
+	
+	# Register Phase 6 recipes
+	var recipes = sample_recipes_script.create_sample_recipes()
+	for recipe in recipes:
+		CraftingManager.register_recipe(recipe)
+	print("✅ Registered %d crafting recipes" % recipes.size())
+	
+	# Register Phase 6 specializations
+	var specializations = sample_specializations_script.create_sample_specializations()
+	for spec in specializations:
+		SpecializationManager.register_specialization(spec)
+	print("✅ Registered %d specializations" % specializations.size())
+	
+	# Register Phase 6 companions
+	var companions = sample_companions_script.create_sample_companions()
+	for companion in companions:
+		CompanionManager.register_companion(companion)
+	print("✅ Registered %d companions" % companions.size())
+	
+	# Register Phase 7 seasonal events
+	var events = sample_seasonal_events_script.create_sample_events()
+	for event in events:
+		SeasonalEventManager.register_event(event)
+	print("✅ Registered %d seasonal events" % events.size())
+	
 	# Give player some starting items for testing
 	_give_starting_items()
 	
 	# Start the first quest automatically
 	QuestManager.start_quest("first_steps")
+	
+	# Set starting region (The Shire)
+	RegionManager.enter_region("the_shire")
 	
 	print("✅ Game initialization complete!")
 

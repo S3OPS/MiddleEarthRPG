@@ -210,6 +210,25 @@ signal item_picked_up(item_id: String, quantity: int)
 ## @param zone_name: Name of the zone
 signal zone_entered(zone_name: String)
 
+## Emitted when a region is discovered
+## @param region_id: Region identifier
+signal region_discovered(region_id: String, region_name: String)
+
+## Emitted when a waypoint is discovered
+## @param waypoint_id: Waypoint identifier
+signal waypoint_discovered(waypoint_id: String, waypoint_name: String)
+
+## Emitted when fast travel is initiated
+## @param from_waypoint: Starting waypoint
+## @param to_waypoint: Destination waypoint
+signal fast_travel_started(from_waypoint: String, to_waypoint: String)
+
+## Emitted when reputation changes with a faction
+## @param faction_id: Faction identifier
+## @param amount: Amount changed
+## @param new_total: New total reputation
+signal reputation_changed(faction_id: String, amount: int, new_total: int)
+
 
 # ========================================
 # SAVE/LOAD SIGNALS
