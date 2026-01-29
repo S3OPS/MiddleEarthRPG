@@ -218,10 +218,12 @@ func _die() -> void:
 	
 	# Emit signals
 	EventBus.enemy_killed.emit(self, experience_reward)
+	EventBus.enemy_died.emit(enemy_name, global_position)  # For quest tracking
 	EventBus.combat_ended.emit()
 	
 	# Update game stats
 	GameManager.increment_enemies_defeated()
+	GameManager.add_gold(gold_reward)
 	
 	# Death animation (fade out)
 	var tween = create_tween()

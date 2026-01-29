@@ -70,6 +70,11 @@ signal damage_taken(entity: Node, amount: float, attacker: Node)
 ## @param experience_reward: XP rewarded for the kill
 signal enemy_killed(enemy: Node, experience_reward: int)
 
+## Emitted when an enemy dies (for quest tracking)
+## @param enemy_type: Type/name of the enemy
+## @param position: Position where enemy died
+signal enemy_died(enemy_type: String, position: Vector3)
+
 ## Emitted when combat starts with an enemy
 ## @param enemy: The enemy engaging in combat
 signal combat_started(enemy: Node)
@@ -91,17 +96,20 @@ signal special_attack_used(targets: Array)
 ## @param quest_name: Display name of the quest
 signal quest_started(quest_id: String, quest_name: String)
 
+## Emitted when a quest becomes available
+## @param quest_id: Quest identifier
+## @param quest_name: Display name
+signal quest_available(quest_id: String, quest_name: String)
+
 ## Emitted when a quest objective is updated
 ## @param quest_id: Quest identifier
 ## @param objective_index: Index of the objective
-## @param completed: Whether objective is completed
-signal quest_objective_updated(quest_id: String, objective_index: int, completed: bool)
+signal quest_objective_updated(quest_id: String, objective_index: int)
 
 ## Emitted when a quest is completed
 ## @param quest_id: Quest identifier
 ## @param quest_name: Display name
-## @param reward_xp: Experience points rewarded
-signal quest_completed(quest_id: String, quest_name: String, reward_xp: int)
+signal quest_completed(quest_id: String, quest_name: String)
 
 ## Emitted when a quest is failed
 ## @param quest_id: Quest identifier
@@ -113,11 +121,19 @@ signal quest_failed(quest_id: String, quest_name: String)
 # INVENTORY SIGNALS
 # ========================================
 
+## Emitted when an item is collected (for quest tracking)
+## @param item_id: Unique item identifier
+signal item_collected(item_id: String)
+
 ## Emitted when an item is added to inventory
 ## @param item_id: Unique item identifier
 ## @param item_name: Display name of item
 ## @param quantity: Amount added
 signal item_added(item_id: String, item_name: String, quantity: int)
+
+## Emitted when an item is rewarded from quest
+## @param item_id: Unique item identifier
+signal item_rewarded(item_id: String)
 
 ## Emitted when an item is removed from inventory
 ## @param item_id: Item identifier
@@ -170,6 +186,10 @@ signal weather_changed(weather_type: String)
 ## Emitted when player discovers a location
 ## @param location_name: Name of discovered location
 signal location_discovered(location_name: String)
+
+## Emitted when player talks to an NPC
+## @param npc_id: Unique NPC identifier
+signal npc_talked(npc_id: String)
 
 ## Emitted when player enters a new zone
 ## @param zone_name: Name of the zone

@@ -268,3 +268,8 @@ func apply_save_data(save_data) -> void:
 		rotation = save_data.player_rotation
 		camera_rotation.y = save_data.player_rotation.y
 		stats.apply_save_data(save_data.get_save_data())
+
+
+## Get player stats reference
+func get_stats() -> CharacterStats:
+	return stats
