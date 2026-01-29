@@ -40,6 +40,7 @@ This implementation addresses the Middle-earth RPG problem statement through fiv
 - Memory usage monitoring
 - Frame time analysis
 - Detailed Godot performance metrics access
+ - Uses rolling sums to avoid per-frame average recalculation
 
 **Features:**
 - 60-frame history for accurate averages

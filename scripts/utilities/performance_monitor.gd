@@ -5,6 +5,8 @@ extends Node
 var _fps_history: Array[float] = []
 var _fps_history_size: int = 60  # 1 second at 60fps
 var _frame_time_history: Array[float] = []
+var _fps_sum: float = 0.0
+var _frame_time_sum: float = 0.0
 
 # Cached metrics
 var average_fps: float = 60.0
@@ -28,29 +30,21 @@ func _update_metrics(delta: float) -> void:
 	# Add to history
 	_fps_history.append(current_fps)
 	_frame_time_history.append(delta)
+	_fps_sum += current_fps
+	_frame_time_sum += delta
 	
 	# Maintain history size
 	if _fps_history.size() > _fps_history_size:
-		_fps_history.pop_front()
-		_frame_time_history.pop_front()
+		_fps_sum -= _fps_history.pop_front()
+		_frame_time_sum -= _frame_time_history.pop_front()
 	
 	# Calculate metrics
 	if _fps_history.size() > 0:
-		average_fps = _calculate_average(_fps_history)
+		var history_size = _fps_history.size()
+		average_fps = _fps_sum / history_size
 		min_fps = _fps_history.min()
 		max_fps = _fps_history.max()
-		average_frame_time = _calculate_average(_frame_time_history)
-
-
-## Calculate average of array
-func _calculate_average(arr: Array) -> float:
-	if arr.is_empty():
-		return 0.0
-	
-	var sum: float = 0.0
-	for value in arr:
-		sum += value
-	return sum / arr.size()
+		average_frame_time = _frame_time_sum / history_size
 
 
 ## Get formatted performance stats
