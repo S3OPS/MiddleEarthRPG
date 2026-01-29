@@ -12,6 +12,7 @@ enum GameState {
 
 var current_state: GameState = GameState.MENU
 var player: Node = null
+var player_stats: CharacterStats = null
 var current_scene: Node = null
 
 # Game statistics
@@ -19,6 +20,7 @@ var total_play_time: float = 0.0
 var enemies_defeated: int = 0
 var quests_completed: int = 0
 var treasures_found: int = 0
+var gold: int = 0
 
 
 func _ready() -> void:
@@ -97,6 +99,11 @@ func register_player(player_node: Node) -> void:
 		return
 	
 	player = player_node
+	
+	# Try to get player stats
+	if player_node.has_method("get_stats"):
+		player_stats = player_node.get_stats()
+	
 	print("✅ Player registered with GameManager")
 
 
@@ -125,6 +132,29 @@ func increment_quests_completed() -> void:
 ## Increment treasures found counter
 func increment_treasures_found() -> void:
 	treasures_found += 1
+
+
+## Add gold to player
+func add_gold(amount: int) -> void:
+	if amount <= 0:
+		return
+	gold += amount
+	EventBus.show_notification("Found %d gold!" % amount, "success")
+
+
+## Remove gold from player
+func remove_gold(amount: int) -> bool:
+	if amount <= 0 or gold < amount:
+		return false
+	gold -= amount
+	return true
+
+
+## Add experience to player
+func add_experience(amount: int) -> void:
+	if not player_stats or amount <= 0:
+		return
+	player_stats.gain_experience(amount)
 
 
 ## Get formatted play time as HH:MM:SS
