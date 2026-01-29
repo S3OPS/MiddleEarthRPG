@@ -48,9 +48,9 @@ We've successfully migrated this project from Unity to Godot Engine. Learn more 
 - **J**: Toggle quest journal
 - **ESC**: Toggle mouse capture / Pause menu
 
-### Coming in Phase 4
-- **C**: Toggle character sheet (planned)
-- **M**: Toggle map (planned)
+### ✅ New in Phase 4
+- **C**: Toggle character sheet ✅
+- **M**: Toggle map ✅
 
 ## 🎯 Game Features
 
@@ -65,7 +65,7 @@ We've successfully migrated this project from Unity to Godot Engine. Learn more 
 - **Event System**: Signal-based communication with 41 game events
 - **Game Constants**: All balance values from original design
 
-### 🎯 Coming Soon (Phase 3 - In Progress)
+### ✅ Phase 3 Complete (Advanced Features)
 - **Quest System**: Epic quests with branching paths and objectives ✅
 - **Inventory System**: Collect and manage items and equipment ✅
 - **Equipment System**: Legendary weapons and armor with stat bonuses ✅
@@ -75,14 +75,20 @@ We've successfully migrated this project from Unity to Godot Engine. Learn more 
 - **Loot System**: Item drops from enemies and treasure chests ✅
 - **Game Integration**: All systems connected and functional ✅
 
-### 🎯 Coming Soon (Phases 3-4)
+### ✅ Phase 4 Complete (Content & Polish)
 - **Enemy AI**: Smart pathfinding enemies with combat behaviors ✅ (Phase 2)
 - **Complete HUD**: Health, stamina, XP bars ✅ (Phase 2)
-- **Day/Night Cycle**: Dynamic world lighting and time-based events
-- **Weather System**: Rain, snow, fog affecting gameplay
-- **Procedural Dungeons**: Multi-floor dungeons with bosses and treasures
-- **Boss Encounters**: Unique boss battles with special mechanics
-- **Achievement System**: Unlock achievements for completing challenges
+- **Day/Night Cycle**: Dynamic world lighting and time-based events ✅
+- **Weather System**: Rain, snow, fog affecting gameplay ✅
+- **Procedural Dungeons**: Multi-floor dungeons with bosses and treasures ✅
+- **Boss Encounters**: Unique boss battles with special mechanics ✅
+- **Achievement System**: Unlock achievements for completing challenges ✅
+
+### 🔮 Next Up (Phases 5-7 Planned)
+- **Phase 5: World Expansion** — new regions, fast travel, and expanded quest arcs
+- **Phase 6: Advanced Systems** — crafting, factions, trading, and deeper combat variety
+- **Phase 7: Live Ops & Polish** — seasonal events, balance tuning, accessibility, and post-launch support
+- 📄 See [docs/PHASE_5_6_7_ROADMAP.md](docs/PHASE_5_6_7_ROADMAP.md) for the full plan
 
 ### 🌍 Planned World Features
 - Iconic locations: The Shire, Plains of Rohan, Lands of Mordor
@@ -157,7 +163,7 @@ The following documents describe the original Unity implementation, kept for ref
 
 ## 🔄 Migration Status
 
-This project was originally built in Unity and has been successfully migrated to Godot 4.x. The migration is following an 8-week roadmap:
+This project was originally built in Unity and has been successfully migrated to Godot 4.x. The migration followed an 8-week roadmap (Phases 1-4) and is now extended with an additional 12 weeks for Phases 5-7:
 
 - ✅ **Phase 1 (Weeks 1-2): Foundation** — Complete
   - Godot project structure, player movement, basic combat, character stats
@@ -172,10 +178,16 @@ This project was originally built in Unity and has been successfully migrated to
   - NPC system complete ✅ (4 NPCs with interaction)
   - Loot & treasure system complete ✅ (item pickups, treasure chests)
   - Integration complete ✅ (GameInitializer loads sample data)
-- 📅 **Phase 4 (Weeks 7-8): Content & Polish** — Ready to Start
-  - Dungeons, bosses, quests, UI polish, performance optimization
+- ✅ **Phase 4 (Weeks 7-8): Content & Polish** — Complete
+  - Dungeons, bosses, quests, UI polish, performance optimization, achievements
+- 📅 **Phase 5 (Weeks 9-12): World Expansion** — Planned
+  - New regions, fast travel, exploration quests, reputation systems
+- 📅 **Phase 6 (Weeks 13-16): Advanced Systems** — Planned
+  - Crafting, factions, trading economy, combat specializations
+- 📅 **Phase 7 (Weeks 17-20): Live Ops & Polish** — Planned
+  - Seasonal events, accessibility improvements, balance tuning, post-launch content
 
-**Current Version:** Godot Alpha v0.4 (Phase 3: Complete)  
+**Current Version:** Godot Alpha v0.5 (Phase 4: Complete)  
 **Original Unity Version:** v3.1 (archived in legacy files)
 
 ## 🤝 Contributing

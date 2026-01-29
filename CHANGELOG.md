@@ -8,6 +8,42 @@ All notable changes and enhancements to this project.
 
 ---
 
+## [0.5.0] - Godot Alpha v0.5 (January 2026)
+
+### 🎯 Phase 4: Content & Polish - Complete
+
+This release completes Phase 4, delivering environmental systems, dungeons, bosses, UI polish, and achievements.
+
+#### 🆕 New Features (This Release)
+
+- Day/night cycle with time-based events
+- Weather system (clear, rain, snow, fog, storm)
+- Procedural dungeons with multiple room types and themes
+- Boss encounters with multi-phase mechanics
+- Achievement system with unlock notifications
+- UI polish: main menu, pause menu, character sheet, world map, settings
+
+#### 🔧 Technical Improvements
+
+- Performance tuning for 60 FPS target
+- Graphics settings options (quality, resolution, VSync)
+- EventBus signals for time, weather, dungeon, and achievement events
+
+#### 🎯 Phase 4 Complete
+
+All Phase 4 features are now implemented and integrated:
+- ✅ Day/night cycle with visual effects
+- ✅ Weather system affecting gameplay
+- ✅ Procedural dungeons with 3+ themes
+- ✅ Boss encounters with unique mechanics
+- ✅ Performance optimized (60 FPS target)
+- ✅ Complete UI suite with all menus
+- ✅ Achievement system tracking progress
+
+**Next:** Phase 5 - World Expansion (new regions, fast travel, exploration quests)
+
+---
+
 ## [0.4.0] - Godot Alpha v0.4 (January 2026)
 
 ### 🎉 Phase 3: Advanced Features - Complete
@@ -81,7 +117,7 @@ All Phase 3 features are now implemented and integrated:
 - ✅ Loot drops and treasure chests
 - ✅ All systems integrated and functional
 
-**Next:** Phase 4 - Content & Polish (Day/night cycle, weather, dungeons, bosses)
+**Next:** Phase 5 - World Expansion (new regions, fast travel, exploration quests)
 
 ---
 
@@ -280,18 +316,24 @@ This represents a fundamental shift in the project's technology stack, moving fr
 - HUD with health, stamina, XP, level
 - Combat integration and visual feedback
 
-**Phase 3: Advanced Features (🎯 In Progress)**
+**Phase 3: Advanced Features (✅ Complete)**
 - Inventory and equipment systems
 - Quest system
 - Dialogue system
-- Day/night cycle
-- Weather effects
 
-**Phase 4: Content & Polish (📅 Planned)**
+**Phase 4: Content & Polish (✅ Complete)**
+- Day/night cycle
+- Weather system
 - Procedural dungeons
 - Boss encounters
 - UI polish
 - Performance optimization
+- Achievement system
+
+**Phase 5: World Expansion (📅 Planned)**
+- New regions and fast travel
+- Exploration quest arcs
+- Reputation systems
 
 #### Legacy Unity Version
 

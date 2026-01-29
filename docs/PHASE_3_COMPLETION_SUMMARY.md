@@ -237,35 +237,32 @@ All documentation has been updated to reflect Phase 3 completion:
 
 ---
 
-## 🚀 What's Next: Phase 4
+## 🚀 What's Next: Phase 5-7
 
-Phase 4 is ready to begin with the following planned features:
+Phase 4 is complete. The next phases expand world content, deepen systems, and polish live operations.
 
 ### Planned Systems:
-1. **Day/Night Cycle** - Dynamic lighting and time-based events
-2. **Weather System** - Rain, snow, fog affecting gameplay
-3. **Procedural Dungeons** - Multi-floor dungeons with bosses
-4. **Boss Encounters** - Unique boss battles with mechanics
-5. **Performance Optimization** - LOD, object pooling, settings menu
-6. **UI Polish** - Main menu, pause menu, character sheet, world map
-7. **Achievement System** - Unlockable achievements
+1. **Phase 5: World Expansion** - New regions, fast travel, expanded quest arcs
+2. **Phase 6: Advanced Systems** - Crafting, factions, trading, combat specializations
+3. **Phase 7: Live Ops & Polish** - Seasonal events, balance tuning, accessibility
 
-**Estimated Time:** 5-7 days of focused development
+**Estimated Time:** ~12 weeks of focused development
+**Details:** See `docs/PHASE_5_6_7_ROADMAP.md`
 
 ---
 
 ## 🎯 Current State Summary
 
-**Middle-earth Adventure RPG - Godot Alpha v0.4**
+**Middle-earth Adventure RPG - Godot Alpha v0.5**
 
 ✅ **Phase 1:** Foundation - Complete  
 ✅ **Phase 2:** Core Systems - Complete  
 ✅ **Phase 3:** Advanced Features - Complete  
-🎯 **Phase 4:** Content & Polish - Ready to Start
+✅ **Phase 4:** Content & Polish - Complete
 
-**Completion:** ~85% of planned features  
+**Completion (Phases 1-4):** 100%  
 **Status:** Production-ready core gameplay with all RPG systems functional  
-**Next Milestone:** Phase 4 - Content & Polish
+**Next Milestone:** Phase 5 - World Expansion
 
 ---
 
