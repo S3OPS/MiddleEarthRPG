@@ -23,3 +23,11 @@
 # OS
 .DS_Store
 Thumbs.db
+
+# Godot
+.godot/
+*.import
+*.translation
+export_presets.cfg
+.mono/
+data_*/
