@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://gandalf001"]
+
+[ext_resource type="Script" path="res://scripts/components/npc_base.gd" id="1_npc_base"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_gandalf"]
+radius = 0.5
+height = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gandalf"]
+albedo_color = Color(0.8, 0.8, 0.85, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gandalf"]
+radius = 0.5
+height = 2.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_interaction"]
+radius = 3.0
+
+[node name="Gandalf" type="CharacterBody3D" groups=["npc"]]
+script = ExtResource("1_npc_base")
+npc_name = "Gandalf the Grey"
+dialogue_id = "gandalf_greeting"
+interaction_range = 3.0
+quest_to_give = "first_steps"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_gandalf")
+surface_material_override/0 = SubResource("StandardMaterial3D_gandalf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_gandalf")
+
+[node name="InteractionArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("SphereShape3D_interaction")
+
+[node name="InteractionPrompt" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+billboard = 1
+text = "Press E to talk"
+font_size = 24
+outline_size = 8

@@ -43,12 +43,13 @@ We've successfully migrated this project from Unity to Godot Engine. Learn more 
 - **Space**: Jump
 - **Left Mouse Button**: Attack
 - **Right Mouse Button**: Special ability (AOE attack, costs 30 stamina)
+- **E**: Interact with NPCs and objects
+- **I**: Toggle inventory
+- **J**: Toggle quest journal
 - **ESC**: Toggle mouse capture / Pause menu
 
-### Coming in Phase 3
-- **I**: Toggle inventory (scripts ready, UI pending)
+### Coming in Phase 4
 - **C**: Toggle character sheet (planned)
-- **J**: Toggle quest journal (scripts ready, UI pending)
 - **M**: Toggle map (planned)
 
 ## 🎯 Game Features
@@ -69,11 +70,10 @@ We've successfully migrated this project from Unity to Godot Engine. Learn more 
 - **Inventory System**: Collect and manage items and equipment ✅
 - **Equipment System**: Legendary weapons and armor with stat bonuses ✅
 - **Dialogue System**: Branching conversations with NPCs ✅
-- **UI Scripts**: Quest journal, Inventory panel, Dialogue panel (scripts complete, scene files pending)
-- **Integration**: Connecting UI systems to game world (in progress)
-- Loot drops from enemies (in progress)
-- NPC characters (in progress)
-- Treasure chests (in progress)
+- **UI Panels**: Quest journal, Inventory panel, Dialogue panel ✅
+- **NPC System**: Interactive NPCs (Gandalf, Legolas, Gimli, Guide) ✅
+- **Loot System**: Item drops from enemies and treasure chests ✅
+- **Game Integration**: All systems connected and functional ✅
 
 ### 🎯 Coming Soon (Phases 3-4)
 - **Enemy AI**: Smart pathfinding enemies with combat behaviors ✅ (Phase 2)
@@ -163,17 +163,19 @@ This project was originally built in Unity and has been successfully migrated to
   - Godot project structure, player movement, basic combat, character stats
 - ✅ **Phase 2 (Weeks 3-4): Core Systems** — Complete
   - Enemy AI with state machine, combat system, HUD, navigation
-- 🎯 **Phase 3 (Weeks 5-6): Advanced Features** — In Progress (70% complete)
+- ✅ **Phase 3 (Weeks 5-6): Advanced Features** — Complete
   - Quest system ✅, Dialogue system ✅, Inventory system ✅, Equipment system ✅
   - Sample data ✅ (5 quests, 15+ items, 5 dialogues)
   - Backend managers complete ✅ (QuestManager, InventoryManager, DialogueManager)
   - UI scripts complete ✅ (quest_journal.gd, inventory_panel.gd, dialogue_panel.gd)
-  - UI scene files pending (quest_journal.tscn, inventory_panel.tscn, dialogue_panel.tscn)
-  - Integration and polish pending
-- 📅 **Phase 4 (Weeks 7-8): Content & Polish** — Planned
+  - UI scene files complete ✅ (quest_journal.tscn, inventory_panel.tscn, dialogue_panel.tscn)
+  - NPC system complete ✅ (4 NPCs with interaction)
+  - Loot & treasure system complete ✅ (item pickups, treasure chests)
+  - Integration complete ✅ (GameInitializer loads sample data)
+- 📅 **Phase 4 (Weeks 7-8): Content & Polish** — Ready to Start
   - Dungeons, bosses, quests, UI polish, performance optimization
 
-**Current Version:** Godot Alpha v0.3 (Phase 3: 70% complete)  
+**Current Version:** Godot Alpha v0.4 (Phase 3: Complete)  
 **Original Unity Version:** v3.1 (archived in legacy files)
 
 ## 🤝 Contributing

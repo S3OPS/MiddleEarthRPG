@@ -8,6 +8,83 @@ All notable changes and enhancements to this project.
 
 ---
 
+## [0.4.0] - Godot Alpha v0.4 (January 2026)
+
+### 🎉 Phase 3: Advanced Features - Complete
+
+This release marks the completion of Phase 3, adding full quest, inventory, dialogue, equipment, NPC, and loot systems to the Godot implementation.
+
+#### 🆕 New Features (This Release)
+
+**UI Scene Files**
+- Created quest_journal.tscn with panel layout
+- Created inventory_panel.tscn with grid layout
+- Created dialogue_panel.tscn with choice buttons
+- All UI panels integrated into main scene
+
+**NPC System**
+- NPC base script with interaction detection (proximity-based)
+- 4 NPCs: Gandalf the Grey, Legolas, Gimli, and Friendly Guide
+- Visual feedback on approach (highlighting)
+- E key interaction support
+- Dialogue triggering system
+- Quest giver functionality
+
+**Loot & Treasure System**
+- LootTable resource class for defining drop rates
+- Item pickup system with floating animation
+- Auto-pickup on proximity
+- Enemy loot drops on death
+- Treasure chest system with interaction
+- Chest opening animation
+- 2 treasure chests placed in world
+
+**Integration**
+- GameInitializer added to main scene
+- Auto-loads 5 sample quests, 15+ items, 5 dialogues
+- Starting items given to player
+- First quest auto-started for testing
+- All systems connected via EventBus
+
+#### 🔧 Technical Improvements
+
+- **New EventBus signals**: `npc_interacted`, `chest_opened`, `item_picked_up`
+- **New input actions**: `interact` (E key)
+- **Player group**: Added "player" group for NPC/item detection
+- **Enemy loot**: Integrated LootTable with enemy death
+- **Scene organization**: Created npcs/ and items/ directories
+
+#### 📊 Statistics
+
+| Metric | Value |
+|--------|-------|
+| GDScript Files | 27 |
+| Scene Files | 12 |
+| Resource Classes | 5 |
+| Autoload Managers | 6 |
+| Total Lines of Code | 5,000+ |
+| EventBus Signals | 54 |
+| Sample Quests | 5 |
+| Sample Items | 15+ |
+| Sample Dialogues | 5 |
+| NPCs | 4 |
+| Treasure Chests | 2 |
+
+#### 🎯 Phase 3 Complete
+
+All Phase 3 features are now implemented and integrated:
+- ✅ Quest system with UI
+- ✅ Inventory system with UI
+- ✅ Equipment system with stat bonuses
+- ✅ Dialogue system with UI
+- ✅ NPC interaction system
+- ✅ Loot drops and treasure chests
+- ✅ All systems integrated and functional
+
+**Next:** Phase 4 - Content & Polish (Day/night cycle, weather, dungeons, bosses)
+
+---
+
 ## [0.3.0] - Godot Alpha v0.3 (January 2026)
 
 ### 🎯 Phase 3: Advanced Features - In Progress

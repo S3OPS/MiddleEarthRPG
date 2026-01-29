@@ -191,6 +191,21 @@ signal location_discovered(location_name: String)
 ## @param npc_id: Unique NPC identifier
 signal npc_talked(npc_id: String)
 
+## Emitted when player interacts with an NPC
+## @param npc_name: Name of the NPC
+signal npc_interacted(npc_name: String)
+
+## Emitted when a treasure chest is opened
+## @param chest_id: Unique chest identifier
+## @param loot_drops: Array of items dropped
+## @param gold_amount: Amount of gold
+signal chest_opened(chest_id: String, loot_drops: Array, gold_amount: int)
+
+## Emitted when an item is picked up from the world
+## @param item_id: Item identifier
+## @param quantity: Amount picked up
+signal item_picked_up(item_id: String, quantity: int)
+
 ## Emitted when player enters a new zone
 ## @param zone_name: Name of the zone
 signal zone_entered(zone_name: String)

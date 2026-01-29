@@ -16,6 +16,7 @@ enum State {
 @export var damage_amount: int = 10
 @export var experience_reward: int = 50
 @export var gold_reward: int = 25
+@export var loot_table: LootTable = null
 
 var current_health: float = 50.0
 var current_state: State = State.PATROL
@@ -225,7 +226,33 @@ func _die() -> void:
 	GameManager.increment_enemies_defeated()
 	GameManager.add_gold(gold_reward)
 	
+	# Drop loot
+	_drop_loot()
+	
 	# Death animation (fade out)
 	var tween = create_tween()
 	tween.tween_property(self, "scale", Vector3.ZERO, Constants.ENEMY_DEATH_FADE_DURATION)
 	tween.tween_callback(queue_free)
+
+
+func _drop_loot() -> void:
+	if not loot_table:
+		return
+	
+	# Get loot drops from loot table
+	var drops = loot_table.get_random_drops()
+	
+	# Load item pickup scene
+	var item_pickup_scene = preload("res://scenes/items/item_pickup.tscn")
+	
+	# Spawn item pickups
+	for drop in drops:
+		var pickup = item_pickup_scene.instantiate()
+		pickup.set_item(drop.item_id, drop.quantity)
+		
+		# Position slightly above death position with random offset
+		var offset = Vector3(randf_range(-0.5, 0.5), 0.5, randf_range(-0.5, 0.5))
+		pickup.global_position = global_position + offset
+		
+		# Add to scene
+		get_parent().add_child(pickup)
