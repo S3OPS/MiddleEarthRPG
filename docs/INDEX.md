@@ -2,314 +2,190 @@
 
 Welcome to the Middle-earth Adventure RPG documentation! This index will help you find the information you need.
 
----
-
-## 💍 The One Ring - Master Control Document
-
-**[THE_ONE_RING.md](THE_ONE_RING.md)** 💍 **START HERE FOR EVERYTHING!**
-- **Master roadmap and status dashboard**
-- Unified view of all initiatives (Optimize, Refactor, Modularize, Audit, Enhance)
-- Executive summary with project health score (8.2/10)
-- 4-week master plan from "production-ready" to "production-perfect"
-- Success metrics and progress tracking
-- Quick reference guide to all documentation
-
-**This is the single source of truth for project direction, priorities, and progress.**
+**⚠️ Migration Notice:** This project has been migrated from Unity to **Godot Engine 4.3+**. Documentation marked as "archived" refers to the original Unity implementation kept for reference.
 
 ---
 
-## 📚 Documentation Overview
+## 🚀 Getting Started (Godot Version)
 
-### For New Users
+**For players and beginners:**
 
-**Start here if you're new to the project:**
+1. **[README.md](../README.md)** - Project overview and quick start
+   - Current Godot implementation status
+   - Controls and game features
+   - Migration information
 
-0. **[BEGINNERS_GUIDE.md](BEGINNERS_GUIDE.md)** 🆕 **COMPLETE BEGINNER? START HERE!**
-   - Step-by-step installation for people who have never done this before
-   - How to download and install Unity Hub
-   - How to install Unity Editor
-   - How to open the project and play the game
-   - Troubleshooting common problems
-   - Full game controls reference
-
-0.5. **[ALTERNATIVE_ENGINES.md](ALTERNATIVE_ENGINES.md)** 🎮 **DON'T WANT TO USE UNITY?**
-   - Comprehensive guide to free alternatives (Godot, Unreal, etc.)
-   - Feature comparisons and recommendations
-   - Pros and cons of each engine
-   - Quick start guide for Godot
-   - Porting considerations
-
-1. **[README.md](../README.md)** - Project overview, features, and quick start
-   - Game features and controls
-   - One-command installation
-   - Quest guide
-   - System requirements
-
-2. **[SETUP.md](SETUP.md)** - Detailed installation and gameplay guide
-   - Installation instructions
-   - Gameplay walkthrough
-   - Tips and strategies
+2. **[BEGINNERS_GUIDE.md](BEGINNERS_GUIDE.md)** 🆕 **COMPLETE BEGINNER? START HERE!**
+   - Step-by-step Godot installation
+   - How to open and run the project
+   - Game controls and tips
    - Troubleshooting
 
-3. **[PLAYER_EXPERIENCE.md](PLAYER_EXPERIENCE.md)** - Visual gameplay walkthrough
-   - What you'll see when playing
-   - HUD examples
-   - Quest progression examples
-   - Immersion features
+3. **[SETUP.md](SETUP.md)** - Quick Godot setup guide
+   - Fast installation instructions
+   - Running the game
+   - Basic gameplay tips
 
-### For Developers
-
-**Start here if you're working on the code:**
-
-1. **[THE_ONE_RING.md](THE_ONE_RING.md)** 💍 **MASTER DOCUMENT!**
-   - Complete roadmap and status dashboard
-   - 4-week plan to excellence
-   - All initiatives unified in one place
-   - Quick reference to all docs
-
-2. **[REPOSITORY_STRUCTURE.md](REPOSITORY_STRUCTURE.md)** ⭐
-   - Complete codebase navigation guide
-   - Directory structure with descriptions
-   - File-by-file breakdown of all systems
-   - Architecture patterns and code statistics
-   - Quick reference for common tasks
-
-3. **[GAME_DESIGN.md](GAME_DESIGN.md)** - Technical design document
-   - Core system specifications
-   - Combat mechanics and formulas
-   - Quest design and objectives
-   - World design and locations
-   - Technical architecture
-
-4. **[IMPLEMENTATION_SUMMARY.md](IMPLEMENTATION_SUMMARY.md)** - Implementation details
-   - What was built (systems overview)
-   - Code statistics
-   - Quality assurance results
-   - Performance optimizations
-
-5. **[ENHANCEMENT_PLAN.md](ENHANCEMENT_PLAN.md)** ⭐
-   - Comprehensive enhancement roadmap
-   - Code quality initiatives (optimize, refactor, modularize, audit)
-   - 50+ enhancement ideas across 7 categories
-   - Priority framework (impact × effort matrix)
-   - 6-phase implementation roadmap
-   - Technical recommendations and risk assessment
-
-6. **[CODE_AUDIT.md](CODE_AUDIT.md)** ⭐ **CRITICAL!**
-   - Comprehensive code audit findings
-   - 46 identified issues across 4 categories
-   - Detailed security vulnerabilities
-   - Performance bottleneck analysis
-   - Specific code examples and fixes
-   - Priority matrix for all improvements
-
-7. **[NEXT_STEPS.md](NEXT_STEPS.md)** ⭐ **ACTION PLAN!**
-   - Step-by-step implementation roadmap
-   - 4-week phased approach
-   - Concrete code examples for each fix
-   - Quick wins (4 hours → 40% performance gain)
-   - Verification checklist
-   - Success metrics
-
-8. **[AUDIT_IMPLEMENTATION_SUMMARY.md](AUDIT_IMPLEMENTATION_SUMMARY.md)** ⭐
-   - Executive summary of audit work
-   - What was delivered (docs + code)
-   - Implementation status and metrics
-   - How to use this work
-   - Key recommendations and timeline
-   - Q&A for common questions
-
-9. **[PROBLEM_STATEMENT_MAPPING.md](PROBLEM_STATEMENT_MAPPING.md)** ⭐
-   - Maps requirements to enhancement plan sections
-   - Clear mapping of all code quality initiatives
-   - Feature category cross-references
-   - Quick navigation from requirements to implementation details
-
-### Version History
-
-- **[CHANGELOG.md](../CHANGELOG.md)** - Version history and feature additions
-  - v2.0 Enhanced Edition features
-  - v1.0 Initial release
-  - Future planned enhancements
+4. **[ALTERNATIVE_ENGINES.md](ALTERNATIVE_ENGINES.md)** 🎮 **MIGRATION STORY**
+   - Why we chose Godot
+   - Migration journey and progress
+   - Comparison with other engines
+   - Lessons learned
 
 ---
 
-## 🗂️ Document Categories
+## 🎮 For Developers
 
-### Game Systems Documentation
+**Working on the Godot implementation:**
 
-| System | Primary Docs | Details |
-|--------|--------------|---------|
-| **Combat** | GAME_DESIGN.md § 5 | Active combat, combos, crits, AOE abilities |
-| **Character Stats** | GAME_DESIGN.md § 1 | Health, stamina, XP, leveling |
-| **Equipment** | GAME_DESIGN.md § 6 | 5 rarity tiers, stat bonuses, legendary items |
-| **Quests** | GAME_DESIGN.md § 3-4 | 7 quests, objectives, rewards |
-| **Achievements** | GAME_DESIGN.md § 7 | 12 achievements, unlock conditions |
-| **Inventory** | GAME_DESIGN.md § 2 | Items, gold, stacking |
-| **Audio** | GAME_DESIGN.md § 8 | Procedural sound generation |
-| **Effects** | GAME_DESIGN.md § 9 | Particle systems, damage numbers |
-| **Minimap** | GAME_DESIGN.md § 10 | Top-down navigation |
-| **AI** | GAME_DESIGN.md (Enemy section) | Patrol, chase, flee behaviors |
+1. **[GAME_DESIGN.md](GAME_DESIGN.md)** - Core game design document
+   - Game mechanics and systems
+   - Combat formulas
+   - Quest and progression design
+   - (Engine-agnostic design principles)
 
-### Code Structure Documentation
+2. **[REPOSITORY_STRUCTURE.md](REPOSITORY_STRUCTURE.md)** - Codebase navigation
+   - Godot project structure
+   - Scene organization
+   - Script architecture
+   - Asset management
 
-| Topic | Document | Section |
-|-------|----------|---------|
-| **Directory Layout** | REPOSITORY_STRUCTURE.md | Directory Structure |
-| **File Descriptions** | REPOSITORY_STRUCTURE.md | Core Systems Overview |
-| **Architecture** | REPOSITORY_STRUCTURE.md | Architecture Patterns |
-| **Adding Features** | REPOSITORY_STRUCTURE.md | Quick Reference |
-| **Bootstrap System** | REPOSITORY_STRUCTURE.md | Bootstrap System |
-| **Code Statistics** | IMPLEMENTATION_SUMMARY.md | Statistics |
+3. **[PLAYER_EXPERIENCE.md](PLAYER_EXPERIENCE.md)** - Gameplay walkthrough
+   - Visual examples
+   - Player journey
+   - UI and interaction flows
 
-### Enhancement Documentation
+---
 
-| Topic | Document | Section |
-|-------|----------|---------|
-| **Requirement Mapping** | PROBLEM_STATEMENT_MAPPING.md | All sections |
-| **Code Audit Findings** | CODE_AUDIT.md | All categories (46 issues) |
-| **Implementation Plan** | NEXT_STEPS.md | 4-week roadmap |
-| **Code Quality** | ENHANCEMENT_PLAN.md | Code Quality Initiatives |
-| **Enhancement Ideas** | ENHANCEMENT_PLAN.md | Enhancement Categories (7 categories) |
-| **Prioritization** | ENHANCEMENT_PLAN.md | Priority Framework |
-| **Roadmap** | ENHANCEMENT_PLAN.md | Implementation Roadmap (6 phases) |
-| **Technical Improvements** | ENHANCEMENT_PLAN.md | Technical Recommendations |
-| **Risk Analysis** | ENHANCEMENT_PLAN.md | Risk Assessment |
+## 📚 Archived Unity Documentation
+
+**The following documents describe the original Unity implementation (v3.1) and are kept for reference:**
+
+### Unity Version Archive
+
+1. **[THE_ONE_RING.md](THE_ONE_RING.md)** 💍 **ARCHIVED**
+   - Unity version master roadmap
+   - Unity implementation status (v3.1)
+   - Historical project tracking
+
+2. **[CODE_AUDIT.md](CODE_AUDIT.md)** ⭐ **ARCHIVED**
+   - Unity C# code quality audit
+   - Optimization opportunities (Unity-specific)
+   - Refactoring recommendations (Unity-specific)
+
+3. **[ENHANCEMENT_PLAN.md](ENHANCEMENT_PLAN.md)** **ARCHIVED**
+   - Unity enhancement roadmap
+   - 50+ Unity-specific improvements
+   - Unity architecture recommendations
+
+4. **[NEXT_STEPS.md](NEXT_STEPS.md)** **ARCHIVED**
+   - Unity implementation roadmap
+   - 4-week Unity improvement plan
+   - Unity-specific action items
+
+5. **[OPTIMIZATION_IMPLEMENTATION_SUMMARY.md](OPTIMIZATION_IMPLEMENTATION_SUMMARY.md)** **ARCHIVED**
+   - Unity v2.1 performance improvements
+   - Unity-specific optimization results
+
+6. **[AUDIT_IMPLEMENTATION_SUMMARY.md](AUDIT_IMPLEMENTATION_SUMMARY.md)** **ARCHIVED**
+   - Unity audit work summary
+   - Unity code improvements delivered
+
+7. **[IMPLEMENTATION_SUMMARY.md](IMPLEMENTATION_SUMMARY.md)** **ARCHIVED**
+   - Unity implementation details
+   - Unity code statistics
+   - Unity systems overview
+
+8. **[PROBLEM_STATEMENT_MAPPING.md](PROBLEM_STATEMENT_MAPPING.md)** **ARCHIVED**
+   - Unity requirements mapping
+   - Unity enhancement plan sections
+
+9. **[QUICK_START_AUDIT.md](QUICK_START_AUDIT.md)** **ARCHIVED**
+   - Unity quick start audit results
+
+### Version History (Unity)
+
+- **[CHANGELOG.md](../CHANGELOG.md)** - Unity version history (archived)
+  - v3.1 Post-Launch phase
+  - v3.0 Public Beta Launch
+  - v2.6 UI/UX Polish
+  - v2.5 Technical Systems
+  - v2.4 Content & Narrative
+  - v2.3 World Expansion
+  - Earlier versions
 
 ---
 
 ## 🎯 Quick Navigation by Goal
 
 ### "I want to understand what the game is about"
-→ Read: **README.md** then **PLAYER_EXPERIENCE.md**
+→ Read: **[README.md](../README.md)** then **[PLAYER_EXPERIENCE.md](PLAYER_EXPERIENCE.md)**
 
-### "I've never installed anything like this before"
-→ Read: **BEGINNERS_GUIDE.md** - Complete step-by-step guide for absolute beginners
+### "I've never used Godot before"
+→ Read: **[BEGINNERS_GUIDE.md](BEGINNERS_GUIDE.md)** - Complete step-by-step guide for absolute beginners
 
-### "I don't want to use Unity / Looking for alternatives"
-→ Read: **ALTERNATIVE_ENGINES.md** - Comprehensive guide to free game engines like Godot and Unreal
+### "I want to know why we chose Godot"
+→ Read: **[ALTERNATIVE_ENGINES.md](ALTERNATIVE_ENGINES.md)** - Migration story and engine comparison
 
 ### "I want to play the game"
-→ Read: **SETUP.md** (Installation & Gameplay Guide)
+→ Read: **[SETUP.md](SETUP.md)** - Quick installation guide
 
-### "I want to complete all quests"
-→ Read: **README.md** (Quest Guide) or **GAME_DESIGN.md** (Featured Quests)
+### "I want to understand the game design"
+→ Read: **[GAME_DESIGN.md](GAME_DESIGN.md)** - Core mechanics and systems
 
 ### "I want to understand the codebase"
-→ Read: **REPOSITORY_STRUCTURE.md** then **GAME_DESIGN.md**
+→ Read: **[REPOSITORY_STRUCTURE.md](REPOSITORY_STRUCTURE.md)** for Godot project structure
 
-### "I want to add a new quest"
-→ Read: **REPOSITORY_STRUCTURE.md** (Quick Reference) then modify `QuestManager.cs`
-
-### "I want to understand problem statement requirements"
-→ Read: **PROBLEM_STATEMENT_MAPPING.md** to see how each requirement is addressed
+### "I want to understand the game design"
+→ Read: **[GAME_DESIGN.md](GAME_DESIGN.md)** - Engine-agnostic game design principles
 
 ### "I want to add a new feature"
-→ Read: **ENHANCEMENT_PLAN.md** for ideas, **REPOSITORY_STRUCTURE.md** for implementation guidance
+→ Read: **[REPOSITORY_STRUCTURE.md](REPOSITORY_STRUCTURE.md)** for Godot architecture, then work in `scenes/` and `scripts/`
 
-### "I want to modify game balance"
-→ Edit: `Assets/StreamingAssets/rpg_config.json` or constants in C# files
-
-### "I want to build the game"
-→ Read: **REPOSITORY_STRUCTURE.md** (Build Information)
-
-### "I want to understand the architecture"
-→ Read: **REPOSITORY_STRUCTURE.md** (Architecture Patterns) and **GAME_DESIGN.md** (Technical Architecture)
-
-### "I want to plan future development"
-→ Read: **ENHANCEMENT_PLAN.md** for comprehensive roadmap
-
-### "I want to improve code quality NOW"
-→ Read: **AUDIT_IMPLEMENTATION_SUMMARY.md** (overview), then **CODE_AUDIT.md** (details)
-
-### "I want to understand what was delivered"
-→ Read: **AUDIT_IMPLEMENTATION_SUMMARY.md** - Complete summary of audit work
-
-### "I want to start implementing improvements"
-→ Read: **NEXT_STEPS.md** - Follow Phase 1 for quick wins
-
-### "I want to fix performance issues"
-→ Read: **CODE_AUDIT.md** (Section 1: Optimize) then **NEXT_STEPS.md** (Phase 1)
-
-### "I want to make the code more maintainable"
-→ Read: **CODE_AUDIT.md** (Section 2: Refactor) then **NEXT_STEPS.md** (Phase 2)
+### "I want to learn about the Unity version"
+→ Read: Archived docs marked **ARCHIVED** in the documentation list above
 
 ---
 
-## 📖 Document Details
+## 📊 Documentation Statistics
 
-### REPOSITORY_STRUCTURE.md (NEW!)
-**Purpose:** Navigate and understand the codebase  
-**Length:** ~600 lines  
-**Best for:** Developers, contributors, code reviewers  
-**Key sections:**
-- Complete directory tree with descriptions
-- All 23 C# scripts explained
-- Architecture patterns (Singleton, Auto-init, Component-based)
-- Quick reference for adding features
-- Code statistics and quality metrics
+### Active Godot Documentation
+- **Total Documents:** 5 active guides
+- **Focus:** Getting started, setup, and migration story
+- **Status:** Up-to-date for Godot 4.3+
 
-### ENHANCEMENT_PLAN.md (NEW!)
-**Purpose:** Future development roadmap  
-**Length:** ~1,000 lines  
-**Best for:** Product managers, developers, stakeholders  
-**Key sections:**
-- Current state assessment (10 systems, 100% complete)
-- Code quality initiatives (optimize, refactor, modularize, audit)
-- 7 enhancement categories with 50+ ideas
-- Priority matrix (High/Low Impact × Effort)
-- 6-phase implementation roadmap
-- Technical recommendations
-- Risk assessment and success metrics
+### Archived Unity Documentation
+- **Total Documents:** 10+ archived references
+- **Version:** Unity v3.1 (archived)
+- **Purpose:** Historical reference and learning resource
+- **Status:** Preserved but not actively maintained
 
-### AUDIT_IMPLEMENTATION_SUMMARY.md (START HERE!)
-**Purpose:** Executive summary of audit work and deliverables  
-**Length:** ~500 lines  
-**Best for:** Everyone - Start here for overview  
-**Key sections:**
-- What was delivered (docs + code)
-- Implementation status (completed vs. ready)
-- Metrics & impact (before/after/target)
-- How to use this work (4 hours to 4 weeks)
-- Key recommendations (P0/P1/P2)
-- Timeline summary and next actions
-- Q&A for common questions
+---
 
-### CODE_AUDIT.md (CRITICAL!)
-**Purpose:** Comprehensive code quality audit  
-**Length:** ~1,100 lines  
-**Best for:** Developers, technical leads, code reviewers  
-**Key sections:**
-- 46 identified issues across 4 categories
-- Performance bottlenecks (16 issues)
-- Refactoring needs (12 issues)
-- Modularization opportunities (8 issues)
-- Security vulnerabilities (10 issues)
-- Specific code examples with before/after
-- Priority matrix (P0, P1, P2)
-- Quick wins section (4 hours of work)
+## 🔄 Migration Timeline
 
-### NEXT_STEPS.md (ACTION PLAN!)
-**Purpose:** Step-by-step implementation guide  
-**Length:** ~800 lines  
-**Best for:** Developers implementing improvements  
-**Key sections:**
-- 4-week phased roadmap
-- Day-by-day task breakdown
-- Concrete code examples for every fix
-- Phase 1: Quick wins (1 week, immediate value)
-- Phase 2: Core refactoring (2 weeks)
-- Phase 3: Advanced modularization (1 week)
-- Verification checklist
-- Success metrics (before/after)
+- **January 2026:** Migration from Unity to Godot initiated
+- **Phase 1 Complete:** Foundation with player, combat, stats, save system
+- **Phase 2 In Progress:** Core systems (AI, inventory, quests, UI)
+- **Phases 3-4 Planned:** Advanced features and content polish
 
-### PROBLEM_STATEMENT_MAPPING.md (NEW!)
-**Purpose:** Map requirements to implementation sections  
-**Length:** ~200 lines  
-**Best for:** Stakeholders, project managers, developers  
-**Key sections:**
-- Code quality initiatives mapping (items 1-4, 6-9)
-- Feature enhancement categories mapping (items 5.A-F)
+For detailed migration progress, see **[ALTERNATIVE_ENGINES.md](ALTERNATIVE_ENGINES.md)**.
+
+---
+
+## 📝 Contributing to Documentation
+
+The documentation is now focused on the **Godot implementation**. When contributing:
+
+1. **For Godot docs:** Update existing guides or create new ones in `docs/`
+2. **For Unity reference:** Do not modify archived docs unless correcting errors
+3. **For game design:** Update engine-agnostic design documents
+
+---
+
+**Last Updated:** January 2026 - Post-Godot Migration  
+**Active Version:** Godot 4.3+  
+**Archived Version:** Unity v3.1
 - Direct links to relevant enhancement plan sections
 - Comprehensive checklist of all requirements
 
