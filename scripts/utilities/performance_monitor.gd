@@ -4,6 +4,7 @@ extends Node
 
 var _fps_history: Array[float] = []
 var _fps_history_size: int = 60  # 1 second at 60fps
+var _fps_history_index: int = 0
 var _frame_time_history: Array[float] = []
 
 # Cached metrics
@@ -26,13 +27,13 @@ func _update_metrics(delta: float) -> void:
 	var current_fps = Engine.get_frames_per_second()
 	
 	# Add to history
-	_fps_history.append(current_fps)
-	_frame_time_history.append(delta)
-	
-	# Maintain history size
-	if _fps_history.size() > _fps_history_size:
-		_fps_history.pop_front()
-		_frame_time_history.pop_front()
+	if _fps_history.size() < _fps_history_size:
+		_fps_history.append(current_fps)
+		_frame_time_history.append(delta)
+	else:
+		_fps_history[_fps_history_index] = current_fps
+		_frame_time_history[_fps_history_index] = delta
+		_fps_history_index = (_fps_history_index + 1) % _fps_history_size
 	
 	# Calculate metrics
 	if _fps_history.size() > 0:
