@@ -9,9 +9,6 @@ const MAX_INVENTORY_SIZE = 100
 var inventory: Dictionary = {}
 var equipped_items: Dictionary = {}  # slot_name -> item_id
 
-# Equipment slots
-enum EquipmentSlot { WEAPON, ARMOR, ACCESSORY }
-
 func _ready() -> void:
 	# Connect to relevant events
 	EventBus.item_rewarded.connect(_on_item_rewarded)
@@ -23,8 +20,8 @@ func add_item(item: InventoryItem, quantity: int = 1) -> bool:
 		push_error("Invalid item or quantity")
 		return false
 	
-	# Check if inventory is full (for non-stackable items)
-	if not item.stackable and inventory.size() >= MAX_INVENTORY_SIZE:
+	# Check if inventory has space for new unique items
+	if not inventory.has(item.item_id) and inventory.size() >= MAX_INVENTORY_SIZE:
 		EventBus.inventory_full.emit()
 		EventBus.show_notification("Inventory is full!", "warning")
 		return false
@@ -64,6 +61,12 @@ func remove_item(item_id: String, quantity: int = 1) -> bool:
 	var item_data = inventory[item_id]
 	if item_data["quantity"] < quantity:
 		return false
+	
+	# If item is equipped, unequip it first
+	for slot_name in equipped_items:
+		if equipped_items[slot_name] == item_id:
+			unequip_item(slot_name)
+			break
 	
 	item_data["quantity"] -= quantity
 	
@@ -161,13 +164,15 @@ func unequip_item(slot_name: String) -> bool:
 
 ## Get equipment slot name for an item
 func _get_equipment_slot_name(item: InventoryItem) -> String:
-	# Simple slot determination based on item properties
-	if item.attack_bonus > 0 and item.defense_bonus == 0:
-		return "weapon"
-	elif item.defense_bonus > 0:
-		return "armor"
-	else:
-		return "accessory"
+	match item.equipment_slot:
+		InventoryItem.EquipmentSlot.WEAPON:
+			return "weapon"
+		InventoryItem.EquipmentSlot.ARMOR:
+			return "armor"
+		InventoryItem.EquipmentSlot.ACCESSORY:
+			return "accessory"
+		_:
+			return "accessory"
 
 ## Apply or remove equipment bonuses
 func _apply_equipment_bonuses(item: InventoryItem, apply: bool) -> void:
@@ -212,8 +217,16 @@ func get_equipped_item(slot_name: String) -> InventoryItem:
 
 ## Handle item rewards from quests
 func _on_item_rewarded(item_id: String) -> void:
-	# In a real implementation, you'd load the item from a database
-	# For now, we'll create a placeholder
+	# Try to get item from GameInitializer's database
+	var game_init = get_tree().root.get_node_or_null("GameInitializer")
+	if game_init and game_init.has_method("get_item"):
+		var item = game_init.get_item(item_id)
+		if item:
+			add_item(item, 1)
+			return
+	
+	# Fallback: Create a placeholder if database is not available
+	push_warning("Item database not found, creating placeholder for: " + item_id)
 	var item = InventoryItem.new()
 	item.item_id = item_id
 	item.item_name = "Quest Reward"
@@ -222,5 +235,9 @@ func _on_item_rewarded(item_id: String) -> void:
 
 ## Clear inventory
 func clear_inventory() -> void:
+	# Unequip all items first to remove bonuses
+	for slot_name in equipped_items.keys():
+		unequip_item(slot_name)
+	
 	inventory.clear()
 	equipped_items.clear()

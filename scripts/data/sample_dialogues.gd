@@ -46,7 +46,7 @@ static func create_sample_dialogues() -> Dictionary:
 			"next": -1
 		}
 	]
-	gandalf_dialogue._parse_lines_data()
+
 	dialogues[gandalf_dialogue.dialogue_id] = gandalf_dialogue
 	
 	# Legolas dialogue
@@ -79,7 +79,7 @@ static func create_sample_dialogues() -> Dictionary:
 			"next": -1
 		}
 	]
-	legolas_dialogue._parse_lines_data()
+
 	dialogues[legolas_dialogue.dialogue_id] = legolas_dialogue
 	
 	# Gimli dialogue
@@ -112,7 +112,7 @@ static func create_sample_dialogues() -> Dictionary:
 			"next": -1
 		}
 	]
-	gimli_dialogue._parse_lines_data()
+
 	dialogues[gimli_dialogue.dialogue_id] = gimli_dialogue
 	
 	# Merchant dialogue
@@ -141,7 +141,7 @@ static func create_sample_dialogues() -> Dictionary:
 			"next": -1
 		}
 	]
-	merchant_dialogue._parse_lines_data()
+
 	dialogues[merchant_dialogue.dialogue_id] = merchant_dialogue
 	
 	# Tutorial NPC
@@ -176,7 +176,7 @@ static func create_sample_dialogues() -> Dictionary:
 			"next": -1
 		}
 	]
-	tutorial_dialogue._parse_lines_data()
+
 	dialogues[tutorial_dialogue.dialogue_id] = tutorial_dialogue
 	
 	return dialogues

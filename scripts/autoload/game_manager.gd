@@ -154,7 +154,7 @@ func remove_gold(amount: int) -> bool:
 func add_experience(amount: int) -> void:
 	if not player_stats or amount <= 0:
 		return
-	player_stats.add_experience(amount)
+	player_stats.gain_experience(amount)
 
 
 ## Get formatted play time as HH:MM:SS

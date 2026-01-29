@@ -5,6 +5,7 @@ class_name InventoryItem
 
 enum ItemType { CONSUMABLE, EQUIPMENT, QUEST_ITEM, MATERIAL, MISC }
 enum Rarity { COMMON, UNCOMMON, RARE, EPIC, LEGENDARY }
+enum EquipmentSlot { WEAPON, ARMOR, ACCESSORY }
 
 ## Item identification
 @export var item_id: String = ""
@@ -14,6 +15,7 @@ enum Rarity { COMMON, UNCOMMON, RARE, EPIC, LEGENDARY }
 ## Item properties
 @export var type: ItemType = ItemType.MISC
 @export var rarity: Rarity = Rarity.COMMON
+@export var equipment_slot: EquipmentSlot = EquipmentSlot.WEAPON  # For equipment items
 @export var icon_path: String = ""
 @export var stackable: bool = true
 @export var max_stack_size: int = 99

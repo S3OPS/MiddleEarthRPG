@@ -22,13 +22,18 @@ class DialogueChoice:
 @export var npc_name: String = ""
 
 ## Dialogue lines - stored as dictionaries for export
-@export var lines_data: Array[Dictionary] = []
+## NOTE: After setting lines_data, you must call _parse_lines_data() to populate the lines array
+@export var lines_data: Array[Dictionary] = []:
+	set(value):
+		lines_data = value
+		_parse_lines_data()
 
 var lines: Array[DialogueLine] = []
 
-## Initialize dialogue from exported data
+## Initialize dialogue
 func _init() -> void:
-	_parse_lines_data()
+	if not lines_data.is_empty():
+		_parse_lines_data()
 
 ## Parse exported line data into DialogueLine objects
 func _parse_lines_data() -> void:

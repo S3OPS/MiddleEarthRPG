@@ -49,6 +49,7 @@ static func create_sample_items() -> Dictionary:
 	iron_sword.item_name = "Iron Sword"
 	iron_sword.description = "A basic iron sword. Reliable and sturdy."
 	iron_sword.type = InventoryItem.ItemType.EQUIPMENT
+	iron_sword.equipment_slot = InventoryItem.EquipmentSlot.WEAPON
 	iron_sword.rarity = InventoryItem.Rarity.COMMON
 	iron_sword.stackable = false
 	iron_sword.value = 50
@@ -60,6 +61,7 @@ static func create_sample_items() -> Dictionary:
 	steel_sword.item_name = "Steel Sword"
 	steel_sword.description = "A well-crafted steel sword with a sharp edge."
 	steel_sword.type = InventoryItem.ItemType.EQUIPMENT
+	steel_sword.equipment_slot = InventoryItem.EquipmentSlot.WEAPON
 	steel_sword.rarity = InventoryItem.Rarity.UNCOMMON
 	steel_sword.stackable = false
 	steel_sword.value = 150
@@ -71,6 +73,7 @@ static func create_sample_items() -> Dictionary:
 	elven_blade.item_name = "Elven Blade"
 	elven_blade.description = "A masterfully crafted blade by the elves of Rivendell."
 	elven_blade.type = InventoryItem.ItemType.EQUIPMENT
+	elven_blade.equipment_slot = InventoryItem.EquipmentSlot.WEAPON
 	elven_blade.rarity = InventoryItem.Rarity.RARE
 	elven_blade.stackable = false
 	elven_blade.value = 500
@@ -83,6 +86,7 @@ static func create_sample_items() -> Dictionary:
 	anduril.item_name = "Andúril, Flame of the West"
 	anduril.description = "The legendary sword reforged from the shards of Narsil."
 	anduril.type = InventoryItem.ItemType.EQUIPMENT
+	anduril.equipment_slot = InventoryItem.EquipmentSlot.WEAPON
 	anduril.rarity = InventoryItem.Rarity.LEGENDARY
 	anduril.stackable = false
 	anduril.value = 2000
@@ -97,6 +101,7 @@ static func create_sample_items() -> Dictionary:
 	leather_armor.item_name = "Leather Armor"
 	leather_armor.description = "Basic leather protection."
 	leather_armor.type = InventoryItem.ItemType.EQUIPMENT
+	leather_armor.equipment_slot = InventoryItem.EquipmentSlot.ARMOR
 	leather_armor.rarity = InventoryItem.Rarity.COMMON
 	leather_armor.stackable = false
 	leather_armor.value = 40
@@ -108,6 +113,7 @@ static func create_sample_items() -> Dictionary:
 	chainmail.item_name = "Chainmail Armor"
 	chainmail.description = "Interlocking metal rings provide solid defense."
 	chainmail.type = InventoryItem.ItemType.EQUIPMENT
+	chainmail.equipment_slot = InventoryItem.EquipmentSlot.ARMOR
 	chainmail.rarity = InventoryItem.Rarity.UNCOMMON
 	chainmail.stackable = false
 	chainmail.value = 120
@@ -119,6 +125,7 @@ static func create_sample_items() -> Dictionary:
 	mithril_coat.item_name = "Mithril Coat"
 	mithril_coat.description = "A legendary armor made of the precious mithril. Light yet impenetrable."
 	mithril_coat.type = InventoryItem.ItemType.EQUIPMENT
+	mithril_coat.equipment_slot = InventoryItem.EquipmentSlot.ARMOR
 	mithril_coat.rarity = InventoryItem.Rarity.LEGENDARY
 	mithril_coat.stackable = false
 	mithril_coat.value = 3000
@@ -132,6 +139,7 @@ static func create_sample_items() -> Dictionary:
 	ring_of_power.item_name = "Ring of Power"
 	ring_of_power.description = "A mysterious ring that grants great power to its wearer."
 	ring_of_power.type = InventoryItem.ItemType.EQUIPMENT
+	ring_of_power.equipment_slot = InventoryItem.EquipmentSlot.ACCESSORY
 	ring_of_power.rarity = InventoryItem.Rarity.EPIC
 	ring_of_power.stackable = false
 	ring_of_power.value = 1000
@@ -157,6 +165,7 @@ static func create_sample_items() -> Dictionary:
 	wizard_staff.item_name = "Wizard's Staff"
 	wizard_staff.description = "A staff imbued with magical power, gifted by Gandalf."
 	wizard_staff.type = InventoryItem.ItemType.EQUIPMENT
+	wizard_staff.equipment_slot = InventoryItem.EquipmentSlot.WEAPON
 	wizard_staff.rarity = InventoryItem.Rarity.EPIC
 	wizard_staff.stackable = false
 	wizard_staff.value = 800

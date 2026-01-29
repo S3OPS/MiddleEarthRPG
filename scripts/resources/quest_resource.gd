@@ -45,12 +45,17 @@ func update_objective(objective_index: int, progress: int) -> void:
 	if objective_index < 0 or objective_index >= objectives.size():
 		return
 	
+	var obj = objectives[objective_index]
+	var was_completed = obj["current"] >= obj["required"]
+	
 	objectives[objective_index]["current"] = min(
 		objectives[objective_index]["current"] + progress,
 		objectives[objective_index]["required"]
 	)
 	
-	if objectives[objective_index]["current"] >= objectives[objective_index]["required"]:
+	# Only increment counter when objective transitions from incomplete to complete
+	var is_now_completed = objectives[objective_index]["current"] >= objectives[objective_index]["required"]
+	if is_now_completed and not was_completed:
 		objectives_completed += 1
 
 ## Get objective description string
