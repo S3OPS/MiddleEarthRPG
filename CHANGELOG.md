@@ -2,7 +2,64 @@
 
 All notable changes and enhancements to this project.
 
-## [3.1.0] - Post-Launch Phase (In Progress - January 28, 2026)
+---
+
+## 🎮 Migration to Godot Engine (January 2026)
+
+### Major Platform Change
+
+**The project has been migrated from Unity to Godot Engine 4.3+**
+
+This represents a fundamental shift in the project's technology stack, moving from a proprietary engine to a fully open-source solution.
+
+#### Why Godot?
+- ✅ 100% free and open-source (MIT license)
+- ✅ No accounts, subscriptions, or revenue sharing required
+- ✅ Lightweight (~80 MB vs Unity's 3+ GB)
+- ✅ Excellent 3D capabilities with Vulkan renderer
+- ✅ Active community and ethical governance
+
+#### Migration Status
+
+**Phase 1: Foundation (✅ Complete)**
+- Godot project structure created
+- Player movement, camera, and controls
+- Combat system (basic attack + special AOE)
+- Character stats and level progression
+- Save/load system (5 slots)
+- Event bus architecture
+- Game constants ported from Unity
+
+**Phase 2: Core Systems (🎯 In Progress)**
+- Enemy AI with pathfinding
+- Enhanced combat with effects
+- Inventory and equipment
+- Quest system
+- Complete UI implementation
+
+**Phases 3-4: Advanced Features & Polish (📅 Planned)**
+- All remaining Unity features
+- Content expansion
+- Performance optimization
+
+#### Legacy Unity Version
+
+The Unity implementation (v3.1) is preserved in the `Assets/` folder for reference:
+- Complete Unity C# codebase
+- All Unity project settings
+- Build tools and configurations
+
+See [docs/ALTERNATIVE_ENGINES.md](docs/ALTERNATIVE_ENGINES.md) for the complete migration story.
+
+---
+
+## Unity Version History (Archived)
+
+**The following versions refer to the archived Unity implementation.**
+
+---
+
+## [3.1.0] - Unity Post-Launch Phase (Archived - January 28, 2026)
 
 ### 🎯 Phase 10: Post-Launch Enhancements & Community Feedback
 
