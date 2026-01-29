@@ -4,6 +4,91 @@ All notable changes and enhancements to this project.
 
 ---
 
+## 🎮 Godot Engine Version History
+
+---
+
+## [0.2.0] - Godot Alpha v0.2 (January 29, 2026)
+
+### ✅ Phase 2: Core Systems Complete
+
+This release marks the completion of Phase 2, bringing enemy AI and a functional HUD to the Godot implementation.
+
+#### 🆕 New Features
+
+**Enemy AI System**
+- 5-state AI state machine: Patrol, Chase, Attack, Flee, Dead
+- NavigationAgent3D pathfinding for smooth enemy movement
+- Dynamic state transitions based on player proximity and enemy health
+- Flee behavior when health drops below 20%
+- Visual feedback: enemies flash red when damaged
+- Death animation with scale-down effect
+- XP rewards on enemy defeat
+
+**HUD System**
+- Real-time health bar with numeric display
+- Real-time stamina bar with numeric display
+- XP progress bar showing progress to next level
+- Level display showing current player level
+- Event-driven updates via EventBus signals
+
+**Game World**
+- 100x100 terrain plane with grass material
+- NavigationRegion3D for AI pathfinding
+- Directional sun lighting with shadows
+- 3 enemy spawn points with Orc enemies
+- Player spawn point
+
+#### 🔧 Technical Improvements
+
+- **Constants-driven design**: All gameplay values centralized in `constants.gd`
+- **Signal-based architecture**: 40+ signals in EventBus for decoupled communication
+- **Type hints**: Full type annotations on all functions
+- **Documentation**: Doc comments on all classes and public methods
+
+#### 📊 Statistics
+
+| Metric | Value |
+|--------|-------|
+| GDScript Files | 9 |
+| Scene Files | 4 |
+| Total Lines of Code | 1,373 |
+| Constants Defined | 30+ |
+| EventBus Signals | 40+ |
+| AI States | 5 |
+| Save Slots | 5 |
+
+---
+
+## [0.1.0] - Godot Alpha v0.1 (January 2026)
+
+### ✅ Phase 1: Foundation Complete
+
+Initial Godot implementation with core gameplay systems.
+
+#### 🆕 Features
+
+**Player Character**
+- WASD movement with mouse camera control
+- Sprint system (Shift key, drains stamina)
+- Jump mechanics (Space key)
+- Basic attack (Left-click, 0.5s cooldown)
+- Special AOE attack (Right-click, 5s cooldown, 30 stamina cost)
+
+**Character Progression**
+- Health system (100 base, +20 per level)
+- Stamina system (100 base, +10 per level, auto-regeneration)
+- XP and leveling (scales by 1.5x per level)
+- Stats: Strength, Wisdom, Agility (+2 per level)
+
+**Core Systems**
+- GameManager: Game state and statistics tracking
+- EventBus: Signal-based event communication
+- SaveManager: JSON-based save/load with 5 slots
+- Constants: Centralized game balance values
+
+---
+
 ## 🎮 Migration to Godot Engine (January 2026)
 
 ### Major Platform Change
@@ -19,7 +104,7 @@ This represents a fundamental shift in the project's technology stack, moving fr
 - ✅ Excellent 3D capabilities with Vulkan renderer
 - ✅ Active community and ethical governance
 
-#### Migration Status
+#### Migration Roadmap
 
 **Phase 1: Foundation (✅ Complete)**
 - Godot project structure created
@@ -30,16 +115,23 @@ This represents a fundamental shift in the project's technology stack, moving fr
 - Event bus architecture
 - Game constants ported from Unity
 
-**Phase 2: Core Systems (🎯 In Progress)**
-- Enemy AI with pathfinding
-- Enhanced combat with effects
-- Inventory and equipment
-- Quest system
-- Complete UI implementation
+**Phase 2: Core Systems (✅ Complete)**
+- Enemy AI with 5-state machine
+- NavigationAgent3D pathfinding
+- HUD with health, stamina, XP, level
+- Combat integration and visual feedback
 
-**Phases 3-4: Advanced Features & Polish (📅 Planned)**
-- All remaining Unity features
-- Content expansion
+**Phase 3: Advanced Features (🎯 In Progress)**
+- Inventory and equipment systems
+- Quest system
+- Dialogue system
+- Day/night cycle
+- Weather effects
+
+**Phase 4: Content & Polish (📅 Planned)**
+- Procedural dungeons
+- Boss encounters
+- UI polish
 - Performance optimization
 
 #### Legacy Unity Version

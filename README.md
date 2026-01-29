@@ -122,14 +122,14 @@ This project was originally built in Unity and has been successfully migrated to
 
 - ✅ **Phase 1 (Weeks 1-2): Foundation** — Complete
   - Godot project structure, player movement, basic combat, character stats
-- 🎯 **Phase 2 (Weeks 3-4): Core Systems** — In Progress
-  - Enemy AI, enhanced combat, inventory, quest system, UI
-- 📅 **Phase 3 (Weeks 5-6): Advanced Features** — Planned
-  - Dialogue, equipment, achievements, world expansion (day/night, weather)
+- ✅ **Phase 2 (Weeks 3-4): Core Systems** — Complete
+  - Enemy AI with state machine, combat system, HUD, navigation
+- 🎯 **Phase 3 (Weeks 5-6): Advanced Features** — In Progress
+  - Inventory, quests, dialogue, equipment, achievements, world expansion
 - 📅 **Phase 4 (Weeks 7-8): Content & Polish** — Planned
   - Dungeons, bosses, quests, UI polish, performance optimization
 
-**Current Version:** Godot Alpha v0.1  
+**Current Version:** Godot Alpha v0.2  
 **Original Unity Version:** v3.1 (archived in legacy files)
 
 ## 🤝 Contributing

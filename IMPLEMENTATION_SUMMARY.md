@@ -4,6 +4,8 @@
 
 Started from scratch to create a Godot 4.x implementation of Middle-earth Adventure RPG, using the Unity version as reference. **Phases 1-2 Complete (50% of roadmap)**.
 
+**Current Version:** Godot Alpha v0.2
+
 ---
 
 ## 📦 What Was Built
@@ -127,30 +129,30 @@ HUD updates in real-time (health, stamina, XP, level)
 Root
 ├── project.godot (config)
 ├── icon.svg (icon)
-├── GODOT_README.md (docs)
+├── README.md (docs)
 └── IMPLEMENTATION_SUMMARY.md (this file)
 
 scenes/
 ├── main.tscn (world scene)
 ├── player/
-│   ├── player.gd (controller)
+│   ├── player.gd (223 lines)
 │   └── player.tscn (scene)
 ├── enemies/
-│   ├── enemy_base.gd (AI)
+│   ├── enemy_base.gd (217 lines)
 │   └── orc.tscn (scene)
 └── ui/
-    ├── hud.gd (controller)
+    ├── hud.gd (69 lines)
     └── hud.tscn (scene)
 
 scripts/
 ├── autoload/
-│   ├── game_manager.gd (221 lines)
-│   ├── event_bus.gd (136 lines)
-│   └── save_manager.gd (259 lines)
+│   ├── game_manager.gd (116 lines)
+│   ├── event_bus.gd (147 lines)
+│   └── save_manager.gd (245 lines)
 ├── resources/
-│   └── character_stats.gd (149 lines)
+│   └── character_stats.gd (139 lines)
 └── utilities/
-    └── constants.gd (193 lines)
+    └── constants.gd (217 lines)
 ```
 
 ---
