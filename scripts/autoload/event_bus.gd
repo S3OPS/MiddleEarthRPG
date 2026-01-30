@@ -288,10 +288,10 @@ func _ready() -> void:
 func _connect_debug_listeners() -> void:
 	player_level_up.connect(func(new_level): print("🎉 [EventBus] Player leveled up to level %d" % new_level))
 	quest_completed.connect(func(quest_id, quest_name): print("✅ [EventBus] Quest completed: %s" % quest_name))
-	enemy_killed.connect(func(enemy_node, xp_reward): print("⚔️ [EventBus] Enemy killed: +%d XP" % xp_reward))
+	enemy_killed.connect(func(enemy, experience_reward): print("⚔️ [EventBus] Enemy killed: +%d XP" % experience_reward))
 	achievement_unlocked.connect(func(achievement_id, achievement_name): print("🏆 [EventBus] Achievement unlocked: %s" % achievement_name))
-	damage_dealt.connect(func(target_node, damage_amount, is_critical): 
-		print("💥 [EventBus] Damage dealt: %.1f%s" % [damage_amount, " (CRITICAL!)" if is_critical else ""]))
+	damage_dealt.connect(func(target, amount, is_critical): 
+		print("💥 [EventBus] Damage dealt: %.1f%s" % [amount, " (CRITICAL!)" if is_critical else ""]))
 
 
 ## Request a notification to be displayed
