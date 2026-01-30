@@ -69,8 +69,8 @@ func gain_experience(amount: int) -> void:
 ## Handle level up
 func _level_up() -> void:
 	level += 1
-	experience -= experience_to_next_level
 	experience_to_next_level = int(experience_to_next_level * Constants.XP_SCALING_FACTOR)
+	experience -= experience_to_next_level
 	
 	# Increase stats
 	max_health += Constants.LEVELUP_HEALTH_BONUS

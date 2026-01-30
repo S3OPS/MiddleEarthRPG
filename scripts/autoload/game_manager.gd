@@ -35,7 +35,7 @@ func _process(delta: float) -> void:
 
 ## Set the game state and handle transitions
 func set_game_state(new_state: GameState) -> void:
-	var old_state = current_state
+	var old_state: GameState = current_state
 	current_state = new_state
 	
 	_handle_state_transition(new_state)
@@ -83,6 +83,7 @@ func _reset_statistics() -> void:
 	enemies_defeated = 0
 	quests_completed = 0
 	treasures_found = 0
+	gold = 0
 
 
 ## Handle game over

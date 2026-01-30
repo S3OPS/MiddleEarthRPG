@@ -52,7 +52,7 @@ func heal(amount: float) -> void:
 	current_health = min(max_health, current_health + amount)
 	
 	if current_health > old_health:
-		healed.emit(amount, current_health)
+		healed.emit(current_health - old_health, current_health)
 		health_changed.emit(current_health, max_health)
 
 

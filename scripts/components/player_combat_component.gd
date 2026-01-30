@@ -88,6 +88,8 @@ func _get_attack_target() -> Node:
 
 ## Deal damage to target
 func _deal_attack_damage(target: Node) -> void:
+	if not _stats:
+		return
 	var damage = Constants.calculate_damage(Constants.PLAYER_BASE_ATTACK_DAMAGE, _stats.strength)
 	var is_critical = Constants.is_critical_hit()
 	

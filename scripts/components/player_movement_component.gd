@@ -40,7 +40,7 @@ func initialize(character: CharacterBody3D, stats: CharacterStats) -> bool:
 	return true
 
 
-## Process movement input and update velocity
+## Process movement input and update velocity, then apply it
 func process_movement(delta: float) -> void:
 	if not _character or not _stats:
 		return
@@ -50,6 +50,11 @@ func process_movement(delta: float) -> void:
 	_handle_jumping()
 	_apply_gravity(delta)
 	_handle_stamina_regeneration(delta)
+	
+	# CRITICAL FIX: Apply the calculated velocity to the character
+	# This line was missing, causing movement to not work despite velocity being calculated
+	if _character:
+		_character.move_and_slide()
 
 
 ## Handle sprint input and stamina drain
@@ -98,6 +103,11 @@ func _apply_gravity(delta: float) -> void:
 
 ## Handle stamina regeneration
 func _handle_stamina_regeneration(delta: float) -> void:
+	# CRITICAL FIX: Add null check for _stats before accessing it
+	if not _stats:
+		push_warning("PlayerMovementComponent: _stats is null in _handle_stamina_regeneration")
+		return
+	
 	if stamina_regen_timer > 0:
 		stamina_regen_timer -= delta
 	elif _stats.current_stamina < _stats.max_stamina:

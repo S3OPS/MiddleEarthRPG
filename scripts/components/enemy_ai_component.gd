@@ -49,6 +49,8 @@ func initialize(enemy: CharacterBody3D, nav_agent: NavigationAgent3D, spawn_pos:
 	
 	# Get player reference
 	_player = GameManager.get_player()
+	if not is_instance_valid(_player):
+		push_warning("EnemyAIComponent: Player not available during initialization")
 	
 	# Set initial patrol point
 	_set_new_patrol_point()
