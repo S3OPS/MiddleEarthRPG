@@ -3,7 +3,7 @@ extends Node
 ## Sample Recipes Data
 ## Defines sample crafting recipes for Phase 6
 
-const RecipeResource = preload("res://scripts/resources/recipe_resource.gd")
+const RecipeRes = preload("res://scripts/resources/recipe_resource.gd")
 
 static func create_sample_recipes() -> Array[RecipeResource]:
 	"""Create sample crafting recipes"""
@@ -14,7 +14,7 @@ static func create_sample_recipes() -> Array[RecipeResource]:
 	# ========================================
 	
 	# Iron Sword
-	var iron_sword_recipe = RecipeResource.new(
+	var iron_sword_recipe = RecipeRes.new(
 		"recipe_iron_sword",
 		"Iron Sword",
 		"iron_sword",
@@ -28,7 +28,7 @@ static func create_sample_recipes() -> Array[RecipeResource]:
 	recipes.append(iron_sword_recipe)
 	
 	# Steel Sword
-	var steel_sword_recipe = RecipeResource.new(
+	var steel_sword_recipe = RecipeRes.new(
 		"recipe_steel_sword",
 		"Steel Sword",
 		"steel_sword",
@@ -43,7 +43,7 @@ static func create_sample_recipes() -> Array[RecipeResource]:
 	recipes.append(steel_sword_recipe)
 	
 	# Elven Blade
-	var elven_blade_recipe = RecipeResource.new(
+	var elven_blade_recipe = RecipeRes.new(
 		"recipe_elven_blade",
 		"Elven Blade",
 		"elven_blade",
@@ -62,7 +62,7 @@ static func create_sample_recipes() -> Array[RecipeResource]:
 	# ========================================
 	
 	# Leather Armor
-	var leather_armor_recipe = RecipeResource.new(
+	var leather_armor_recipe = RecipeRes.new(
 		"recipe_leather_armor",
 		"Leather Armor",
 		"leather_armor",
@@ -76,7 +76,7 @@ static func create_sample_recipes() -> Array[RecipeResource]:
 	recipes.append(leather_armor_recipe)
 	
 	# Chain Mail
-	var chain_mail_recipe = RecipeResource.new(
+	var chain_mail_recipe = RecipeRes.new(
 		"recipe_chain_mail",
 		"Chain Mail",
 		"chain_mail",
@@ -90,7 +90,7 @@ static func create_sample_recipes() -> Array[RecipeResource]:
 	recipes.append(chain_mail_recipe)
 	
 	# Mithril Armor
-	var mithril_armor_recipe = RecipeResource.new(
+	var mithril_armor_recipe = RecipeRes.new(
 		"recipe_mithril_armor",
 		"Mithril Armor",
 		"mithril_coat",
@@ -108,7 +108,7 @@ static func create_sample_recipes() -> Array[RecipeResource]:
 	# ========================================
 	
 	# Health Potion
-	var health_potion_recipe = RecipeResource.new(
+	var health_potion_recipe = RecipeRes.new(
 		"recipe_health_potion",
 		"Health Potion",
 		"health_potion",
@@ -123,7 +123,7 @@ static func create_sample_recipes() -> Array[RecipeResource]:
 	recipes.append(health_potion_recipe)
 	
 	# Stamina Potion
-	var stamina_potion_recipe = RecipeResource.new(
+	var stamina_potion_recipe = RecipeRes.new(
 		"recipe_stamina_potion",
 		"Stamina Potion",
 		"stamina_potion",
@@ -138,7 +138,7 @@ static func create_sample_recipes() -> Array[RecipeResource]:
 	recipes.append(stamina_potion_recipe)
 	
 	# Greater Health Potion
-	var greater_health_recipe = RecipeResource.new(
+	var greater_health_recipe = RecipeRes.new(
 		"recipe_greater_health_potion",
 		"Greater Health Potion",
 		"greater_health_potion",
@@ -158,7 +158,7 @@ static func create_sample_recipes() -> Array[RecipeResource]:
 	# ========================================
 	
 	# Steel Ingot (from ore)
-	var steel_ingot_recipe = RecipeResource.new(
+	var steel_ingot_recipe = RecipeRes.new(
 		"recipe_steel_ingot",
 		"Steel Ingot",
 		"steel_ore",
@@ -173,7 +173,7 @@ static func create_sample_recipes() -> Array[RecipeResource]:
 	recipes.append(steel_ingot_recipe)
 	
 	# Leather (from hide)
-	var leather_recipe = RecipeResource.new(
+	var leather_recipe = RecipeRes.new(
 		"recipe_leather",
 		"Leather",
 		"leather",

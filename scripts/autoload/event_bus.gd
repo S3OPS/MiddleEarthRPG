@@ -286,12 +286,12 @@ func _ready() -> void:
 
 ## Connect debug listeners for development
 func _connect_debug_listeners() -> void:
-	player_level_up.connect(func(level): print("🎉 [EventBus] Player leveled up to level %d" % level))
-	quest_completed.connect(func(id, name, xp): print("✅ [EventBus] Quest completed: %s (+%d XP)" % [name, xp]))
-	enemy_killed.connect(func(enemy, xp): print("⚔️ [EventBus] Enemy killed: +%d XP" % xp))
-	achievement_unlocked.connect(func(id, name): print("🏆 [EventBus] Achievement unlocked: %s" % name))
-	damage_dealt.connect(func(target, amount, critical): 
-		print("💥 [EventBus] Damage dealt: %.1f%s" % [amount, " (CRITICAL!)" if critical else ""]))
+	player_level_up.connect(func(new_level): print("🎉 [EventBus] Player leveled up to level %d" % new_level))
+	quest_completed.connect(func(quest_id, quest_name): print("✅ [EventBus] Quest completed: %s" % quest_name))
+	enemy_killed.connect(func(enemy_node, xp_reward): print("⚔️ [EventBus] Enemy killed: +%d XP" % xp_reward))
+	achievement_unlocked.connect(func(achievement_id, achievement_name): print("🏆 [EventBus] Achievement unlocked: %s" % achievement_name))
+	damage_dealt.connect(func(target_node, damage_amount, is_critical): 
+		print("💥 [EventBus] Damage dealt: %.1f%s" % [damage_amount, " (CRITICAL!)" if is_critical else ""]))
 
 
 ## Request a notification to be displayed

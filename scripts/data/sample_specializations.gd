@@ -3,7 +3,7 @@ extends Node
 ## Sample Specializations Data
 ## Defines combat specializations for Phase 6
 
-const SpecializationResource = preload("res://scripts/resources/specialization_resource.gd")
+const SpecializationRes = preload("res://scripts/resources/specialization_resource.gd")
 
 static func create_sample_specializations() -> Array[SpecializationResource]:
 	"""Create sample combat specializations"""
@@ -13,7 +13,7 @@ static func create_sample_specializations() -> Array[SpecializationResource]:
 	# WARRIOR SPECIALIZATION
 	# ========================================
 	
-	var warrior = SpecializationResource.new(
+	var warrior = SpecializationRes.new(
 		"warrior",
 		"Warrior",
 		"Masters of melee combat, warriors excel in close-quarters battle with heavy weapons and armor."
@@ -36,7 +36,7 @@ static func create_sample_specializations() -> Array[SpecializationResource]:
 	# RANGER SPECIALIZATION
 	# ========================================
 	
-	var ranger = SpecializationResource.new(
+	var ranger = SpecializationRes.new(
 		"ranger",
 		"Ranger",
 		"Swift and deadly, rangers are masters of ranged combat and wilderness survival."
@@ -59,7 +59,7 @@ static func create_sample_specializations() -> Array[SpecializationResource]:
 	# MAGE SPECIALIZATION
 	# ========================================
 	
-	var mage = SpecializationResource.new(
+	var mage = SpecializationRes.new(
 		"mage",
 		"Mage",
 		"Wielders of arcane power, mages command devastating spells and mystical energies."

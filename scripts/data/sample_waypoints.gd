@@ -3,14 +3,14 @@ extends Node
 ## Sample Waypoints Data
 ## Defines the sample fast travel waypoints
 
-const WaypointResource = preload("res://scripts/resources/waypoint_resource.gd")
+const WaypointRes = preload("res://scripts/resources/waypoint_resource.gd")
 
 static func create_sample_waypoints() -> Array[WaypointResource]:
 	"""Create sample waypoints for fast travel"""
 	var waypoints: Array[WaypointResource] = []
 	
 	# Shire Waypoints
-	var hobbiton = WaypointResource.new(
+	var hobbiton = WaypointRes.new(
 		"hobbiton",
 		"Hobbiton",
 		"the_shire",
@@ -20,7 +20,7 @@ static func create_sample_waypoints() -> Array[WaypointResource]:
 	hobbiton.travel_cost = 0  # Free starting location
 	waypoints.append(hobbiton)
 	
-	var bywater = WaypointResource.new(
+	var bywater = WaypointRes.new(
 		"bywater",
 		"Bywater",
 		"the_shire",
@@ -31,7 +31,7 @@ static func create_sample_waypoints() -> Array[WaypointResource]:
 	waypoints.append(bywater)
 	
 	# Rohan Waypoints
-	var edoras = WaypointResource.new(
+	var edoras = WaypointRes.new(
 		"edoras",
 		"Edoras",
 		"rohan",
@@ -42,7 +42,7 @@ static func create_sample_waypoints() -> Array[WaypointResource]:
 	edoras.required_quest = "reach_rohan"
 	waypoints.append(edoras)
 	
-	var helms_deep = WaypointResource.new(
+	var helms_deep = WaypointRes.new(
 		"helms_deep",
 		"Helm's Deep",
 		"rohan",
@@ -54,7 +54,7 @@ static func create_sample_waypoints() -> Array[WaypointResource]:
 	waypoints.append(helms_deep)
 	
 	# Mordor Waypoints (no fast travel within Mordor, but border camps)
-	var black_gate = WaypointResource.new(
+	var black_gate = WaypointRes.new(
 		"black_gate",
 		"The Black Gate",
 		"mordor",
@@ -66,7 +66,7 @@ static func create_sample_waypoints() -> Array[WaypointResource]:
 	waypoints.append(black_gate)
 	
 	# Rivendell Waypoint
-	var rivendell = WaypointResource.new(
+	var rivendell = WaypointRes.new(
 		"rivendell",
 		"Rivendell",
 		"rivendell",

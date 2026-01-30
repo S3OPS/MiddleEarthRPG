@@ -3,7 +3,7 @@ extends Node
 ## Sample Companions Data
 ## Defines companion characters for Phase 6
 
-const CompanionResource = preload("res://scripts/resources/companion_resource.gd")
+const CompanionRes = preload("res://scripts/resources/companion_resource.gd")
 
 static func create_sample_companions() -> Array[CompanionResource]:
 	"""Create sample companions"""
@@ -13,7 +13,7 @@ static func create_sample_companions() -> Array[CompanionResource]:
 	# WARRIOR COMPANIONS
 	# ========================================
 	
-	var boromir = CompanionResource.new(
+	var boromir = CompanionRes.new(
 		"boromir",
 		"Boromir",
 		"warrior"
@@ -29,7 +29,7 @@ static func create_sample_companions() -> Array[CompanionResource]:
 	boromir.abilities = ["shield_bash", "battle_cry", "last_stand"]
 	companions.append(boromir)
 	
-	var gimli = CompanionResource.new(
+	var gimli = CompanionRes.new(
 		"gimli_companion",
 		"Gimli",
 		"warrior"
@@ -50,7 +50,7 @@ static func create_sample_companions() -> Array[CompanionResource]:
 	# RANGER COMPANIONS
 	# ========================================
 	
-	var legolas_companion = CompanionResource.new(
+	var legolas_companion = CompanionRes.new(
 		"legolas_companion",
 		"Legolas",
 		"ranger"
@@ -67,7 +67,7 @@ static func create_sample_companions() -> Array[CompanionResource]:
 	legolas_companion.abilities = ["rapid_fire", "piercing_shot", "elven_reflexes"]
 	companions.append(legolas_companion)
 	
-	var aragorn = CompanionResource.new(
+	var aragorn = CompanionRes.new(
 		"aragorn",
 		"Aragorn",
 		"ranger"
@@ -88,7 +88,7 @@ static func create_sample_companions() -> Array[CompanionResource]:
 	# MAGE COMPANIONS
 	# ========================================
 	
-	var gandalf_companion = CompanionResource.new(
+	var gandalf_companion = CompanionRes.new(
 		"gandalf_companion",
 		"Gandalf the Grey",
 		"mage"
@@ -105,7 +105,7 @@ static func create_sample_companions() -> Array[CompanionResource]:
 	gandalf_companion.abilities = ["staff_strike", "fireworks", "you_shall_not_pass"]
 	companions.append(gandalf_companion)
 	
-	var saruman = CompanionResource.new(
+	var saruman = CompanionRes.new(
 		"saruman",
 		"Saruman the White",
 		"mage"

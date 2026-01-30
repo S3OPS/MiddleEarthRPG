@@ -3,14 +3,14 @@ extends Node
 ## Sample Regions Data
 ## Defines the sample regions for the game world
 
-const RegionResource = preload("res://scripts/resources/region_resource.gd")
+const RegionRes = preload("res://scripts/resources/region_resource.gd")
 
 static func create_sample_regions() -> Array[RegionResource]:
 	"""Create sample regions for the game"""
 	var regions: Array[RegionResource] = []
 	
 	# Region 1: The Shire
-	var shire = RegionResource.new(
+	var shire = RegionRes.new(
 		"the_shire",
 		"The Shire",
 		"A peaceful land of rolling hills and comfortable hobbit-holes. The hobbits here are friendly folk who enjoy simple pleasures.",
@@ -24,7 +24,7 @@ static func create_sample_regions() -> Array[RegionResource]:
 	regions.append(shire)
 	
 	# Region 2: Rohan
-	var rohan = RegionResource.new(
+	var rohan = RegionRes.new(
 		"rohan",
 		"The Plains of Rohan",
 		"Vast grasslands where the horse-lords ride. The Rohirrim are proud warriors, masters of mounted combat.",
@@ -38,7 +38,7 @@ static func create_sample_regions() -> Array[RegionResource]:
 	regions.append(rohan)
 	
 	# Region 3: Mordor
-	var mordor = RegionResource.new(
+	var mordor = RegionRes.new(
 		"mordor",
 		"The Land of Mordor",
 		"A desolate wasteland shrouded in darkness. The domain of Sauron, where few dare to tread.",
@@ -54,7 +54,7 @@ static func create_sample_regions() -> Array[RegionResource]:
 	regions.append(mordor)
 	
 	# Region 4: Rivendell
-	var rivendell = RegionResource.new(
+	var rivendell = RegionRes.new(
 		"rivendell",
 		"Rivendell",
 		"The Last Homely House, a sanctuary of the elves. A place of wisdom, beauty, and ancient magic.",

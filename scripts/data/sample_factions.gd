@@ -3,14 +3,14 @@ extends Node
 ## Sample Factions Data
 ## Defines the sample factions for reputation system
 
-const FactionResource = preload("res://scripts/resources/faction_resource.gd")
+const FactionRes = preload("res://scripts/resources/faction_resource.gd")
 
 static func create_sample_factions() -> Array[FactionResource]:
 	"""Create sample factions for reputation tracking"""
 	var factions: Array[FactionResource] = []
 	
 	# Faction 1: Hobbits of the Shire
-	var hobbits = FactionResource.new(
+	var hobbits = FactionRes.new(
 		"shire_hobbits",
 		"Hobbits of the Shire",
 		"The peaceful folk of the Shire, who value comfort, good food, and friendly neighbors."
@@ -20,7 +20,7 @@ static func create_sample_factions() -> Array[FactionResource]:
 	factions.append(hobbits)
 	
 	# Faction 2: Rohirrim
-	var rohirrim = FactionResource.new(
+	var rohirrim = FactionRes.new(
 		"rohirrim",
 		"The Rohirrim",
 		"The horse-lords of Rohan, proud warriors who defend their lands with honor and courage."
@@ -30,7 +30,7 @@ static func create_sample_factions() -> Array[FactionResource]:
 	factions.append(rohirrim)
 	
 	# Faction 3: Elves of Rivendell
-	var elves = FactionResource.new(
+	var elves = FactionRes.new(
 		"rivendell_elves",
 		"Elves of Rivendell",
 		"The wise and ancient elves of Rivendell, keepers of lore and masters of magic."
@@ -40,7 +40,7 @@ static func create_sample_factions() -> Array[FactionResource]:
 	factions.append(elves)
 	
 	# Faction 4: Rangers of the North
-	var rangers = FactionResource.new(
+	var rangers = FactionRes.new(
 		"rangers_north",
 		"Rangers of the North",
 		"Secretive protectors of the wild lands, skilled trackers and warriors led by Aragorn."
@@ -50,7 +50,7 @@ static func create_sample_factions() -> Array[FactionResource]:
 	factions.append(rangers)
 	
 	# Faction 5: Dwarves of Erebor
-	var dwarves = FactionResource.new(
+	var dwarves = FactionRes.new(
 		"dwarves_erebor",
 		"Dwarves of Erebor",
 		"The sturdy dwarves who reclaimed the Lonely Mountain, master craftsmen and fierce warriors."
@@ -60,7 +60,7 @@ static func create_sample_factions() -> Array[FactionResource]:
 	factions.append(dwarves)
 	
 	# Faction 6: Forces of Mordor (Enemy)
-	var mordor = FactionResource.new(
+	var mordor = FactionRes.new(
 		"forces_mordor",
 		"Forces of Mordor",
 		"The dark armies of Sauron, orcs, trolls, and worse creatures that threaten all of Middle-earth."

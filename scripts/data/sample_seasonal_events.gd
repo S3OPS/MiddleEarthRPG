@@ -3,7 +3,7 @@ extends Node
 ## Sample Seasonal Events Data
 ## Defines seasonal and limited-time events for Phase 7
 
-const SeasonalEventResource = preload("res://scripts/resources/seasonal_event_resource.gd")
+const SeasonalEventRes = preload("res://scripts/resources/seasonal_event_resource.gd")
 
 static func create_sample_events() -> Array[SeasonalEventResource]:
 	"""Create sample seasonal events"""
@@ -14,7 +14,7 @@ static func create_sample_events() -> Array[SeasonalEventResource]:
 	# ========================================
 	
 	# Spring Festival
-	var spring_festival = SeasonalEventResource.new(
+	var spring_festival = SeasonalEventRes.new(
 		"spring_festival",
 		"Spring Festival in the Shire",
 		"seasonal"
@@ -31,7 +31,7 @@ static func create_sample_events() -> Array[SeasonalEventResource]:
 	events.append(spring_festival)
 	
 	# Summer Solstice
-	var summer_solstice = SeasonalEventResource.new(
+	var summer_solstice = SeasonalEventRes.new(
 		"summer_solstice",
 		"Midsummer Night's Dream",
 		"seasonal"
@@ -48,7 +48,7 @@ static func create_sample_events() -> Array[SeasonalEventResource]:
 	events.append(summer_solstice)
 	
 	# Harvest Festival
-	var harvest_festival = SeasonalEventResource.new(
+	var harvest_festival = SeasonalEventRes.new(
 		"harvest_festival",
 		"Harvest Festival",
 		"seasonal"
@@ -65,7 +65,7 @@ static func create_sample_events() -> Array[SeasonalEventResource]:
 	events.append(harvest_festival)
 	
 	# Winter Solstice
-	var winter_solstice = SeasonalEventResource.new(
+	var winter_solstice = SeasonalEventRes.new(
 		"winter_solstice",
 		"Winter's Eve Celebration",
 		"seasonal"
@@ -86,7 +86,7 @@ static func create_sample_events() -> Array[SeasonalEventResource]:
 	# ========================================
 	
 	# Bilbo's Birthday
-	var bilbos_birthday = SeasonalEventResource.new(
+	var bilbos_birthday = SeasonalEventRes.new(
 		"bilbos_birthday",
 		"Bilbo's Birthday Party",
 		"holiday"
@@ -107,7 +107,7 @@ static func create_sample_events() -> Array[SeasonalEventResource]:
 	# ========================================
 	
 	# Dragon Attack
-	var dragon_attack = SeasonalEventResource.new(
+	var dragon_attack = SeasonalEventRes.new(
 		"dragon_attack",
 		"Smaug's Revenge",
 		"limited_time"
@@ -123,7 +123,7 @@ static func create_sample_events() -> Array[SeasonalEventResource]:
 	events.append(dragon_attack)
 	
 	# Orc Invasion
-	var orc_invasion = SeasonalEventResource.new(
+	var orc_invasion = SeasonalEventRes.new(
 		"orc_invasion",
 		"The Black Tide",
 		"limited_time"
