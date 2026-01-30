@@ -85,15 +85,24 @@ func open_chest() -> void:
 			GameManager.add_gold(gold)
 		
 		# Emit event
-		EventBus.chest_opened.emit(chest_id, drops, gold)
+		if EventBus:
+			EventBus.chest_opened.emit(chest_id, drops, gold)
+		else:
+			push_warning("TreasureChest: EventBus not available")
 	
 	# Save chest state
 	_save_chest_state()
 
 func _play_open_animation() -> void:
-	if lid:
-		var tween = create_tween()
-		tween.tween_property(lid, "rotation_degrees:x", -90, 0.5)
+	# Add null check for lid
+	if not lid:
+		push_warning("TreasureChest: Lid node not found, cannot play animation")
+		return
+	
+	# Simply create the tween - Godot manages tween lifecycle automatically
+	# The is_opened flag in open_chest() prevents multiple calls
+	var tween = create_tween()
+	tween.tween_property(lid, "rotation_degrees:x", -90, 0.5)
 
 func _load_chest_state() -> void:
 	# Check if this chest was already opened

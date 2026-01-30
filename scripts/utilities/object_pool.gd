@@ -16,8 +16,8 @@ func initialize(scene: PackedScene, initial_size: int = 10, parent: Node = null)
 	_initial_size = initial_size
 	_parent = parent if parent != null else self
 	
-	# Validate parent is in scene tree
-	if _parent and not _parent.is_node_ready():
+	# Validate parent is in scene tree (use is_inside_tree instead of is_node_ready)
+	if _parent and not _parent.is_inside_tree():
 		push_warning("ObjectPool: parent node is not in scene tree, using self as parent")
 		_parent = self
 	

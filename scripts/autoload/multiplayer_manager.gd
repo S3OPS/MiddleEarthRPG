@@ -24,6 +24,15 @@ func _ready() -> void:
 
 func create_session(session_name: String, max_players_count: int = 4) -> bool:
 	"""Create a new multiplayer session"""
+	# Validate max_players_count
+	if max_players_count <= 0:
+		push_error("MultiplayerManager: max_players_count must be positive, got %d" % max_players_count)
+		return false
+	
+	if max_players_count > 32:
+		push_warning("MultiplayerManager: max_players_count %d exceeds recommended limit, clamping to 32" % max_players_count)
+		max_players_count = 32
+	
 	is_host = true
 	is_connected = true
 	max_players = max_players_count
@@ -87,8 +96,12 @@ func form_party(player_ids: Array[String]) -> String:
 	current_party = party_id
 	party_members = player_ids.duplicate()
 	
+	# Check array bounds before accessing first element
 	if party_members.size() > 0:
 		party_leader = party_members[0]
+	else:
+		push_warning("MultiplayerManager: Forming party with no members")
+		party_leader = ""
 	
 	party_formed.emit(party_id)
 	print("Party formed: ", party_id)

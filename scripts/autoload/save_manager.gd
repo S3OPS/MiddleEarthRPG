@@ -41,6 +41,31 @@ class SaveData:
 	var discovered_locations: Array = []
 	var opened_chests: Array = []
 	
+	# Companion data
+	var active_companions: Array = []
+	var companion_relationships: Dictionary = {}
+	
+	# Faction data
+	var faction_reputations: Dictionary = {}
+	
+	# Crafting data
+	var known_recipes: Array = []
+	var crafting_progress: Dictionary = {}
+	
+	# Region data
+	var discovered_regions: Array = []
+	var region_states: Dictionary = {}
+	
+	# Waypoint data
+	var unlocked_waypoints: Array = []
+	
+	# Social data
+	var friends_list: Array = []
+	var guild_membership: Dictionary = {}
+	
+	# Equipment data (separate from equipped_items for clarity)
+	var equipment_upgrades: Dictionary = {}
+	
 	# Statistics
 	var enemies_defeated: int = 0
 	var quests_completed: int = 0
@@ -71,6 +96,17 @@ class SaveData:
 			"completed_quests": completed_quests,
 			"discovered_locations": discovered_locations,
 			"opened_chests": opened_chests,
+			"active_companions": active_companions,
+			"companion_relationships": companion_relationships,
+			"faction_reputations": faction_reputations,
+			"known_recipes": known_recipes,
+			"crafting_progress": crafting_progress,
+			"discovered_regions": discovered_regions,
+			"region_states": region_states,
+			"unlocked_waypoints": unlocked_waypoints,
+			"friends_list": friends_list,
+			"guild_membership": guild_membership,
+			"equipment_upgrades": equipment_upgrades,
 			"enemies_defeated": enemies_defeated,
 			"quests_completed": quests_completed,
 			"treasures_found": treasures_found
@@ -120,6 +156,31 @@ class SaveData:
 		completed_quests = _validate_array(data.get("completed_quests", []))
 		discovered_locations = _validate_array(data.get("discovered_locations", []))
 		opened_chests = _validate_array(data.get("opened_chests", []))
+		
+		# Companion data
+		active_companions = _validate_array(data.get("active_companions", []))
+		companion_relationships = _validate_dict(data.get("companion_relationships", {}))
+		
+		# Faction data
+		faction_reputations = _validate_dict(data.get("faction_reputations", {}))
+		
+		# Crafting data
+		known_recipes = _validate_array(data.get("known_recipes", []))
+		crafting_progress = _validate_dict(data.get("crafting_progress", {}))
+		
+		# Region data
+		discovered_regions = _validate_array(data.get("discovered_regions", []))
+		region_states = _validate_dict(data.get("region_states", {}))
+		
+		# Waypoint data
+		unlocked_waypoints = _validate_array(data.get("unlocked_waypoints", []))
+		
+		# Social data
+		friends_list = _validate_array(data.get("friends_list", []))
+		guild_membership = _validate_dict(data.get("guild_membership", {}))
+		
+		# Equipment data
+		equipment_upgrades = _validate_dict(data.get("equipment_upgrades", {}))
 		
 		enemies_defeated = _validate_int(data.get("enemies_defeated", 0), 0, 1000000)
 		quests_completed = _validate_int(data.get("quests_completed", 0), 0, 10000)
@@ -197,6 +258,50 @@ func save_game(slot_index: int) -> bool:
 	save_data.enemies_defeated = GameManager.enemies_defeated
 	save_data.quests_completed = GameManager.quests_completed
 	save_data.treasures_found = GameManager.treasures_found
+	
+	# Save companion data
+	if CompanionManager:
+		save_data.active_companions = CompanionManager.active_companions.duplicate()
+		# Save companion states as dictionary
+		for companion_id in CompanionManager.companions:
+			var companion = CompanionManager.companions[companion_id]
+			if companion and typeof(companion) == TYPE_OBJECT:
+				# Check if properties exist before accessing
+				if companion.get("is_hired"):
+					save_data.companion_relationships[companion_id] = {
+						"loyalty": companion.get("loyalty") if companion.get("loyalty") != null else 50,
+						"is_hired": companion.is_hired
+					}
+	
+	# Save faction data
+	if FactionManager:
+		for faction_id in FactionManager.factions:
+			var faction = FactionManager.factions[faction_id]
+			if faction and typeof(faction) == TYPE_OBJECT:
+				# Check if property exists before accessing
+				if faction.get("current_reputation") != null:
+					save_data.faction_reputations[faction_id] = faction.current_reputation
+	
+	# Save crafting data
+	if CraftingManager and CraftingManager.has_method("get_known_recipes"):
+		save_data.known_recipes = CraftingManager.get_known_recipes()
+	
+	# Save region data
+	if RegionManager:
+		if RegionManager.has_method("get_discovered_regions"):
+			save_data.discovered_regions = RegionManager.get_discovered_regions()
+	
+	# Save waypoint data
+	if FastTravelManager:
+		if FastTravelManager.has_method("get_unlocked_waypoints"):
+			save_data.unlocked_waypoints = FastTravelManager.get_unlocked_waypoints()
+	
+	# Save social data
+	if SocialManager:
+		if SocialManager.has_method("get_friends_list"):
+			save_data.friends_list = SocialManager.get_friends_list()
+		if SocialManager.has_method("get_guild_data"):
+			save_data.guild_membership = SocialManager.get_guild_data()
 	
 	var file_path = _get_save_path(slot_index)
 	var file = FileAccess.open(file_path, FileAccess.WRITE)
@@ -354,6 +459,50 @@ func _apply_save_data(save_data: SaveData) -> void:
 	GameManager.enemies_defeated = save_data.enemies_defeated
 	GameManager.quests_completed = save_data.quests_completed
 	GameManager.treasures_found = save_data.treasures_found
+	
+	# Restore companion data
+	if CompanionManager:
+		CompanionManager.active_companions = save_data.active_companions.duplicate()
+		# Restore companion states
+		for companion_id in save_data.companion_relationships:
+			if companion_id in CompanionManager.companions:
+				var companion = CompanionManager.companions[companion_id]
+				var saved_data = save_data.companion_relationships[companion_id]
+				if companion and typeof(companion) == TYPE_OBJECT and saved_data is Dictionary:
+					# Use set() method if available, otherwise try direct assignment
+					if companion.get("loyalty") != null:
+						companion.set("loyalty", saved_data.get("loyalty", companion.get("loyalty")))
+					if companion.get("is_hired") != null:
+						companion.set("is_hired", saved_data.get("is_hired", false))
+	
+	# Restore faction data
+	if FactionManager:
+		for faction_id in save_data.faction_reputations:
+			if faction_id in FactionManager.factions:
+				var faction = FactionManager.factions[faction_id]
+				if faction and typeof(faction) == TYPE_OBJECT:
+					# Use set() method if property exists
+					if faction.get("current_reputation") != null:
+						faction.set("current_reputation", save_data.faction_reputations[faction_id])
+	
+	# Restore crafting data
+	if CraftingManager and CraftingManager.has_method("set_known_recipes"):
+		CraftingManager.set_known_recipes(save_data.known_recipes)
+	
+	# Restore region data
+	if RegionManager and RegionManager.has_method("set_discovered_regions"):
+		RegionManager.set_discovered_regions(save_data.discovered_regions)
+	
+	# Restore waypoint data
+	if FastTravelManager and FastTravelManager.has_method("set_unlocked_waypoints"):
+		FastTravelManager.set_unlocked_waypoints(save_data.unlocked_waypoints)
+	
+	# Restore social data
+	if SocialManager:
+		if SocialManager.has_method("set_friends_list"):
+			SocialManager.set_friends_list(save_data.friends_list)
+		if SocialManager.has_method("set_guild_data"):
+			SocialManager.set_guild_data(save_data.guild_membership)
 	
 	# Apply to player if available
 	var player = GameManager.get_player()

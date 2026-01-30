@@ -65,8 +65,20 @@ func highlight_npc(enabled: bool) -> void:
 	if not mesh_instance:
 		return
 	
-	var material = mesh_instance.get_active_material(0)
+	# Get the current material (either override or base material)
+	var material = mesh_instance.get_surface_override_material(0)
+	if material == null:
+		material = mesh_instance.get_active_material(0)
+	
 	if material and material is StandardMaterial3D:
+		# Clone material on first use to avoid mutating shared resource
+		if mesh_instance.get_surface_override_material(0) == null:
+			material = material.duplicate()
+			mesh_instance.set_surface_override_material(0, material)
+		else:
+			# Use the already cloned override material
+			material = mesh_instance.get_surface_override_material(0)
+		
 		if enabled:
 			# Add a slight glow/brightness
 			material.emission_enabled = true
@@ -83,15 +95,25 @@ func interact() -> void:
 	if dialogue_id != "":
 		if game_initializer and game_initializer.has_method("get_dialogue"):
 			var dialogue = game_initializer.get_dialogue(dialogue_id)
-			if dialogue:
+			# Add null check before using dialogue
+			if dialogue != null:
 				DialogueManager.start_dialogue(dialogue)
 				EventBus.npc_interacted.emit(npc_name)
+			else:
+				push_warning("Dialogue not found: " + dialogue_id)
 	
 	# Give quest if available and not already active
 	if quest_to_give != "":
-		if not QuestManager.is_quest_active(quest_to_give):
-			QuestManager.start_quest(quest_to_give)
-			print("Quest started: ", quest_to_give)
+		# Validate quest exists before attempting to start it
+		if QuestManager and not QuestManager.is_quest_active(quest_to_give):
+			# Check if quest is registered
+			if QuestManager.has_method("is_quest_registered") and QuestManager.is_quest_registered(quest_to_give):
+				QuestManager.start_quest(quest_to_give)
+				print("Quest started: ", quest_to_give)
+			elif QuestManager.has_method("start_quest"):
+				# If no is_quest_registered method, try to start anyway
+				QuestManager.start_quest(quest_to_give)
+				print("Quest started: ", quest_to_give)
 
 func get_npc_name() -> String:
 	return npc_name

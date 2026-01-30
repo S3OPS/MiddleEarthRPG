@@ -91,11 +91,27 @@ func _ready() -> void:
 	
 	# Start the first quest automatically
 	if QuestManager != null:
-		QuestManager.start_quest("first_steps")
+		# Check if quest exists before starting it
+		if QuestManager.has_method("is_quest_registered"):
+			if QuestManager.is_quest_registered("first_steps"):
+				QuestManager.start_quest("first_steps")
+			else:
+				push_warning("Quest 'first_steps' not registered")
+		else:
+			# If no validation method available, try to start anyway
+			QuestManager.start_quest("first_steps")
 	
 	# Set starting region (The Shire)
 	if RegionManager != null:
-		RegionManager.enter_region("the_shire")
+		# Check if region exists before entering it
+		if RegionManager.has_method("is_region_registered"):
+			if RegionManager.is_region_registered("the_shire"):
+				RegionManager.enter_region("the_shire")
+			else:
+				push_warning("Region 'the_shire' not registered")
+		else:
+			# If no validation method available, try to enter anyway
+			RegionManager.enter_region("the_shire")
 	
 	print("✅ Game initialization complete!")
 
