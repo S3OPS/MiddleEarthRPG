@@ -16,6 +16,29 @@ run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[debug]
+
+gdscript/warnings/untyped_declaration=1
+gdscript/warnings/inferred_declaration=1
+gdscript/warnings/unsafe_property_access=1
+gdscript/warnings/unsafe_method_access=1
+gdscript/warnings/unsafe_cast=1
+gdscript/warnings/unsafe_call_argument=1
+
+[filesystem]
+
+import/blender/enabled=false
+import/fbx/enabled=false
+
+[gui]
+
+common/drop_mouse_on_gui_input_disabled=true
+
+[internationalization]
+
+locale/translations=PackedStringArray()
+locale/locale_filter_mode=0
+
 [autoload]
 
 GameManager="*res://scripts/autoload/game_manager.gd"
@@ -46,12 +69,25 @@ PetManager="*res://scripts/autoload/pet_manager.gd"
 HousingManager="*res://scripts/autoload/housing_manager.gd"
 Constants="*res://scripts/utilities/constants.gd"
 
+[file_customization]
+
+folder_colors={
+"res://scenes/": "blue",
+"res://scripts/": "yellow",
+"res://scripts/autoload/": "orange",
+"res://scripts/components/": "green",
+"res://scripts/resources/": "purple"
+}
+
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/mode=2
+window/size/resizable=true
 window/stretch/mode="canvas_items"
+window/stretch/aspect="keep"
+window/vsync/vsync_mode=1
 
 [input]
 
@@ -132,7 +168,15 @@ interact={
 [physics]
 
 3d/default_gravity=9.8
+3d/physics_engine="GodotPhysics3D"
+3d/run_on_separate_thread=true
 
 [rendering]
 
+renderer/rendering_method="forward_plus"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/canvas_textures/default_texture_filter=1
+textures/canvas_textures/default_texture_repeat=0
+anti_aliasing/quality/msaa_3d=2
+anti_aliasing/quality/screen_space_aa=1
 environment/defaults/default_clear_color=Color(0.3, 0.5, 0.7, 1)
