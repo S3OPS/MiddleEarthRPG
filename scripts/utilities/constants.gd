@@ -190,7 +190,7 @@ const TREASURE_RESPAWN_TIME: float = 600.0
 # ========================================
 
 ## Number of save slots available
-const MAX_SAVE_SLOTS: int = 5
+const MAX_SAVE_SLOTS: int = 10
 
 ## Auto-save interval in seconds
 const AUTO_SAVE_INTERVAL: float = 300.0

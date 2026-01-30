@@ -16,6 +16,11 @@ func initialize(scene: PackedScene, initial_size: int = 10, parent: Node = null)
 	_initial_size = initial_size
 	_parent = parent if parent != null else self
 	
+	# Validate parent is in scene tree
+	if _parent and not _parent.is_node_ready():
+		push_warning("ObjectPool: parent node is not in scene tree, using self as parent")
+		_parent = self
+	
 	# Pre-populate the pool
 	for i in range(_initial_size):
 		var instance = _scene.instantiate()
@@ -32,11 +37,23 @@ func get_object() -> Node:
 	
 	if _pool.is_empty():
 		# Pool is empty, create new instance
+		if _parent == null or not is_instance_valid(_parent):
+			push_error("ObjectPool: parent node is no longer valid, cannot create new instance")
+			return null
 		obj = _scene.instantiate()
 		_parent.add_child(obj)
 	else:
 		# Reuse object from pool
 		obj = _pool.pop_back()
+		# Validate popped object is a valid Node
+		if obj == null or not is_instance_valid(obj):
+			push_warning("ObjectPool: popped object is invalid, creating new instance")
+			if _parent != null and is_instance_valid(_parent):
+				obj = _scene.instantiate()
+				_parent.add_child(obj)
+			else:
+				push_error("ObjectPool: cannot create replacement, parent is invalid")
+				return null
 	
 	# Activate the object
 	obj.set_process(true)

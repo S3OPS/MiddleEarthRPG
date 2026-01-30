@@ -5,7 +5,7 @@ extends Node
 var _fps_history: Array[float] = []
 var _fps_history_size: int = 60  # 1 second at 60fps
 var _fps_history_index: int = 0
-var _frame_time_history: Array[float] = []
+var _frame_time_history: Array[float] = []  # Type annotation added
 var _fps_sum: float = 0.0
 var _frame_time_sum: float = 0.0
 var _samples_since_recalc: int = 0
@@ -44,10 +44,25 @@ func _update_metrics(delta: float) -> void:
 			_recalculate_sums()
 			_samples_since_recalc = 0
 		var history_size = _fps_history.size()
-		average_fps = _fps_sum / history_size
-		min_fps = _fps_history.min()
-		max_fps = _fps_history.max()
-		average_frame_time = _frame_time_sum / history_size
+		
+		# Division by zero check before calculating averages
+		if history_size > 0:
+			average_fps = _fps_sum / history_size
+			average_frame_time = _frame_time_sum / history_size
+		
+		# Manual min calculation (Array.min() doesn't exist in GDScript)
+		var min_val = _fps_history[0]
+		for i in range(_fps_history.size()):
+			if _fps_history[i] < min_val:
+				min_val = _fps_history[i]
+		min_fps = min_val
+		
+		# Manual max calculation (Array.max() doesn't exist in GDScript)
+		var max_val = _fps_history[0]
+		for i in range(_fps_history.size()):
+			if _fps_history[i] > max_val:
+				max_val = _fps_history[i]
+		max_fps = max_val
 
 
 ## Recalculate rolling sums to reduce floating-point drift
@@ -99,7 +114,7 @@ func get_detailed_metrics() -> Dictionary:
 		"max_fps": max_fps,
 		"frame_time_ms": average_frame_time * 1000.0,
 		"memory_static_mb": Performance.get_monitor(Performance.MEMORY_STATIC) / 1024.0 / 1024.0,
-		"memory_dynamic_mb": Performance.get_monitor(Performance.MEMORY_STATIC_MAX) / 1024.0 / 1024.0,
+		"memory_dynamic_mb": Performance.get_monitor(Performance.MEMORY_DYNAMIC) / 1024.0 / 1024.0,
 		"objects_in_scene": Performance.get_monitor(Performance.OBJECT_COUNT),
 		"nodes_in_scene": Performance.get_monitor(Performance.OBJECT_NODE_COUNT),
 		"draw_calls": Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME),

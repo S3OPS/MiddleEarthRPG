@@ -208,6 +208,14 @@ func save_game(slot_index: int) -> bool:
 	
 	var json_string = JSON.stringify(save_data.to_dict(), "\t")
 	file.store_string(json_string)
+	
+	# Validate that write succeeded by checking for errors
+	if FileAccess.get_open_error() != OK:
+		file.close()
+		push_error("Failed to write save file: %s (Error: %d)" % [file_path, FileAccess.get_open_error()])
+		EventBus.save_failed.emit("Failed to write save file")
+		return false
+	
 	file.close()
 	
 	print("💾 Game saved to slot %d" % slot_index)
@@ -297,6 +305,10 @@ func get_save_info(slot_index: int) -> Dictionary:
 	if json.parse(json_string) != OK:
 		return {}
 	
+	# Validate that json.data is a valid Dictionary before using it
+	if json.data == null or not json.data is Dictionary:
+		return {}
+	
 	var data = json.data
 	return {
 		"slot_index": data.get("slot_index", slot_index),
@@ -314,7 +326,11 @@ func delete_save(slot_index: int) -> bool:
 	if not FileAccess.file_exists(file_path):
 		return false
 	
-	DirAccess.remove_absolute(file_path)
+	var delete_result = DirAccess.remove_absolute(file_path)
+	if delete_result != OK:
+		push_error("Failed to delete save file: %s (Error: %d)" % [file_path, delete_result])
+		return false
+	
 	print("🗑️ Save deleted from slot ", slot_index)
 	return true
 

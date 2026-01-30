@@ -212,10 +212,12 @@ signal zone_entered(zone_name: String)
 
 ## Emitted when a region is discovered
 ## @param region_id: Region identifier
+## @param region_name: Name of the discovered region
 signal region_discovered(region_id: String, region_name: String)
 
 ## Emitted when a waypoint is discovered
 ## @param waypoint_id: Waypoint identifier
+## @param waypoint_name: Name of the discovered waypoint
 signal waypoint_discovered(waypoint_id: String, waypoint_name: String)
 
 ## Emitted when fast travel is initiated
