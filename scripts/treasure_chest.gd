@@ -85,15 +85,29 @@ func open_chest() -> void:
 			GameManager.add_gold(gold)
 		
 		# Emit event
-		EventBus.chest_opened.emit(chest_id, drops, gold)
+		if EventBus:
+			EventBus.chest_opened.emit(chest_id, drops, gold)
+		else:
+			push_warning("TreasureChest: EventBus not available")
 	
 	# Save chest state
 	_save_chest_state()
 
 func _play_open_animation() -> void:
-	if lid:
-		var tween = create_tween()
-		tween.tween_property(lid, "rotation_degrees:x", -90, 0.5)
+	# Add null check for lid
+	if not lid:
+		push_warning("TreasureChest: Lid node not found, cannot play animation")
+		return
+	
+	# Kill any existing tween to prevent resource leak
+	var existing_tween = get_tree().get_processed_tweens()
+	for tween in existing_tween:
+		if tween.is_valid() and tween.is_running():
+			# Check if this tween is animating our lid
+			tween.kill()
+	
+	var tween = create_tween()
+	tween.tween_property(lid, "rotation_degrees:x", -90, 0.5)
 
 func _load_chest_state() -> void:
 	# Check if this chest was already opened
