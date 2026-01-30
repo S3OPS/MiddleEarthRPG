@@ -133,11 +133,20 @@ func travel_to(waypoint_id: String) -> bool:
 			print("FastTravelManager: Cannot travel - %s" % check["reason"])
 		return false
 	
-	var waypoint: WaypointResource = waypoints[waypoint_id]
+	var waypoint: WaypointResource = waypoints.get(waypoint_id, null)
+	
+	# Add null check even after can_travel_to validation
+	if waypoint == null:
+		push_error("FastTravelManager: Waypoint became null - %s" % waypoint_id)
+		return false
 	
 	# Deduct travel cost
 	if waypoint.travel_cost > 0:
-		GameManager.remove_gold(waypoint.travel_cost)
+		# Validate gold was successfully removed
+		if not GameManager.remove_gold(waypoint.travel_cost):
+			if OS.is_debug_build():
+				print("FastTravelManager: Failed to deduct travel cost")
+			return false
 	
 	travel_started.emit(current_waypoint, waypoint_id)
 	current_waypoint = waypoint_id
@@ -162,6 +171,18 @@ func get_waypoint(waypoint_id: String) -> WaypointResource:
 ## @return: Array of waypoint IDs
 func get_unlocked_waypoints() -> Array[String]:
 	return unlocked_waypoints
+
+
+## Set unlocked waypoints (used by save system)
+## @param waypoint_ids: Array of waypoint IDs to set as unlocked
+func set_unlocked_waypoints(waypoint_ids: Array) -> void:
+	unlocked_waypoints.clear()
+	for id in waypoint_ids:
+		if id is String:
+			unlocked_waypoints.append(id)
+			# Update waypoint status
+			if id in waypoints:
+				waypoints[id].unlocked = true
 
 
 ## Get all waypoints in a specific region
