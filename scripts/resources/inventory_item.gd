@@ -48,7 +48,10 @@ func get_rarity_color() -> Color:
 
 ## Get type string
 func get_type_string() -> String:
-	return ItemType.keys()[type]
+	var keys = ItemType.keys()
+	if type < 0 or type >= keys.size():
+		return ""
+	return keys[type]
 
 ## Check if item can be used
 func is_usable() -> bool:

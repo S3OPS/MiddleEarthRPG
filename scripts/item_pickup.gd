@@ -50,6 +50,8 @@ func pickup_item() -> void:
 	
 	if game_init and game_init.has_method("get_item"):
 		item = game_init.get_item(item_id)
+		if not item:
+			push_warning("Failed to get item from database: " + item_id)
 	
 	if not item:
 		# Fallback: Create a placeholder item

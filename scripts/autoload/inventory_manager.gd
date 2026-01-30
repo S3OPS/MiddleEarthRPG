@@ -110,7 +110,9 @@ func use_item(item_id: String) -> bool:
 ## Use a consumable item
 func _use_consumable(item: InventoryItem) -> void:
 	var player = GameManager.get_player()
-	if not player or not GameManager.player_stats:
+	if not player:
+		return
+	if not GameManager.player_stats:
 		return
 	
 	if item.health_restore > 0:
@@ -185,7 +187,7 @@ func _apply_equipment_bonuses(item: InventoryItem, apply: bool) -> void:
 		GameManager.player_stats.strength += item.attack_bonus * multiplier
 	
 	if item.defense_bonus != 0:
-		GameManager.player_stats.wisdom += item.defense_bonus * multiplier
+		GameManager.player_stats.defense += item.defense_bonus * multiplier
 	
 	if item.health_bonus != 0:
 		GameManager.player_stats.max_health += item.health_bonus * multiplier
@@ -208,8 +210,8 @@ func _apply_equipment_bonuses(item: InventoryItem, apply: bool) -> void:
 			)
 
 ## Get all items in inventory
-func get_all_items() -> Array:
-	var items = []
+func get_all_items() -> Array[Dictionary]:
+	var items: Array[Dictionary] = []
 	for item_id in inventory:
 		items.append(inventory[item_id])
 	return items
@@ -231,7 +233,7 @@ func _on_item_rewarded(item_id: String) -> void:
 	var game_init = get_tree().root.get_node_or_null("GameInitializer")
 	if game_init and game_init.has_method("get_item"):
 		var item = game_init.get_item(item_id)
-		if item:
+		if item and item is InventoryItem:
 			add_item(item, 1)
 			return
 	
