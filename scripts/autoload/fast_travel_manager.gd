@@ -44,7 +44,8 @@ func discover_waypoint(waypoint_id: String) -> void:
 	
 	discovered_waypoints.append(waypoint_id)
 	waypoints[waypoint_id].discovered = true
-	waypoint_discovered.emit(waypoint_id)
+	waypoint_discovered.emit(waypoint_id, waypoints[waypoint_id].waypoint_name)
+	EventBus.waypoint_discovered.emit(waypoint_id, waypoints[waypoint_id].waypoint_name)
 	EventBus.achievement_unlocked.emit(
 		"discover_waypoint_%s" % waypoint_id,
 		"Discovered %s" % waypoints[waypoint_id].waypoint_name

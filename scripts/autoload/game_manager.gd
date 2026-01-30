@@ -36,9 +36,12 @@ func _process(delta: float) -> void:
 ## Set the game state and handle transitions
 func set_game_state(new_state: GameState) -> void:
 	var old_state: GameState = current_state
-	current_state = new_state
 	
+	# Handle transition BEFORE changing state to avoid race conditions
 	_handle_state_transition(new_state)
+	
+	# Now update the state
+	current_state = new_state
 	
 	print("Game state changed: %s -> %s" % [
 		GameState.keys()[old_state],
@@ -175,6 +178,7 @@ func get_statistics() -> Dictionary:
 		"enemies_defeated": enemies_defeated,
 		"quests_completed": quests_completed,
 		"treasures_found": treasures_found,
+		"gold": gold,
 	}
 
 

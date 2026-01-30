@@ -41,7 +41,7 @@ func can_hire(companion_id: String) -> Dictionary:
 		return result
 	
 	# Check level requirement
-	if GameManager.player_level < companion.required_level:
+	if player_stats and player_stats.level < companion.required_level:
 		result["reason"] = "Level " + str(companion.required_level) + " required"
 		return result
 	
@@ -52,7 +52,7 @@ func can_hire(companion_id: String) -> Dictionary:
 			return result
 	
 	# Check gold cost
-	if GameManager.player_gold < companion.hire_cost:
+	if GameManager.gold < companion.hire_cost:
 		result["reason"] = "Not enough gold (need " + str(companion.hire_cost) + ")"
 		return result
 	
@@ -74,7 +74,7 @@ func hire_companion(companion_id: String) -> bool:
 	var companion = companions[companion_id]
 	
 	# Deduct hire cost
-	GameManager.add_gold(-companion.hire_cost)
+	GameManager.remove_gold(companion.hire_cost)
 	
 	# Hire companion
 	companion.is_hired = true

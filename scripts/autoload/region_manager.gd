@@ -34,7 +34,8 @@ func discover_region(region_id: String) -> void:
 	
 	discovered_regions.append(region_id)
 	regions[region_id].discovered = true
-	region_discovered.emit(region_id)
+	region_discovered.emit(region_id, regions[region_id].region_name)
+	EventBus.region_discovered.emit(region_id, regions[region_id].region_name)
 	EventBus.achievement_unlocked.emit("discover_" + region_id, "Discovered " + regions[region_id].region_name)
 	print("Region discovered: ", regions[region_id].region_name)
 

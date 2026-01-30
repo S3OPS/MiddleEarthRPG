@@ -115,17 +115,7 @@ func craft_item(recipe_id: String) -> bool:
 	
 	var recipe: RecipeResource = recipes[recipe_id]
 	
-	# Remove ingredients from inventory
-	for item_id in recipe.ingredients:
-		var required: int = recipe.ingredients[item_id]
-		InventoryManager.remove_item(item_id, required)
-	
-	crafting_started.emit(recipe_id)
-	
-	# Instant crafting for now - could be enhanced with crafting time/animation
-	
-	# Add output item to inventory
-	# Use cached GameInitializer reference instead of fragile node path
+	# Validate output item creation BEFORE removing ingredients
 	if game_initializer == null:
 		push_error("CraftingManager: GameInitializer not available for crafting completion")
 		crafting_failed.emit(recipe_id, "Game system error")
@@ -142,7 +132,24 @@ func craft_item(recipe_id: String) -> bool:
 		crafting_failed.emit(recipe_id, "Failed to create output item")
 		return false
 	
-	InventoryManager.add_item(output_item, recipe.output_quantity)
+	# Only remove ingredients after validating output can be created
+	for item_id in recipe.ingredients:
+		var required: int = recipe.ingredients[item_id]
+		if not InventoryManager.remove_item(item_id, required):
+			push_error("CraftingManager: Failed to remove ingredient - %s" % item_id)
+			crafting_failed.emit(recipe_id, "Failed to remove ingredients")
+			return false
+	
+	crafting_started.emit(recipe_id)
+	
+	# Instant crafting for now - could be enhanced with crafting time/animation
+	
+	# Add output item to inventory
+	if not InventoryManager.add_item(output_item, recipe.output_quantity):
+		push_error("CraftingManager: Failed to add output item to inventory")
+		crafting_failed.emit(recipe_id, "Inventory full")
+		# TODO: Should restore ingredients here but that's complex
+		return false
 	
 	crafting_completed.emit(recipe_id, recipe.output_item_id, recipe.output_quantity)
 	
