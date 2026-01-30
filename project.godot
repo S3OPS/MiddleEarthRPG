@@ -25,10 +25,6 @@ gdscript/warnings/unsafe_method_access=1
 gdscript/warnings/unsafe_cast=1
 gdscript/warnings/unsafe_call_argument=1
 
-[dotnet]
-
-project/assembly_name="MiddleEarthRPG"
-
 [filesystem]
 
 import/blender/enabled=false
@@ -90,7 +86,7 @@ window/size/viewport_height=1080
 window/size/mode=2
 window/size/resizable=true
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
+window/stretch/aspect="keep"
 window/vsync/vsync_mode=1
 
 [input]
@@ -173,12 +169,12 @@ interact={
 
 3d/default_gravity=9.8
 3d/physics_engine="GodotPhysics3D"
-3d/run_on_separate_thread=false
+3d/run_on_separate_thread=true
 
 [rendering]
 
 renderer/rendering_method="forward_plus"
-renderer/rendering_method.mobile="mobile"
+renderer/rendering_method.mobile="gl_compatibility"
 textures/canvas_textures/default_texture_filter=1
 textures/canvas_textures/default_texture_repeat=0
 anti_aliasing/quality/msaa_3d=2
