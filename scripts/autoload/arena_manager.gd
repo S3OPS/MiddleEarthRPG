@@ -58,28 +58,28 @@ func _try_create_match(match_type: String) -> void:
 		return
 	
 	# Create match with queued players
-	var match = ArenaMatchResource.new(match_type, "arena_1")
+	var arena_match = ArenaMatchResource.new(match_type, "arena_1")
 	
 	var players_per_team = required_players / 2
 	for i in range(players_per_team):
 		if queue.size() > 0:
-			match.add_player_to_team(queue.pop_front(), 1)
+			arena_match.add_player_to_team(queue.pop_front(), 1)
 	
 	for i in range(players_per_team):
 		if queue.size() > 0:
-			match.add_player_to_team(queue.pop_front(), 2)
+			arena_match.add_player_to_team(queue.pop_front(), 2)
 	
-	if match.is_ready():
-		active_matches[match.match_id] = match
-		start_match(match.match_id)
+	if arena_match.is_ready():
+		active_matches[arena_match.match_id] = arena_match
+		start_match(arena_match.match_id)
 
 func start_match(match_id: String) -> bool:
 	"""Start an arena match"""
 	if match_id not in active_matches:
 		return false
 	
-	var match = active_matches[match_id]
-	match.status = "active"
+	var arena_match = active_matches[match_id]
+	arena_match.status = "active"
 	
 	match_started.emit(match_id)
 	print("Arena match started: ", match_id)
@@ -90,17 +90,17 @@ func end_match(match_id: String, winner_team: int) -> bool:
 	if match_id not in active_matches:
 		return false
 	
-	var match = active_matches[match_id]
-	match.status = "completed"
-	match.winner_team = winner_team
+	var arena_match = active_matches[match_id]
+	arena_match.status = "completed"
+	arena_match.winner_team = winner_team
 	
 	# Update ratings
-	_update_ratings(match)
+	_update_ratings(arena_match)
 	
 	match_ended.emit(match_id, winner_team)
 	
 	# Award achievements
-	for player_id in (match.team1 if winner_team == 1 else match.team2):
+	for player_id in (arena_match.team1 if winner_team == 1 else arena_match.team2):
 		EventBus.achievement_unlocked.emit(
 			"arena_victory",
 			"Victory in the Arena"
@@ -112,32 +112,32 @@ func end_match(match_id: String, winner_team: int) -> bool:
 	print("Arena match ended, winner: team ", winner_team)
 	return true
 
-func _update_ratings(match: ArenaMatchResource) -> void:
+func _update_ratings(arena_match: ArenaMatchResource) -> void:
 	"""Update player ratings based on match result"""
-	var team1_avg = _get_team_average_rating(match.team1)
-	var team2_avg = _get_team_average_rating(match.team2)
+	var team1_avg = _get_team_average_rating(arena_match.team1)
+	var team2_avg = _get_team_average_rating(arena_match.team2)
 	
 	# Calculate expected scores
 	var expected1 = 1.0 / (1.0 + pow(10.0, (team2_avg - team1_avg) / 400.0))
 	var expected2 = 1.0 - expected1
 	
 	# Actual scores
-	var score1 = 1.0 if match.winner_team == 1 else 0.0
+	var score1 = 1.0 if arena_match.winner_team == 1 else 0.0
 	var score2 = 1.0 - score1
 	
 	# Update ratings for each player
-	for player_id in match.team1:
+	for player_id in arena_match.team1:
 		var old_rating = player_ratings.get(player_id, STARTING_RATING)
 		var new_rating = int(old_rating + RATING_K_FACTOR * (score1 - expected1))
 		player_ratings[player_id] = new_rating
-		match.rating_change[player_id] = new_rating - old_rating
+		arena_match.rating_change[player_id] = new_rating - old_rating
 		ranking_updated.emit(player_id, new_rating)
 	
-	for player_id in match.team2:
+	for player_id in arena_match.team2:
 		var old_rating = player_ratings.get(player_id, STARTING_RATING)
 		var new_rating = int(old_rating + RATING_K_FACTOR * (score2 - expected2))
 		player_ratings[player_id] = new_rating
-		match.rating_change[player_id] = new_rating - old_rating
+		arena_match.rating_change[player_id] = new_rating - old_rating
 		ranking_updated.emit(player_id, new_rating)
 	
 	_update_leaderboard()

@@ -77,8 +77,12 @@ func interact() -> void:
 	
 	# Start dialogue if available
 	if dialogue_id != "":
-		DialogueManager.start_dialogue(dialogue_id)
-		EventBus.npc_interacted.emit(npc_name)
+		var game_init = get_tree().root.get_node_or_null("GameInitializer")
+		if game_init and game_init.has_method("get_dialogue"):
+			var dialogue = game_init.get_dialogue(dialogue_id)
+			if dialogue:
+				DialogueManager.start_dialogue(dialogue)
+				EventBus.npc_interacted.emit(npc_name)
 	
 	# Give quest if available and not already active
 	if quest_to_give != "":

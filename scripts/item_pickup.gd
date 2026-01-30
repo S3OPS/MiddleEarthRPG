@@ -44,8 +44,23 @@ func _on_body_entered(body: Node3D) -> void:
 		pickup_item()
 
 func pickup_item() -> void:
+	# Get item from GameInitializer's database
+	var game_init = get_tree().root.get_node_or_null("GameInitializer")
+	var item: InventoryItem = null
+	
+	if game_init and game_init.has_method("get_item"):
+		item = game_init.get_item(item_id)
+	
+	if not item:
+		# Fallback: Create a placeholder item
+		push_warning("Item database not found, creating placeholder for: " + item_id)
+		item = InventoryItem.new()
+		item.item_id = item_id
+		item.item_name = "Unknown Item"
+		item.description = "An item found in the world"
+	
 	# Add item to inventory
-	var success = InventoryManager.add_item(item_id, quantity)
+	var success = InventoryManager.add_item(item, quantity)
 	
 	if success:
 		# Play pickup animation
