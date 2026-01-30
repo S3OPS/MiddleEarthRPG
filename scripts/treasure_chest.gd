@@ -12,7 +12,7 @@ var player_in_range: bool = false
 
 @onready var mesh_instance = $MeshInstance3D
 @onready var interaction_area = $InteractionArea
-@ontml:parameter name="lid" = $Lid
+@onready var lid = $Lid
 
 func _ready() -> void:
 	# Connect signals

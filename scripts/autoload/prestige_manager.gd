@@ -9,7 +9,7 @@ signal paragon_spent(stat_name: String, new_value: int)
 
 var prestige_level: int = 0
 var paragon_points: int = 0
-var paragon_spent: Dictionary = {
+var paragon_spent_points: Dictionary = {
 	"strength": 0,
 	"agility": 0,
 	"intelligence": 0,
@@ -67,14 +67,14 @@ func spend_paragon_point(stat_name: String) -> bool:
 		print("No paragon points available")
 		return false
 	
-	if stat_name not in paragon_spent:
+	if stat_name not in paragon_spent_points:
 		print("Invalid stat name")
 		return false
 	
 	paragon_points -= 1
-	paragon_spent[stat_name] += 1
+	paragon_spent_points[stat_name] += 1
 	
-	paragon_spent.emit(stat_name, paragon_spent[stat_name])
+	paragon_spent.emit(stat_name, paragon_spent_points[stat_name])
 	print("Paragon point spent on ", stat_name)
 	return true
 
@@ -87,9 +87,9 @@ func reset_paragon_points(cost: int) -> bool:
 	GameManager.add_gold(-cost)
 	
 	# Refund all spent points
-	for stat in paragon_spent:
-		paragon_points += paragon_spent[stat]
-		paragon_spent[stat] = 0
+	for stat in paragon_spent_points:
+		paragon_points += paragon_spent_points[stat]
+		paragon_spent_points[stat] = 0
 	
 	print("Paragon points reset")
 	return true
@@ -105,11 +105,11 @@ func get_prestige_bonus() -> Dictionary:
 func get_paragon_bonuses() -> Dictionary:
 	"""Get total bonuses from paragon points"""
 	return {
-		"strength": paragon_spent["strength"] * 5,
-		"agility": paragon_spent["agility"] * 5,
-		"intelligence": paragon_spent["intelligence"] * 5,
-		"vitality": paragon_spent["vitality"] * 10,
-		"endurance": paragon_spent["endurance"] * 10
+		"strength": paragon_spent_points["strength"] * 5,
+		"agility": paragon_spent_points["agility"] * 5,
+		"intelligence": paragon_spent_points["intelligence"] * 5,
+		"vitality": paragon_spent_points["vitality"] * 10,
+		"endurance": paragon_spent_points["endurance"] * 10
 	}
 
 func save_data() -> Dictionary:
@@ -117,14 +117,14 @@ func save_data() -> Dictionary:
 	return {
 		"prestige_level": prestige_level,
 		"paragon_points": paragon_points,
-		"paragon_spent": paragon_spent
+		"paragon_spent": paragon_spent_points
 	}
 
 func load_data(data: Dictionary) -> void:
 	"""Load prestige data"""
 	prestige_level = data.get("prestige_level", 0)
 	paragon_points = data.get("paragon_points", 0)
-	paragon_spent = data.get("paragon_spent", {
+	paragon_spent_points = data.get("paragon_spent", {
 		"strength": 0,
 		"agility": 0,
 		"intelligence": 0,

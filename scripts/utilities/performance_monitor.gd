@@ -99,7 +99,7 @@ func get_detailed_metrics() -> Dictionary:
 		"max_fps": max_fps,
 		"frame_time_ms": average_frame_time * 1000.0,
 		"memory_static_mb": Performance.get_monitor(Performance.MEMORY_STATIC) / 1024.0 / 1024.0,
-		"memory_dynamic_mb": Performance.get_monitor(Performance.MEMORY_DYNAMIC) / 1024.0 / 1024.0,
+		"memory_dynamic_mb": Performance.get_monitor(Performance.MEMORY_STATIC_MAX) / 1024.0 / 1024.0,
 		"objects_in_scene": Performance.get_monitor(Performance.OBJECT_COUNT),
 		"nodes_in_scene": Performance.get_monitor(Performance.OBJECT_NODE_COUNT),
 		"draw_calls": Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME),

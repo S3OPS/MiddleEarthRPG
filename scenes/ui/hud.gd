@@ -12,9 +12,17 @@ extends CanvasLayer
 
 var player: Node = null
 var show_performance_stats: bool = false
+var performance_overlay: Control = null
 
 
 func _ready() -> void:
+	# Create performance overlay control for drawing
+	performance_overlay = Control.new()
+	performance_overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
+	performance_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	performance_overlay.draw.connect(_draw_performance_overlay)
+	add_child(performance_overlay)
+	
 	# Connect to EventBus signals
 	if EventBus.player_health_changed.connect(_on_health_changed) != OK:
 		push_error("Failed to connect player_health_changed signal")
@@ -41,30 +49,33 @@ func _input(event: InputEvent) -> void:
 	# Note: Define custom "toggle_debug_stats" action in project settings for better control
 	if event.is_action_pressed("ui_text_completion_query"):  # F3 by default
 		show_performance_stats = not show_performance_stats
+		if performance_overlay:
+			performance_overlay.queue_redraw()
 
 
 func _process(_delta: float) -> void:
 	# Update performance display if enabled
-	if show_performance_stats:
-		queue_redraw()
+	if show_performance_stats and performance_overlay:
+		performance_overlay.queue_redraw()
 
 
-func _draw() -> void:
-	if not show_performance_stats:
+func _draw_performance_overlay() -> void:
+	if not show_performance_stats or not performance_overlay:
 		return
 	
 	# Draw performance overlay
 	var stats_text = _get_performance_text()
 	var font = ThemeDB.fallback_font
 	var font_size = 14
-	var position = Vector2(10, get_viewport_rect().size.y - 120)
+	var viewport_size = get_viewport().get_visible_rect().size
+	var position = Vector2(10, viewport_size.y - 120)
 	
 	# Draw background
 	var text_size = font.get_multiline_string_size(stats_text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size)
-	draw_rect(Rect2(position - Vector2(5, text_size.y + 5), text_size + Vector2(10, 10)), Color(0, 0, 0, 0.7))
+	performance_overlay.draw_rect(Rect2(position - Vector2(5, text_size.y + 5), text_size + Vector2(10, 10)), Color(0, 0, 0, 0.7))
 	
 	# Draw text
-	draw_multiline_string(font, position, stats_text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, -1, Color.WHITE)
+	performance_overlay.draw_multiline_string(font, position, stats_text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, -1, Color.WHITE)
 
 
 ## Get performance statistics text

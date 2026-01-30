@@ -5,7 +5,7 @@ class_name LootTable
 ## Defines drop chances and item pools for enemies and treasure chests
 
 ## Item drop entries
-@export var loot_entries: Array[LootEntry] = []
+@export var loot_entries: Array = []
 @export var gold_min: int = 0
 @export var gold_max: int = 10
 @export var guaranteed_gold: bool = false
