@@ -41,7 +41,7 @@ func can_hire(companion_id: String) -> Dictionary:
 		return result
 	
 	# Check level requirement
-	if player_stats and player_stats.level < companion.required_level:
+	if GameManager.player_stats and GameManager.player_stats.level < companion.required_level:
 		result["reason"] = "Level " + str(companion.required_level) + " required"
 		return result
 	
